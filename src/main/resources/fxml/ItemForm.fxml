@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.studylibrary.controller.ItemFormController"
+      spacing="15" prefHeight="600.0" prefWidth="600.0"
+      stylesheets="@../css/application.css">
+    
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+    
+    <ScrollPane fitToWidth="true" fitToHeight="true" VBox.vgrow="ALWAYS">
+        <VBox spacing="15">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+            
+            <!-- Common Fields -->
+            <Label text="Item Details" styleClass="section-header"/>
+            
+            <VBox spacing="5">
+                <Label text="Title *"/>
+                <TextField fx:id="titleField" promptText="Enter title"/>
+            </VBox>
+            
+            <VBox spacing="5">
+                <Label text="Description"/>
+                <TextArea fx:id="descriptionArea" promptText="Enter description" 
+                          prefRowCount="3" wrapText="true"/>
+            </VBox>
+            
+            <HBox spacing="10">
+                <VBox spacing="5" HBox.hgrow="ALWAYS">
+                    <Label text="Category"/>
+                    <ComboBox fx:id="categoryComboBox" maxWidth="Infinity"/>
+                </VBox>
+                
+                <VBox spacing="5" HBox.hgrow="ALWAYS">
+                    <Label text="Tags (comma-separated)"/>
+                    <TextField fx:id="tagsField" promptText="study, programming, java"/>
+                </VBox>
+            </HBox>
+            
+            <Separator/>
+            
+            <!-- Note-specific Fields -->
+            <VBox spacing="10" fx:id="noteFields" visible="false" managed="false">
+                <Label text="Note Content" styleClass="section-header"/>
+                <TextArea fx:id="contentArea" promptText="Enter note content" 
+                          prefRowCount="10" wrapText="true"/>
+                <CheckBox fx:id="markdownCheckBox" text="Use Markdown"/>
+            </VBox>
+            
+            <!-- PDF-specific Fields -->
+            <VBox spacing="10" fx:id="pdfFields" visible="false" managed="false">
+                <Label text="PDF Details" styleClass="section-header"/>
+                
+                <VBox spacing="5">
+                    <Label text="File Path *"/>
+                    <HBox spacing="10">
+                        <TextField fx:id="filePathField" promptText="Select PDF file" 
+                                   HBox.hgrow="ALWAYS"/>
+                        <Button fx:id="browseButton" text="Browse..." onAction="#handleBrowse"/>
+                    </HBox>
+                </VBox>
+                
+                <HBox spacing="10">
+                    <VBox spacing="5" HBox.hgrow="ALWAYS">
+                        <Label text="Author"/>
+                        <TextField fx:id="authorField" promptText="Author name"/>
+                    </VBox>
+                    
+                    <VBox spacing="5" HBox.hgrow="ALWAYS">
+                        <Label text="Page Count"/>
+                        <TextField fx:id="pageCountField" promptText="0"/>
+                    </VBox>
+                </HBox>
+            </VBox>
+            
+            <!-- Media-specific Fields -->
+            <VBox spacing="10" fx:id="mediaFields" visible="false" managed="false">
+                <Label text="Media Details" styleClass="section-header"/>
+                
+                <VBox spacing="5">
+                    <Label text="URL *"/>
+                    <TextField fx:id="urlField" promptText="https://..."/>
+                </VBox>
+                
+                <HBox spacing="10">
+                    <VBox spacing="5" HBox.hgrow="ALWAYS">
+                        <Label text="Media Type"/>
+                        <ComboBox fx:id="mediaTypeComboBox" maxWidth="Infinity"/>
+                    </VBox>
+                    
+                    <VBox spacing="5" HBox.hgrow="ALWAYS">
+                        <Label text="Source"/>
+                        <TextField fx:id="sourceField" promptText="YouTube, Coursera, etc."/>
+                    </VBox>
+                </HBox>
+                
+                <VBox spacing="5">
+                    <Label text="Duration (minutes)"/>
+                    <TextField fx:id="durationField" promptText="0"/>
+                </VBox>
+            </VBox>
+            
+            <!-- Snippet-specific Fields -->
+            <VBox spacing="10" fx:id="snippetFields" visible="false" managed="false">
+                <Label text="Snippet Content" styleClass="section-header"/>
+                
+                <VBox spacing="5">
+                    <Label text="Code/Text *"/>
+                    <TextArea fx:id="snippetContentArea" promptText="Enter snippet content" 
+                              prefRowCount="10" wrapText="true" 
+                              style="-fx-font-family: 'Courier New', monospace;"/>
+                </VBox>
+                
+                <HBox spacing="10">
+                    <VBox spacing="5" HBox.hgrow="ALWAYS">
+                        <Label text="Language"/>
+                        <TextField fx:id="languageField" promptText="java, python, sql, etc."/>
+                    </VBox>
+                    
+                    <VBox spacing="5" HBox.hgrow="ALWAYS">
+                        <Label text="Source URL"/>
+                        <TextField fx:id="sourceUrlField" promptText="Optional source URL"/>
+                    </VBox>
+                </HBox>
+            </VBox>
+        </VBox>
+    </ScrollPane>
+    
+    <!-- Buttons -->
+    <Separator/>
+    <HBox spacing="10" alignment="CENTER_RIGHT">
+        <Button text="Save" onAction="#handleSave" styleClass="primary-button" prefWidth="100"/>
+        <Button text="Cancel" onAction="#handleCancel" styleClass="secondary-button" prefWidth="100"/>
+    </HBox>
+</VBox>

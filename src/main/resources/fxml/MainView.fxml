@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.studylibrary.controller.MainController"
+            prefHeight="800.0" prefWidth="1200.0"
+            stylesheets="@../css/application.css">
+    
+    <!-- Top: Menu Bar -->
+    <top>
+        <VBox>
+            <MenuBar>
+                <Menu text="File">
+                    <MenuItem text="Refresh" onAction="#handleRefresh" accelerator="F5"/>
+                    <SeparatorMenuItem/>
+                    <MenuItem text="Exit" onAction="#handleExit" accelerator="Ctrl+Q"/>
+                </Menu>
+                <Menu text="Edit">
+                    <MenuItem text="Add Note" onAction="#handleAddNote" accelerator="Ctrl+N"/>
+                    <MenuItem text="Add PDF" onAction="#handleAddPdf" accelerator="Ctrl+P"/>
+                    <MenuItem text="Add Media Link" onAction="#handleAddMedia" accelerator="Ctrl+M"/>
+                    <MenuItem text="Add Snippet" onAction="#handleAddSnippet" accelerator="Ctrl+S"/>
+                </Menu>
+                <Menu text="View">
+                    <MenuItem text="Clear Filters" onAction="#handleClearFilters" accelerator="Ctrl+L"/>
+                    <MenuItem text="Refresh" onAction="#handleRefresh" accelerator="F5"/>
+                </Menu>
+                <Menu text="Help">
+                    <MenuItem text="About" onAction="#handleAbout"/>
+                </Menu>
+            </MenuBar>
+            
+            <!-- Toolbar -->
+            <ToolBar styleClass="toolbar">
+                <Button fx:id="addNoteButton" text="+ Note" onAction="#handleAddNote" styleClass="toolbar-button"/>
+                <Button fx:id="addPdfButton" text="+ PDF" onAction="#handleAddPdf" styleClass="toolbar-button"/>
+                <Button fx:id="addMediaButton" text="+ Media" onAction="#handleAddMedia" styleClass="toolbar-button"/>
+                <Button fx:id="addSnippetButton" text="+ Snippet" onAction="#handleAddSnippet" styleClass="toolbar-button"/>
+                <Separator orientation="VERTICAL"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Label text="Search:"/>
+                <TextField fx:id="searchField" promptText="Search library..." prefWidth="300"/>
+            </ToolBar>
+        </VBox>
+    </top>
+    
+    <!-- Center: Main Content -->
+    <center>
+        <VBox spacing="10" styleClass="content-area">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+            
+            <!-- Filters -->
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Label text="Filter by:"/>
+                <ComboBox fx:id="categoryComboBox" prefWidth="200"/>
+                <ComboBox fx:id="typeComboBox" prefWidth="150"/>
+                <Button text="Clear Filters" onAction="#handleClearFilters" styleClass="secondary-button"/>
+            </HBox>
+            
+            <!-- Items Table -->
+            <TableView fx:id="itemsTableView" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="typeColumn" text="Type" prefWidth="100"/>
+                    <TableColumn fx:id="titleColumn" text="Title" prefWidth="250"/>
+                    <TableColumn fx:id="categoryColumn" text="Category" prefWidth="150"/>
+                    <TableColumn fx:id="dateAddedColumn" text="Date Added" prefWidth="150"/>
+                    <TableColumn fx:id="lastModifiedColumn" text="Last Modified" prefWidth="150"/>
+                    <TableColumn fx:id="actionsColumn" text="Actions" prefWidth="250"/>
+                </columns>
+                <columnResizePolicy>
+                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+                </columnResizePolicy>
+            </TableView>
+        </VBox>
+    </center>
+    
+    <!-- Bottom: Status Bar -->
+    <bottom>
+        <HBox styleClass="status-bar" spacing="10" alignment="CENTER_LEFT">
+            <padding>
+                <Insets top="5" right="10" bottom="5" left="10"/>
+            </padding>
+            <Label fx:id="itemCountLabel" text="0 items"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label fx:id="statusLabel" text="Ready"/>
+        </HBox>
+    </bottom>
+</BorderPane>
