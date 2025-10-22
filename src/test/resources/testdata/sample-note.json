@@ -1,0 +1,16 @@
+{
+  "id": "test-note-001",
+  "title": "Test Study Note",
+  "description": "A sample note for testing purposes",
+  "category": {
+    "id": "cat-001",
+    "name": "Programming",
+    "color": "#4CAF50"
+  },
+  "tags": ["java", "testing", "junit"],
+  "dateAdded": "2025-10-20T10:30:00",
+  "lastModified": "2025-10-22T14:45:00",
+  "itemType": "NOTE",
+  "content": "This is a test note content with some important information about testing.",
+  "isMarkdown": false
+}
