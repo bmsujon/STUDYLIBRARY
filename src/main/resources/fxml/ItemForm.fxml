@@ -37,7 +37,7 @@
             <HBox spacing="10">
                 <VBox spacing="5" HBox.hgrow="ALWAYS">
                     <Label text="Category"/>
-                    <ComboBox fx:id="categoryComboBox" maxWidth="Infinity"/>
+                    <ComboBox fx:id="categoryComboBox" editable="true" promptText="Select or type new category..." maxWidth="Infinity"/>
                 </VBox>
                 
                 <VBox spacing="5" HBox.hgrow="ALWAYS">

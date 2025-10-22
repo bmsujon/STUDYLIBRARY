@@ -183,8 +183,37 @@ public class StorageService {
         public LibraryItem deserialize(JsonElement json, java.lang.reflect.Type type,
                 JsonDeserializationContext context) throws JsonParseException {
             JsonObject jsonObject = json.getAsJsonObject();
-            String itemType = jsonObject.get("type").getAsString();
+            JsonElement typeElement = jsonObject.get("type");
+            if (typeElement == null || typeElement.isJsonNull()) {
+                // Handle legacy format or corrupted data
+                // You might want to log this or handle it based on your app's requirements
+                // For now, we'll try to infer the type or skip the item
+                // A simple approach: if it has a "filePath" it's a PDF, etc.
+                // This is just an example, a more robust solution is needed for production
+                if (jsonObject.has("filePath")) {
+                    return context.deserialize(jsonObject, PdfDocument.class);
+                } else if (jsonObject.has("content")) {
+                    return context.deserialize(jsonObject, Note.class);
+                } else if (jsonObject.has("url")) {
+                    return context.deserialize(jsonObject, MediaLink.class);
+                } else if (jsonObject.has("code")) {
+                    return context.deserialize(jsonObject, TextSnippet.class);
+                }
+                throw new JsonParseException("Unknown item type and cannot infer type");
+            }
+            String itemType = typeElement.getAsString();
             JsonElement data = jsonObject.get("data");
+
+            // If data is null, it means the old format is being used.
+            if (data == null) {
+                return switch (itemType) {
+                    case "NOTE" -> context.deserialize(jsonObject, Note.class);
+                    case "PDF" -> context.deserialize(jsonObject, PdfDocument.class);
+                    case "MEDIA_LINK" -> context.deserialize(jsonObject, MediaLink.class);
+                    case "TEXT_SNIPPET" -> context.deserialize(jsonObject, TextSnippet.class);
+                    default -> throw new JsonParseException("Unknown item type: " + itemType);
+                };
+            }
 
             return switch (itemType) {
                 case "NOTE" -> context.deserialize(data, Note.class);

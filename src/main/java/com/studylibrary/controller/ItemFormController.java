@@ -83,6 +83,33 @@ public class ItemFormController {
     public void setViewModel(LibraryViewModel viewModel) {
         this.viewModel = viewModel;
         categoryComboBox.setItems(viewModel.getCategories());
+
+        // Configure the ComboBox to display category names
+        categoryComboBox.setConverter(new javafx.util.StringConverter<Category>() {
+            @Override
+            public String toString(Category category) {
+                return category != null ? category.getName() : "";
+            }
+
+            @Override
+            public Category fromString(String string) {
+                if (string == null || string.trim().isEmpty()) {
+                    return null;
+                }
+
+                // Check if category already exists
+                for (Category category : viewModel.getCategories()) {
+                    if (category.getName().equalsIgnoreCase(string.trim())) {
+                        return category;
+                    }
+                }
+
+                // Create new category if it doesn't exist
+                Category newCategory = new Category(string.trim());
+                viewModel.addCategory(newCategory);
+                return newCategory;
+            }
+        });
     }
 
     /**
@@ -169,7 +196,16 @@ public class ItemFormController {
         // Update common fields
         item.setTitle(titleField.getText());
         item.setDescription(descriptionArea.getText());
-        item.setCategory(categoryComboBox.getValue());
+
+        // Handle category - get value from editable ComboBox
+        Category selectedCategory = categoryComboBox.getValue();
+        if (selectedCategory == null && categoryComboBox.getEditor().getText() != null
+                && !categoryComboBox.getEditor().getText().trim().isEmpty()) {
+            // User typed a new category name
+            String categoryName = categoryComboBox.getEditor().getText().trim();
+            selectedCategory = findOrCreateCategory(categoryName);
+        }
+        item.setCategory(selectedCategory);
 
         // Parse and set tags
         String tagsText = tagsField.getText();
@@ -296,6 +332,23 @@ public class ItemFormController {
     private void closeDialog() {
         Stage stage = (Stage) titleField.getScene().getWindow();
         stage.close();
+    }
+
+    /**
+     * Finds an existing category by name or creates a new one.
+     */
+    private Category findOrCreateCategory(String categoryName) {
+        // Check if category already exists (case-insensitive)
+        for (Category category : viewModel.getCategories()) {
+            if (category.getName().equalsIgnoreCase(categoryName)) {
+                return category;
+            }
+        }
+
+        // Create new category with default color
+        Category newCategory = new Category(categoryName);
+        viewModel.addCategory(newCategory);
+        return newCategory;
     }
 
     // Helper methods to show/hide fields
