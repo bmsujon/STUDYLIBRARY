@@ -3,8 +3,9 @@ package com.studylibrary.model;
 /**
  * Represents a Text Snippet item in the study library.
  * Quick text snippets with copy-to-clipboard functionality.
+ * Java 25: Final class for sealed hierarchy.
  */
-public class TextSnippet extends LibraryItem {
+public final class TextSnippet extends LibraryItem {
 
     private String content;
     private String language; // Programming language or format (e.g., "java", "sql", "json")

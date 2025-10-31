@@ -3,8 +3,9 @@ package com.studylibrary.model;
 /**
  * Represents a Note item in the study library.
  * Notes support rich text or markdown content.
+ * Java 25: Final class for sealed hierarchy.
  */
-public class Note extends LibraryItem {
+public final class Note extends LibraryItem {
 
     private String content;
     private boolean isMarkdown;
@@ -35,7 +36,10 @@ public class Note extends LibraryItem {
 
     @Override
     public String getSearchableText() {
-        return super.getSearchableText() + " " + (content != null ? content : "");
+        var baseText = super.getSearchableText();
+        var noteContent = content != null ? content : "";
+        // Java 25 optimization: More efficient string concatenation
+        return baseText.isEmpty() ? noteContent : baseText + " " + noteContent;
     }
 
     /**

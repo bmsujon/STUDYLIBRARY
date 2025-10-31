@@ -6,8 +6,9 @@ import java.nio.file.Paths;
 /**
  * Represents a PDF Document item in the study library.
  * Stores the file path and metadata about the PDF.
+ * Java 25: Final class for sealed hierarchy.
  */
-public class PdfDocument extends LibraryItem {
+public final class PdfDocument extends LibraryItem {
 
     private String filePath;
     private long fileSize; // in bytes
