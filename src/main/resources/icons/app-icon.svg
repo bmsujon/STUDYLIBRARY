@@ -1,0 +1,71 @@
+<!-- Study Library Manager Application Icon -->
+<!-- SVG Icon - 512x512px - Can be converted to PNG using any SVG tool -->
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background gradient -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3498db;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2980b9;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="bookGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#ecf0f1;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#bdc3c7;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Rounded square background -->
+  <rect x="0" y="0" width="512" height="512" rx="80" fill="url(#bgGradient)"/>
+  
+  <!-- Shadow for book -->
+  <ellipse cx="256" cy="420" rx="140" ry="20" fill="#000000" opacity="0.2"/>
+  
+  <!-- Open book -->
+  <g transform="translate(256, 256)">
+    <!-- Left page -->
+    <path d="M -120,-100 L -120,100 L -10,110 L -10,-90 Z" 
+          fill="url(#bookGradient)" 
+          stroke="#95a5a6" 
+          stroke-width="3"/>
+    
+    <!-- Right page -->
+    <path d="M 120,-100 L 120,100 L 10,110 L 10,-90 Z" 
+          fill="url(#bookGradient)" 
+          stroke="#95a5a6" 
+          stroke-width="3"/>
+    
+    <!-- Book spine shadow -->
+    <rect x="-10" y="-90" width="20" height="200" fill="#7f8c8d" opacity="0.3"/>
+    
+    <!-- Text lines on left page -->
+    <line x1="-100" y1="-60" x2="-30" y2="-60" stroke="#3498db" stroke-width="4" stroke-linecap="round"/>
+    <line x1="-100" y1="-30" x2="-30" y2="-30" stroke="#3498db" stroke-width="4" stroke-linecap="round"/>
+    <line x1="-100" y1="0" x2="-30" y2="0" stroke="#3498db" stroke-width="4" stroke-linecap="round"/>
+    <line x1="-100" y1="30" x2="-50" y2="30" stroke="#3498db" stroke-width="4" stroke-linecap="round"/>
+    
+    <!-- Text lines on right page -->
+    <line x1="30" y1="-60" x2="100" y2="-60" stroke="#3498db" stroke-width="4" stroke-linecap="round"/>
+    <line x1="30" y1="-30" x2="100" y2="-30" stroke="#3498db" stroke-width="4" stroke-linecap="round"/>
+    <line x1="30" y1="0" x2="100" y2="0" stroke="#3498db" stroke-width="4" stroke-linecap="round"/>
+    <line x1="30" y1="30" x2="80" y2="30" stroke="#3498db" stroke-width="4" stroke-linecap="round"/>
+    
+    <!-- PDF icon on left page -->
+    <g transform="translate(-65, 60)">
+      <rect x="-15" y="-15" width="30" height="35" fill="#e74c3c" rx="3"/>
+      <text x="0" y="5" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="white" text-anchor="middle">PDF</text>
+    </g>
+    
+    <!-- Media icon on right page -->
+    <g transform="translate(65, 60)">
+      <circle cx="0" cy="0" r="18" fill="#27ae60"/>
+      <polygon points="-6,-8 -6,8 10,0" fill="white"/>
+    </g>
+  </g>
+  
+  <!-- Highlight/shine effect -->
+  <path d="M 80,80 Q 150,150 200,400" 
+        stroke="white" 
+        stroke-width="40" 
+        fill="none" 
+        opacity="0.1" 
+        stroke-linecap="round"/>
+</svg>
