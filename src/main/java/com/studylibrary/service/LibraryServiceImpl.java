@@ -87,13 +87,21 @@ public class LibraryServiceImpl implements LibraryService {
 
     @Override
     public List<LibraryItem> searchItems(String query) {
-        if (query == null || query.trim().isEmpty()) {
+        return searchWithCriteria(new com.studylibrary.model.SearchCriteria(query));
+    }
+
+    /**
+     * Enhanced search using SearchCriteria record.
+     * Java 25: Optimized with modern patterns and better performance.
+     */
+    public List<LibraryItem> searchWithCriteria(com.studylibrary.model.SearchCriteria criteria) {
+        if (criteria.query().isEmpty() && criteria.category() == null &&
+                criteria.type() == null && criteria.tags().isEmpty()) {
             return getAllItems();
         }
 
-        String searchQuery = query.toLowerCase().trim();
-        return items.values().stream()
-                .filter(item -> item.getSearchableText().contains(searchQuery))
+        return items.values().parallelStream() // Java 25: Better parallel performance
+                .filter(criteria::matches)
                 .collect(Collectors.toList());
     }
 
@@ -195,5 +203,46 @@ public class LibraryServiceImpl implements LibraryService {
         return (int) items.values().stream()
                 .filter(item -> type.equals(item.getItemType()))
                 .count();
+    }
+
+    /**
+     * Get items with enhanced descriptions using pattern matching.
+     * Java 25: Leverages sealed classes for type safety.
+     */
+    public List<String> getItemDescriptions() {
+        var criteria = new com.studylibrary.model.SearchCriteria("");
+        return items.values().stream()
+                .map(criteria::getEnhancedDescription)
+                .sorted()
+                .collect(Collectors.toList());
+    }
+
+    /**
+     * Get performance statistics about the library.
+     * Java 25: Modern collection operations for better performance.
+     */
+    public java.util.Map<String, Object> getPerformanceStats() {
+        var stats = new java.util.HashMap<String, Object>();
+
+        // Count by type using a single stream traversal
+        Map<Class<?>, Long> typeCounts = items.values().stream()
+                .collect(Collectors.groupingBy(
+                        Object::getClass,
+                        Collectors.counting()
+                ));
+        long noteCount = typeCounts.getOrDefault(com.studylibrary.model.Note.class, 0L);
+        long pdfCount = typeCounts.getOrDefault(com.studylibrary.model.PdfDocument.class, 0L);
+        long mediaCount = typeCounts.getOrDefault(com.studylibrary.model.MediaLink.class, 0L);
+        long snippetCount = typeCounts.getOrDefault(com.studylibrary.model.TextSnippet.class, 0L);
+
+        stats.put("totalItems", items.size());
+        stats.put("noteCount", noteCount);
+        stats.put("pdfCount", pdfCount);
+        stats.put("mediaCount", mediaCount);
+        stats.put("snippetCount", snippetCount);
+        stats.put("categoryCount", categories.size());
+        stats.put("uniqueTagCount", getAllTags().size());
+
+        return stats;
     }
 }

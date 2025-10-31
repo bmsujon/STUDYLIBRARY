@@ -3,8 +3,9 @@ package com.studylibrary.model;
 /**
  * Represents a Media Link item (Audio/Video) in the study library.
  * Stores URLs to online media content.
+ * Java 25: Final class for sealed hierarchy.
  */
-public class MediaLink extends LibraryItem {
+public final class MediaLink extends LibraryItem {
 
     private String url;
     private MediaType mediaType;

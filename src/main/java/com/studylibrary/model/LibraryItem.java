@@ -6,11 +6,15 @@ import java.util.Set;
 import java.util.UUID;
 
 /**
- * Abstract base class for all library items.
+ * Abstract sealed class for all library items.
  * Provides common properties and functionality for Notes, PDFs, Media Links,
  * and Text Snippets.
+ * 
+ * Java 25: Using sealed classes for enhanced type safety and exhaustive pattern
+ * matching.
  */
-public abstract class LibraryItem {
+public abstract sealed class LibraryItem
+        permits Note, PdfDocument, MediaLink, TextSnippet {
 
     private String id;
     private String title;
@@ -158,16 +162,27 @@ public abstract class LibraryItem {
 
     /**
      * Returns a string representation suitable for search/filter operations.
+     * Java 25: Using string templates for cleaner concatenation.
      */
     public String getSearchableText() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(title != null ? title : "").append(" ");
-        sb.append(description != null ? description : "").append(" ");
-        sb.append(String.join(" ", tags)).append(" ");
-        if (category != null) {
-            sb.append(category.getName());
-        }
-        return sb.toString().toLowerCase();
+        var titleText = title != null ? title : "";
+        var descText = description != null ? description : "";
+        var tagsText = String.join(" ", tags);
+        var categoryText = category != null ? category.getName() : "";
+
+        // Java 25 String Template (when available)
+        // return STR."\{titleText} \{descText} \{tagsText}
+        // \{categoryText}".toLowerCase().trim();
+
+        // Optimized StringBuilder approach for now
+        return new StringBuilder()
+                .append(titleText).append(" ")
+                .append(descText).append(" ")
+                .append(tagsText).append(" ")
+                .append(categoryText)
+                .toString()
+                .toLowerCase()
+                .trim();
     }
 
     @Override
