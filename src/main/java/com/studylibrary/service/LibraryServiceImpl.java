@@ -224,19 +224,16 @@ public class LibraryServiceImpl implements LibraryService {
     public java.util.Map<String, Object> getPerformanceStats() {
         var stats = new java.util.HashMap<String, Object>();
 
-        // Count by type using sealed class exhaustiveness
-        long noteCount = items.values().parallelStream()
-                .filter(item -> item instanceof com.studylibrary.model.Note)
-                .count();
-        long pdfCount = items.values().parallelStream()
-                .filter(item -> item instanceof com.studylibrary.model.PdfDocument)
-                .count();
-        long mediaCount = items.values().parallelStream()
-                .filter(item -> item instanceof com.studylibrary.model.MediaLink)
-                .count();
-        long snippetCount = items.values().parallelStream()
-                .filter(item -> item instanceof com.studylibrary.model.TextSnippet)
-                .count();
+        // Count by type using a single stream traversal
+        Map<Class<?>, Long> typeCounts = items.values().stream()
+                .collect(Collectors.groupingBy(
+                        Object::getClass,
+                        Collectors.counting()
+                ));
+        long noteCount = typeCounts.getOrDefault(com.studylibrary.model.Note.class, 0L);
+        long pdfCount = typeCounts.getOrDefault(com.studylibrary.model.PdfDocument.class, 0L);
+        long mediaCount = typeCounts.getOrDefault(com.studylibrary.model.MediaLink.class, 0L);
+        long snippetCount = typeCounts.getOrDefault(com.studylibrary.model.TextSnippet.class, 0L);
 
         stats.put("totalItems", items.size());
         stats.put("noteCount", noteCount);
