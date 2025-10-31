@@ -58,7 +58,7 @@ public class PerformanceBenchmark {
         long startTime = System.nanoTime();
 
         // Parallel operations using concurrent streams
-        var executor = Executors.newFixedThreadPool(3);
+        var executor = Executors.newVirtualThreadPerTaskExecutor();
         try {
             var futures = List.of(
                     CompletableFuture.supplyAsync(() -> libraryService.getAllItems(), executor),
