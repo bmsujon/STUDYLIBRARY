@@ -15,6 +15,7 @@ This directory contains the application icons for Study Library Manager.
 Run the generation script:
 
 ```bash
+cd src/main/resources/icons
 chmod +x generate-icons.sh
 ./generate-icons.sh
 ```
