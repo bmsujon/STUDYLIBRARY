@@ -19,7 +19,13 @@ if ! command -v rsvg-convert &> /dev/null; then
         fi
     elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
         # Linux
-        sudo apt-get update && sudo apt-get install -y librsvg2-bin
+        read -p "⚠️  This script needs to install 'librsvg2-bin' using sudo. Continue? [y/N] " confirm
+        if [[ "$confirm" =~ ^[Yy]$ ]]; then
+            sudo apt-get update && sudo apt-get install -y librsvg2-bin
+        else
+            echo "❌ Installation cancelled by user."
+            exit 1
+        fi
     else
         echo "❌ Unsupported OS. Please install librsvg manually."
         exit 1
