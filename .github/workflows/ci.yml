@@ -187,7 +187,7 @@ jobs:
         mkdir -p build/
         VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout 2>/dev/null)
         if [ -z "$VERSION" ]; then
-          echo "ERROR: Failed to extract project version from Maven." >&2
+          echo "ERROR: Failed to extract project version from Maven. Ensure pom.xml is valid and Maven is properly configured." >&2
           exit 1
         fi
         echo '#!/bin/bash' > build/study-library.sh
