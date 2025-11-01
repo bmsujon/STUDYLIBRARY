@@ -9,7 +9,7 @@ import com.studylibrary.util.PerformanceBenchmark;
  * Runs performance tests without any GUI dependencies.
  */
 public class HeadlessBenchmark {
-    
+
     // Performance test constants
     private static final int SAMPLE_DATA_COUNT = 10;
     private static final int BENCHMARK_ITERATIONS = 10;
@@ -80,7 +80,8 @@ public class HeadlessBenchmark {
 
         // Quick validation
         if (searchResult.averageTimeMs() > MAX_SEARCH_TIME_MS) {
-            throw new RuntimeException("Search performance degraded: " + searchResult.averageTimeMs() + " ms (expected < " + MAX_SEARCH_TIME_MS + "ms)");
+            throw new RuntimeException("Search performance degraded: " + searchResult.averageTimeMs()
+                    + " ms (expected < " + MAX_SEARCH_TIME_MS + "ms)");
         }
 
         System.out.println("All performance benchmarks passed ✅");

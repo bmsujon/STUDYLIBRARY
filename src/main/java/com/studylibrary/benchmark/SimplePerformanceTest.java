@@ -81,7 +81,8 @@ public class SimplePerformanceTest {
         System.out.printf("  ✓ Pattern matching average: %.3f ms%n", avgTimeMs);
 
         if (avgTimeMs > MAX_ACCEPTABLE_TIME_MS) {
-            throw new RuntimeException("Pattern matching too slow: " + avgTimeMs + " ms (expected < " + MAX_ACCEPTABLE_TIME_MS + "ms)");
+            throw new RuntimeException(
+                    "Pattern matching too slow: " + avgTimeMs + " ms (expected < " + MAX_ACCEPTABLE_TIME_MS + "ms)");
         }
     }
 
