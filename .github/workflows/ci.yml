@@ -185,15 +185,19 @@ jobs:
       if: runner.os != 'Windows'
       run: |
         mkdir -p build/
+        VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
         echo '#!/bin/bash' > build/study-library.sh
-        echo 'java --enable-preview -cp "target/study-library-1.0.0.jar:target/lib/*" com.studylibrary.Launcher' >> build/study-library.sh
+        echo "java --enable-preview -cp \"target/study-library-${VERSION}.jar:target/lib/*\" com.studylibrary.Launcher" >> build/study-library.sh
         chmod +x build/study-library.sh
         
     - name: Create platform-specific executable (Windows)
       if: runner.os == 'Windows'
       run: |
         mkdir build
-        echo 'java --enable-preview -cp "target/study-library-1.0.0.jar;target/lib/*" com.studylibrary.Launcher' > build/study-library.bat
+        VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
+        echo "java --enable-preview -cp \"target/study-library-%VERSION%.jar;target/lib/*\" com.studylibrary.Launcher" > build/study-library.bat
+        sed -i '1i@echo off' build/study-library.bat
+        sed -i '2iSET VERSION=%VERSION%' build/study-library.bat
         
     - name: Package application with dependencies
       run: mvn dependency:copy-dependencies -DoutputDirectory=target/lib
