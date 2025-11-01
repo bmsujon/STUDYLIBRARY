@@ -9,6 +9,11 @@ import com.studylibrary.util.PerformanceBenchmark;
  * Runs performance tests without any GUI dependencies.
  */
 public class HeadlessBenchmark {
+    
+    // Performance test constants
+    private static final int SAMPLE_DATA_COUNT = 10;
+    private static final int BENCHMARK_ITERATIONS = 10;
+    private static final double MAX_SEARCH_TIME_MS = 100.0;
 
     public static void main(String[] args) {
         System.out.println("🚀 Headless Performance Benchmark");
@@ -38,7 +43,7 @@ public class HeadlessBenchmark {
         System.out.println("Setting up test data...");
 
         // Create minimal sample data for testing
-        for (int i = 1; i <= 10; i++) {
+        for (int i = 1; i <= SAMPLE_DATA_COUNT; i++) {
             // Notes
             var note = new Note();
             note.setTitle("Sample Note " + i);
@@ -63,9 +68,9 @@ public class HeadlessBenchmark {
         var benchmark = new PerformanceBenchmark(service);
 
         // Quick benchmarks suitable for CI
-        var searchResult = benchmark.benchmarkSearch("sample", 10);
+        var searchResult = benchmark.benchmarkSearch("sample", BENCHMARK_ITERATIONS);
         var parallelResult = benchmark.benchmarkParallelOperations();
-        var patternResult = benchmark.benchmarkPatternMatching(10);
+        var patternResult = benchmark.benchmarkPatternMatching(BENCHMARK_ITERATIONS);
 
         // Output results
         System.out.println("Performance Results:");
@@ -74,8 +79,8 @@ public class HeadlessBenchmark {
         System.out.printf("  Pattern Matching: %.3f ms/op%n", patternResult.averageTimeMs());
 
         // Quick validation
-        if (searchResult.averageTimeMs() > 100.0) {
-            throw new RuntimeException("Search performance degraded: " + searchResult.averageTimeMs() + " ms");
+        if (searchResult.averageTimeMs() > MAX_SEARCH_TIME_MS) {
+            throw new RuntimeException("Search performance degraded: " + searchResult.averageTimeMs() + " ms (expected < " + MAX_SEARCH_TIME_MS + "ms)");
         }
 
         System.out.println("All performance benchmarks passed ✅");
