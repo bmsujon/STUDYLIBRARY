@@ -65,10 +65,10 @@ public class MinimalTest {
 
         // Simulate pattern matching performance
         long startTime = System.nanoTime();
-        
+
         // Use a volatile variable to prevent compiler optimization
         String lastResult = "";
-        
+
         for (int i = 0; i < 10000; i++) {
             lastResult = switch (i % 4) {
                 case 0 -> "📝";
@@ -80,7 +80,7 @@ public class MinimalTest {
         }
 
         long endTime = System.nanoTime();
-        
+
         // Prevent dead code elimination
         if (lastResult.isEmpty()) {
             throw new RuntimeException("Unexpected empty result");
