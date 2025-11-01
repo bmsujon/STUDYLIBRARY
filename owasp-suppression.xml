@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suppressions xmlns="https://jeremylong.github.io/DependencyCheck/dependency-suppression.1.3.xsd">
+    <!-- 
+         OWASP Dependency Check Suppressions
+         This file contains suppressions for false positives or acceptable risks
+    -->
+    
+    <!-- Example suppression for JavaFX (if needed) -->
+    <!-- <suppress>
+        <notes><![CDATA[
+        JavaFX is a well-maintained library and false positives are common.
+        ]]></notes>
+        <packageUrl regex="true">^pkg:maven/org\.openjfx/.*$</packageUrl>
+        <cve>CVE-2021-XXXXX</cve>
+    </suppress> -->
+    
+</suppressions>
