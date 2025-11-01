@@ -157,7 +157,7 @@ jobs:
         DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
         
         # Check if Java 25+ is available
-        if ! java -version 2>&1 | grep -E "openjdk version \"(2[5-9]|[3-9][0-9])"; then
+        if ! java -version 2>&1 | grep -E "openjdk version \"(2[5-9]|[3-9][0-9])[.\"]"; then
           echo "Error: Java 25 or higher is required"
           echo "Please install Java 25+ and try again"
           exit 1
