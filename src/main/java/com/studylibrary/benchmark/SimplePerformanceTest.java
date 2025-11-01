@@ -11,6 +11,7 @@ public class SimplePerformanceTest {
 
     private static final int ITERATION_COUNT = 1000;
     private static final double MAX_ACCEPTABLE_TIME_MS = 1.0;
+    private static final double NANOS_PER_MILLI = 1_000_000.0;
 
     public static void main(String[] args) {
         System.out.println("🧪 Simple Performance Test");
@@ -76,7 +77,7 @@ public class SimplePerformanceTest {
         }
 
         long endTime = System.nanoTime();
-        double avgTimeMs = (endTime - startTime) / 1_000_000.0 / (ITERATION_COUNT * items.size());
+        double avgTimeMs = (endTime - startTime) / NANOS_PER_MILLI / (ITERATION_COUNT * items.size());
 
         System.out.printf("  ✓ Pattern matching average: %.3f ms%n", avgTimeMs);
 

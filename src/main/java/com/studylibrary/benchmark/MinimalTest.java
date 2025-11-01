@@ -7,6 +7,7 @@ public class MinimalTest {
     // Performance test constants
     private static final int PATTERN_MATCHING_ITERATIONS = 10000;
     private static final double MAX_PATTERN_MATCHING_TIME_MS = 0.01;
+    private static final double NANOS_PER_MILLI = 1_000_000.0;
 
     // Volatile field to prevent JIT compiler optimization
     private static volatile String benchmarkResult;
@@ -90,7 +91,7 @@ public class MinimalTest {
         if (benchmarkResult == null || benchmarkResult.isEmpty()) {
             throw new RuntimeException("Unexpected empty result");
         }
-        double avgTimeMs = (endTime - startTime) / 1_000_000.0 / PATTERN_MATCHING_ITERATIONS;
+        double avgTimeMs = (endTime - startTime) / NANOS_PER_MILLI / PATTERN_MATCHING_ITERATIONS;
 
         System.out.printf("  ✓ Pattern matching average: %.6f ms%n", avgTimeMs);
 
