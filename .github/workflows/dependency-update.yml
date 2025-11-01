@@ -37,12 +37,12 @@ jobs:
     - name: Update dependencies
       run: |
         mvn versions:display-dependency-updates
-        mvn versions:use-latest-versions -DallowMajorUpdates=false
+        mvn versions:use-latest-releases -DallowMajorUpdates=false -DgenerateBackupPoms=false
         
     - name: Update plugin versions
       run: |
         mvn versions:display-plugin-updates
-        mvn versions:use-latest-versions -DallowMajorUpdates=false -Dincludes="org.apache.maven.plugins:*"
+        mvn versions:use-latest-releases -DallowMajorUpdates=false -Dincludes="org.apache.maven.plugins:*" -DgenerateBackupPoms=false
         
     - name: Test with updated dependencies
       run: mvn clean test
