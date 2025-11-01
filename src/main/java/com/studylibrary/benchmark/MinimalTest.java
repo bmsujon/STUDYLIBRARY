@@ -98,7 +98,7 @@ public class MinimalTest {
         // operation)
         if (avgTimeMs > MAX_PATTERN_MATCHING_TIME_MS) {
             throw new RuntimeException("Pattern matching too slow: " + avgTimeMs + " ms (expected < "
-                    + MAX_PATTERN_MATCHING_TIME_MS + "ms)");
+                    + MAX_PATTERN_MATCHING_TIME_MS + " ms)");
         }
     }
 }

@@ -81,7 +81,7 @@ public class HeadlessBenchmark {
         // Quick validation
         if (searchResult.averageTimeMs() > MAX_SEARCH_TIME_MS) {
             throw new RuntimeException("Search performance degraded: " + searchResult.averageTimeMs()
-                    + " ms (expected < " + MAX_SEARCH_TIME_MS + "ms)");
+                    + " ms (expected < " + MAX_SEARCH_TIME_MS + " ms)");
         }
 
         System.out.println("All performance benchmarks passed ✅");
