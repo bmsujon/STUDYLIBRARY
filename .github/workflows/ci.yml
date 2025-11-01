@@ -197,8 +197,45 @@ jobs:
         key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
         restore-keys: ${{ runner.os }}-m2
         
+    - name: Configure Maven for resilience
+      run: |
+        mkdir -p ~/.m2
+        cat > ~/.m2/settings.xml << 'EOF'
+        <?xml version="1.0" encoding="UTF-8"?>
+        <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 
+                                      https://maven.apache.org/xsd/settings-1.0.0.xsd">
+          <localRepository>${user.home}/.m2/repository</localRepository>
+          <mirrors>
+            <mirror>
+              <id>central-mirror</id>
+              <name>Maven Central Mirror</name>
+              <url>https://repo1.maven.org/maven2</url>
+              <mirrorOf>central</mirrorOf>
+            </mirror>
+          </mirrors>
+        </settings>
+        EOF
+        
     - name: Build application
-      run: mvn clean compile package
+      run: |
+        # Retry logic for Maven Central outages during build
+        for i in {1..3}; do
+          echo "Attempt $i: Building application..."
+          if mvn clean compile package; then
+            echo "Build completed successfully"
+            break
+          else
+            echo "Build attempt $i failed"
+            if [ $i -eq 3 ]; then
+              echo "All build attempts failed. Check for Maven Central issues or build errors."
+              exit 1
+            fi
+            echo "Waiting 30 seconds before retry..."
+            sleep 30
+          fi
+        done
       
     - name: Create platform-specific executable (Linux/Mac)
       if: runner.os != 'Windows'
@@ -242,7 +279,24 @@ jobs:
         echo java --enable-preview -cp "target/study-library-%VERSION%.jar;target/lib/*" com.studylibrary.Launcher >> build/study-library.bat
         
     - name: Package application with dependencies
-      run: mvn dependency:copy-dependencies -DoutputDirectory=target/lib
+      run: |
+        # Retry logic for Maven Central outages
+        for i in {1..3}; do
+          echo "Attempt $i: Copying dependencies..."
+          if mvn dependency:copy-dependencies -DoutputDirectory=target/lib; then
+            echo "Dependencies copied successfully"
+            break
+          else
+            echo "Attempt $i failed"
+            if [ $i -eq 3 ]; then
+              echo "All attempts failed. Maven Central may be experiencing issues."
+              echo "This is typically a temporary issue. Please retry the workflow later."
+              exit 1
+            fi
+            echo "Waiting 30 seconds before retry..."
+            sleep 30
+          fi
+        done
       
     - name: Upload build artifacts
       uses: actions/upload-artifact@v4
