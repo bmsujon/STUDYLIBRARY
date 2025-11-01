@@ -73,7 +73,7 @@ public class SimplePerformanceTest {
         }
 
         long endTime = System.nanoTime();
-        double avgTimeMs = (endTime - startTime) / 1_000_000.0 / 1000;
+        double avgTimeMs = (endTime - startTime) / 1_000_000.0 / (1000 * items.size());
 
         System.out.printf("  ✓ Pattern matching average: %.3f ms%n", avgTimeMs);
 
