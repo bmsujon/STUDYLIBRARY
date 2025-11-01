@@ -4,6 +4,8 @@ package com.studylibrary.benchmark;
  * Ultra-simple CI test that avoids all dependencies
  */
 public class MinimalTest {
+    // Volatile field to prevent JIT compiler optimization
+    private static volatile String benchmarkResult;
     public static void main(String[] args) {
         System.out.println("🧪 Minimal CI Test");
         System.out.println("==================");
@@ -66,11 +68,9 @@ public class MinimalTest {
         // Simulate pattern matching performance
         long startTime = System.nanoTime();
 
-        // Use a volatile variable to prevent compiler optimization
-        String lastResult = "";
-
         for (int i = 0; i < 10000; i++) {
-            lastResult = switch (i % 4) {
+            // Use volatile field to prevent JIT compiler optimization
+            benchmarkResult = switch (i % 4) {
                 case 0 -> "📝";
                 case 1 -> "📄";
                 case 2 -> "🎵";
@@ -81,8 +81,8 @@ public class MinimalTest {
 
         long endTime = System.nanoTime();
 
-        // Prevent dead code elimination
-        if (lastResult.isEmpty()) {
+        // Prevent dead code elimination by consuming the volatile field
+        if (benchmarkResult == null || benchmarkResult.isEmpty()) {
             throw new RuntimeException("Unexpected empty result");
         }
         double avgTimeMs = (endTime - startTime) / 1_000_000.0 / 10000;
