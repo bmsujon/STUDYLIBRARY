@@ -19,7 +19,7 @@ A modern JavaFX desktop application for managing your personal study library inc
 
 ## Requirements
 
-- **Java 25** or higher (LTS recommended)
+- **Java 25** or higher (Note: Java 25 is not an LTS release. For production use, prefer the next LTS version—Java 26 or beyond—when available.)
 - Maven 3.6+
 - Supported platforms: Windows 10+, macOS 10.14+, Linux (Ubuntu 18.04+)
 
