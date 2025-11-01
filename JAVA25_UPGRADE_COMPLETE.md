@@ -69,7 +69,7 @@ if (item instanceof Note note && note.isMarkdown()) {
 
 | Component          | Before | After  | Status             |
 | ------------------ | ------ | ------ | ------------------ |
-| **Java**           | 17     | 25     | ✅ Latest LTS      |
+| **Java**           | 17     | 25     | ✅ Feature Release |
 | **JavaFX**         | 21.0.1 | 25.0.1 | ✅ Synchronized    |
 | **JaCoCo**         | 0.8.10 | 0.8.14 | ✅ Java 25 Support |
 | **Gson**           | 2.10.1 | 2.11.0 | ✅ Updated         |
