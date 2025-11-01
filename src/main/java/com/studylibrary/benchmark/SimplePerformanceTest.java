@@ -68,7 +68,7 @@ public class SimplePerformanceTest {
 
         for (int i = 0; i < 1000; i++) {
             for (LibraryItem item : items) {
-                String icon = getItemIcon(item);
+                getItemIcon(item);
             }
         }
 
