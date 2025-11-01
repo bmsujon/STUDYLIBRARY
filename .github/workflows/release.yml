@@ -29,7 +29,6 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       version: ${{ steps.version.outputs.version }}
-      upload_url: ${{ steps.create_release.outputs.upload_url }}
       
     steps:
     - name: Checkout code
@@ -46,13 +45,11 @@ jobs:
         
     - name: Create Release
       id: create_release
-      uses: actions/create-release@v1
+      uses: softprops/action-gh-release@v1
       if: github.event_name == 'workflow_dispatch'
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         tag_name: v${{ steps.version.outputs.version }}
-        release_name: Study Library Manager v${{ steps.version.outputs.version }}
+        name: Study Library Manager v${{ steps.version.outputs.version }}
         body: |
           ## Study Library Manager v${{ steps.version.outputs.version }}
           
@@ -86,6 +83,7 @@ jobs:
           For detailed information, see [RELEASE_NOTES.md](RELEASE_NOTES.md)
         draft: false
         prerelease: false
+        token: ${{ secrets.GITHUB_TOKEN }}
 
   build-and-package:
     name: Build and Package for ${{ matrix.os }}
@@ -248,13 +246,21 @@ jobs:
           tar -czf ${{ matrix.artifact_name }}.tar.gz study-library/
         fi
         
-    - name: Upload Release Asset
+    - name: Upload Release Asset (ZIP for Windows)
+      if: matrix.os == 'windows'
       uses: softprops/action-gh-release@v1
       with:
-        files: |
-          ./dist/${{ matrix.artifact_name }}.zip
-          ./dist/${{ matrix.artifact_name }}.tar.gz
-      if: always()
+        tag_name: v${{ needs.prepare-release.outputs.version }}
+        files: ./dist/${{ matrix.artifact_name }}.zip
+        token: ${{ secrets.GITHUB_TOKEN }}
+        
+    - name: Upload Release Asset (TAR.GZ for Unix)
+      if: matrix.os != 'windows'
+      uses: softprops/action-gh-release@v1
+      with:
+        tag_name: v${{ needs.prepare-release.outputs.version }}
+        files: ./dist/${{ matrix.artifact_name }}.tar.gz
+        token: ${{ secrets.GITHUB_TOKEN }}
 
   deploy-documentation:
     name: Deploy Documentation
