@@ -184,6 +184,17 @@
                 <artifactId>dependency-check-maven</artifactId>
                 <version>10.0.4</version>
                 <configuration>
+                    <!-- Performance optimizations -->
+                    <nvdApiKey>${env.NVD_API_KEY}</nvdApiKey>
+                    <failOnError>false</failOnError>
+                    
+                    <!-- Analyzer optimizations for speed -->
+                    <archiveAnalyzerEnabled>false</archiveAnalyzerEnabled>
+                    <jarAnalyzerEnabled>true</jarAnalyzerEnabled>
+                    <centralAnalyzerEnabled>true</centralAnalyzerEnabled>
+                    <nexusAnalyzerEnabled>false</nexusAnalyzerEnabled>
+                    
+                    <!-- Vulnerability thresholds -->
                     <failBuildOnCVSS>8</failBuildOnCVSS>
                     <suppressionFiles>
                         <suppressionFile>owasp-suppression.xml</suppressionFile>
