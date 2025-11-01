@@ -242,10 +242,10 @@ jobs:
           fi
         done
       
-    - name: Create platform-specific executable (Linux/Mac)
-      if: runner.os != 'Windows'
+    - name: Extract project version
+      id: version
+      shell: bash
       run: |
-        mkdir -p build/
         # Extract version with error capture for better diagnostics
         MAVEN_OUTPUT=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout 2>&1)
         VERSION=$(echo "$MAVEN_OUTPUT" | grep -v "^\[" | tail -n1)
@@ -255,6 +255,15 @@ jobs:
           echo "Ensure pom.xml is valid and Maven is properly configured." >&2
           exit 1
         fi
+        echo "version=$VERSION" >> $GITHUB_OUTPUT
+        echo "Extracted version: $VERSION"
+      
+    - name: Create platform-specific executable (Linux/Mac)
+      if: runner.os != 'Windows'
+      env:
+        VERSION: ${{ steps.version.outputs.version }}
+      run: |
+        mkdir -p build/
         echo '#!/bin/bash' > build/study-library.sh
         echo "# Study Library Manager Launcher" >> build/study-library.sh
         echo "# Version: ${VERSION}" >> build/study-library.sh
@@ -265,18 +274,10 @@ jobs:
     - name: Create platform-specific executable (Windows)
       if: runner.os == 'Windows'
       shell: cmd
+      env:
+        VERSION: ${{ steps.version.outputs.version }}
       run: |
         mkdir build
-        mvn help:evaluate -Dexpression=project.version -q -DforceStdout > temp_version.txt 2>&1
-        set /p VERSION=<temp_version.txt
-        if "%VERSION%"=="" (
-          echo ERROR: Failed to extract project version from Maven. >&2
-          echo Maven output: >&2
-          type temp_version.txt >&2
-          del temp_version.txt
-          exit /b 1
-        )
-        del temp_version.txt
         echo @echo off > build/study-library.bat
         echo REM Study Library Manager Launcher >> build/study-library.bat
         echo REM Version: %VERSION% >> build/study-library.bat
