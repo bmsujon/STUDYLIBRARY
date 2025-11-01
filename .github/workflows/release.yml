@@ -248,27 +248,13 @@ jobs:
           tar -czf ${{ matrix.artifact_name }}.tar.gz study-library/
         fi
         
-    - name: Upload Release Asset (ZIP for Windows)
-      if: matrix.os == 'windows'
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Upload Release Asset
+      uses: softprops/action-gh-release@v1
       with:
-        upload_url: ${{ needs.prepare-release.outputs.upload_url }}
-        asset_path: ./dist/${{ matrix.artifact_name }}.zip
-        asset_name: ${{ matrix.artifact_name }}.zip
-        asset_content_type: application/zip
-        
-    - name: Upload Release Asset (TAR.GZ for Unix)
-      if: matrix.os != 'windows'
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        upload_url: ${{ needs.prepare-release.outputs.upload_url }}
-        asset_path: ./dist/${{ matrix.artifact_name }}.tar.gz
-        asset_name: ${{ matrix.artifact_name }}.tar.gz
-        asset_content_type: application/gzip
+        files: |
+          ./dist/${{ matrix.artifact_name }}.zip
+          ./dist/${{ matrix.artifact_name }}.tar.gz
+      if: always()
 
   deploy-documentation:
     name: Deploy Documentation
