@@ -191,5 +191,5 @@ The upgrade is **complete and ready for production use**!
 
 ---
 
-_Upgrade completed successfully on October 31, 2025_  
+_Upgrade completed successfully in November 2025_  
 _From Java 17 to Java 25 - A modern, high-performance study library application_ 📚✨
