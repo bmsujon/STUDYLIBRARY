@@ -242,7 +242,7 @@ jobs:
         
     - name: Run performance benchmarks
       run: |
-        mvn compile exec:java -Dexec.mainClass="com.studylibrary.benchmark.SimplePerformanceTest" -Djava.awt.headless=true
+        mvn compile exec:java@ci-performance-test
         
     - name: Generate performance report
       run: |

@@ -210,6 +210,52 @@
                     <mainClass>com.studylibrary.Launcher</mainClass>
                     <commandlineArgs>--enable-preview</commandlineArgs>
                 </configuration>
+                <executions>
+                    <!-- Execution for CI performance tests without JavaFX -->
+                    <execution>
+                        <id>ci-performance-test</id>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                        <configuration>
+                            <mainClass>com.studylibrary.benchmark.MinimalTest</mainClass>
+                            <commandlineArgs>--enable-preview</commandlineArgs>
+                            <!-- Exclude JavaFX from classpath for headless testing -->
+                            <classpathScope>compile</classpathScope>
+                            <includePluginDependencies>false</includePluginDependencies>
+                            <systemProperties>
+                                <systemProperty>
+                                    <key>java.awt.headless</key>
+                                    <value>true</value>
+                                </systemProperty>
+                                <systemProperty>
+                                    <key>testfx.robot</key>
+                                    <value>glass</value>
+                                </systemProperty>
+                                <systemProperty>
+                                    <key>testfx.headless</key>
+                                    <value>true</value>
+                                </systemProperty>
+                                <systemProperty>
+                                    <key>prism.order</key>
+                                    <value>sw</value>
+                                </systemProperty>
+                                <systemProperty>
+                                    <key>prism.text</key>
+                                    <value>t2k</value>
+                                </systemProperty>
+                                <systemProperty>
+                                    <key>glass.platform</key>
+                                    <value>Monocle</value>
+                                </systemProperty>
+                                <systemProperty>
+                                    <key>monocle.platform</key>
+                                    <value>Headless</value>
+                                </systemProperty>
+                            </systemProperties>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
 
             <!-- Maven Assembly Plugin for distribution packages -->
