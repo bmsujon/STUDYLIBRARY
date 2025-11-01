@@ -142,7 +142,6 @@ jobs:
         cp -r target/lib dist/study-library/
         cp README.md dist/study-library/
         cp LICENSE dist/study-library/
-        cp RELEASE_NOTES.md dist/study-library/ || echo "RELEASE_NOTES.md not found, skipping"
         
     - name: Create launcher script (Unix)
       if: matrix.os != 'windows'
