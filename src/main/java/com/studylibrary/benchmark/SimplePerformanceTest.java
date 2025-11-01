@@ -8,8 +8,9 @@ import java.util.*;
  * Tests core functionality without dependencies.
  */
 public class SimplePerformanceTest {
-    
+
     private static final int ITERATION_COUNT = 1000;
+    private static final double MAX_ACCEPTABLE_TIME_MS = 1.0;
 
     public static void main(String[] args) {
         System.out.println("🧪 Simple Performance Test");
@@ -79,8 +80,8 @@ public class SimplePerformanceTest {
 
         System.out.printf("  ✓ Pattern matching average: %.3f ms%n", avgTimeMs);
 
-        if (avgTimeMs > 1.0) {
-            throw new RuntimeException("Pattern matching too slow: " + avgTimeMs + " ms");
+        if (avgTimeMs > MAX_ACCEPTABLE_TIME_MS) {
+            throw new RuntimeException("Pattern matching too slow: " + avgTimeMs + " ms (expected < " + MAX_ACCEPTABLE_TIME_MS + "ms)");
         }
     }
 
