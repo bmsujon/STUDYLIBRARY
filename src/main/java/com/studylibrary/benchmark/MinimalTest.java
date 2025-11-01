@@ -65,9 +65,12 @@ public class MinimalTest {
 
         // Simulate pattern matching performance
         long startTime = System.nanoTime();
-
+        
+        // Use a volatile variable to prevent compiler optimization
+        String lastResult = "";
+        
         for (int i = 0; i < 10000; i++) {
-            String result = switch (i % 4) {
+            lastResult = switch (i % 4) {
                 case 0 -> "📝";
                 case 1 -> "📄";
                 case 2 -> "🎵";
@@ -77,11 +80,17 @@ public class MinimalTest {
         }
 
         long endTime = System.nanoTime();
+        
+        // Prevent dead code elimination
+        if (lastResult.isEmpty()) {
+            throw new RuntimeException("Unexpected empty result");
+        }
         double avgTimeMs = (endTime - startTime) / 1_000_000.0 / 10000;
 
         System.out.printf("  ✓ Pattern matching average: %.6f ms%n", avgTimeMs);
 
-        // Realistic threshold for switch statement performance (10 microseconds per operation)
+        // Realistic threshold for switch statement performance (10 microseconds per
+        // operation)
         if (avgTimeMs > 0.01) {
             throw new RuntimeException("Pattern matching too slow: " + avgTimeMs + " ms (expected < 0.01ms)");
         }
