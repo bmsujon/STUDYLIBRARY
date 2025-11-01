@@ -1,0 +1,63 @@
+name: Nightly Build
+
+on:
+  schedule:
+    # Run nightly at 2 AM UTC
+    - cron: '0 2 * * *'
+  workflow_dispatch:
+
+jobs:
+  nightly-build:
+    name: Nightly Build and Test
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Set up JDK 25
+      uses: actions/setup-java@v4
+      with:
+        java-version: 25
+        distribution: 'corretto'
+        
+    - name: Cache Maven dependencies
+      uses: actions/cache@v4
+      with:
+        path: ~/.m2
+        key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+        restore-keys: ${{ runner.os }}-m2
+        
+    - name: Build and test
+      run: mvn clean test jacoco:report
+      
+    - name: Run performance benchmarks
+      run: |
+        mvn compile exec:java -Dexec.mainClass="com.studylibrary.benchmark.Java25ShowcaseApp" > benchmark-results.txt 2>&1 || true
+        
+    - name: Check for vulnerabilities
+      run: |
+        mvn org.owasp:dependency-check-maven:check || true
+        
+    - name: Create nightly snapshot
+      run: |
+        mvn package
+        mkdir -p nightly-build
+        cp target/study-library-*.jar nightly-build/
+        cp -r target/lib nightly-build/ 2>/dev/null || true
+        echo "Nightly build $(date)" > nightly-build/BUILD_INFO.txt
+        echo "Commit: ${{ github.sha }}" >> nightly-build/BUILD_INFO.txt
+        
+    - name: Upload nightly build
+      uses: actions/upload-artifact@v4
+      with:
+        name: nightly-build-${{ github.run_number }}
+        path: nightly-build/
+        retention-days: 7
+        
+    - name: Upload benchmark results
+      uses: actions/upload-artifact@v4
+      with:
+        name: benchmark-results-${{ github.run_number }}
+        path: benchmark-results.txt
+        retention-days: 30

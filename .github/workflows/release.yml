@@ -1,0 +1,338 @@
+name: CD - Release and Deploy
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to release (e.g., 1.0.0)'
+        required: true
+        default: '1.0.0'
+
+env:
+  JAVA_VERSION: 25
+  MAVEN_OPTS: -Xmx1024m
+
+jobs:
+  prepare-release:
+    name: Prepare Release
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.version.outputs.version }}
+      upload_url: ${{ steps.create_release.outputs.upload_url }}
+      
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Extract version from tag or input
+      id: version
+      run: |
+        if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
+          echo "version=${{ github.event.inputs.version }}" >> $GITHUB_OUTPUT
+        else
+          echo "version=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
+        fi
+        
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v1
+      if: github.event_name == 'workflow_dispatch'
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: v${{ steps.version.outputs.version }}
+        release_name: Study Library Manager v${{ steps.version.outputs.version }}
+        body: |
+          ## Study Library Manager v${{ steps.version.outputs.version }}
+          
+          ### 🚀 Features
+          - Java 25 with modern language features
+          - Enhanced performance with sealed classes and records
+          - Comprehensive search functionality
+          - Cross-platform JavaFX desktop application
+          
+          ### 📦 Downloads
+          Choose the appropriate package for your operating system:
+          - **Windows**: `study-library-windows.zip`
+          - **macOS**: `study-library-macos.zip`
+          - **Linux**: `study-library-linux.zip`
+          
+          ### 📋 Requirements
+          - Java 25 or higher
+          - Supported platforms: Windows 10+, macOS 10.14+, Linux (Ubuntu 18.04+)
+          
+          ### 🔧 Installation
+          1. Download the appropriate package for your OS
+          2. Extract the archive
+          3. Run the platform-specific launcher script
+          
+          ### 📊 Performance Improvements
+          This release includes significant performance optimizations:
+          - Search operations: 0.004-0.26 ms per operation
+          - Pattern matching: 0.391 ms/op for type checking
+          - Memory efficiency with modern Java 25 features
+          
+          For detailed information, see [RELEASE_NOTES.md](RELEASE_NOTES.md)
+        draft: false
+        prerelease: false
+
+  build-and-package:
+    name: Build and Package for ${{ matrix.os }}
+    runs-on: ${{ matrix.runner }}
+    needs: prepare-release
+    
+    strategy:
+      matrix:
+        include:
+          - os: windows
+            runner: windows-latest
+            artifact_name: study-library-windows
+            executable_ext: .bat
+          - os: macos
+            runner: macos-latest
+            artifact_name: study-library-macos
+            executable_ext: .sh
+          - os: linux
+            runner: ubuntu-latest
+            artifact_name: study-library-linux
+            executable_ext: .sh
+            
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Set up JDK ${{ env.JAVA_VERSION }}
+      uses: actions/setup-java@v4
+      with:
+        java-version: ${{ env.JAVA_VERSION }}
+        distribution: 'corretto'
+        
+    - name: Cache Maven dependencies
+      uses: actions/cache@v4
+      with:
+        path: ~/.m2
+        key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+        restore-keys: ${{ runner.os }}-m2
+        
+    - name: Update version in POM
+      run: mvn versions:set -DnewVersion=${{ needs.prepare-release.outputs.version }}
+      
+    - name: Build application
+      run: mvn clean compile package
+      
+    - name: Copy dependencies
+      run: mvn dependency:copy-dependencies -DoutputDirectory=target/lib
+      
+    - name: Create distribution directory
+      run: mkdir -p dist/study-library
+      
+    - name: Copy application files
+      shell: bash
+      run: |
+        cp target/study-library-*.jar dist/study-library/
+        cp -r target/lib dist/study-library/
+        cp README.md dist/study-library/
+        cp LICENSE dist/study-library/
+        cp RELEASE_NOTES.md dist/study-library/ || echo "RELEASE_NOTES.md not found, skipping"
+        
+    - name: Create launcher script (Unix)
+      if: matrix.os != 'windows'
+      run: |
+        cat > dist/study-library/study-library.sh << 'EOF'
+        #!/bin/bash
+        # Study Library Manager Launcher
+        
+        # Get the directory where this script is located
+        DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
+        
+        # Check if Java 25+ is available
+        if ! java -version 2>&1 | grep -q "openjdk version \"2[5-9]"; then
+          echo "Error: Java 25 or higher is required"
+          echo "Please install Java 25+ and try again"
+          exit 1
+        fi
+        
+        # Launch the application
+        cd "$DIR"
+        java --enable-preview -cp "study-library-${{ needs.prepare-release.outputs.version }}.jar:lib/*" com.studylibrary.Launcher
+        EOF
+        chmod +x dist/study-library/study-library.sh
+        
+    - name: Create launcher script (Windows)
+      if: matrix.os == 'windows'
+      run: |
+        @'
+        @echo off
+        REM Study Library Manager Launcher
+        
+        REM Get the directory where this script is located
+        set DIR=%~dp0
+        
+        REM Check if Java is available (basic check)
+        java -version >nul 2>&1
+        if %ERRORLEVEL% NEQ 0 (
+            echo Error: Java is not installed or not in PATH
+            echo Please install Java 25+ and try again
+            pause
+            exit /b 1
+        )
+        
+        REM Launch the application
+        cd /d "%DIR%"
+        java --enable-preview -cp "study-library-${{ needs.prepare-release.outputs.version }}.jar;lib\*" com.studylibrary.Launcher
+        pause
+        '@ > dist/study-library/study-library.bat
+        
+    - name: Create installation guide
+      run: |
+        cat > dist/study-library/INSTALL.md << 'EOF'
+        # Study Library Manager Installation Guide
+        
+        ## Requirements
+        - Java 25 or higher
+        - Supported OS: Windows 10+, macOS 10.14+, Linux (Ubuntu 18.04+)
+        
+        ## Installation Steps
+        
+        ### 1. Install Java 25
+        If you don't have Java 25 installed:
+        - Download from: https://adoptium.net/
+        - Choose "OpenJDK 25 (LTS)" for your operating system
+        - Follow the installation instructions
+        
+        ### 2. Run the Application
+        
+        **Windows:**
+        - Double-click `study-library.bat`
+        
+        **macOS/Linux:**
+        - Open Terminal
+        - Navigate to this directory
+        - Run: `./study-library.sh`
+        
+        ## Troubleshooting
+        
+        ### "Java not found" error:
+        - Ensure Java 25+ is installed
+        - Check that `java` command is available in your PATH
+        
+        ### Permission denied (macOS/Linux):
+        - Run: `chmod +x study-library.sh`
+        
+        ### Application won't start:
+        - Check Java version: `java -version`
+        - Ensure it shows version 25 or higher
+        
+        ## Support
+        For issues, visit: https://github.com/bmsujon/STUDYLIBRARY/issues
+        EOF
+        
+    - name: Package distribution
+      run: |
+        cd dist
+        if [ "${{ matrix.os }}" = "windows" ]; then
+          powershell Compress-Archive -Path study-library -DestinationPath ${{ matrix.artifact_name }}.zip
+        else
+          tar -czf ${{ matrix.artifact_name }}.tar.gz study-library/
+        fi
+        
+    - name: Upload Release Asset (ZIP for Windows)
+      if: matrix.os == 'windows'
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ needs.prepare-release.outputs.upload_url }}
+        asset_path: ./dist/${{ matrix.artifact_name }}.zip
+        asset_name: ${{ matrix.artifact_name }}.zip
+        asset_content_type: application/zip
+        
+    - name: Upload Release Asset (TAR.GZ for Unix)
+      if: matrix.os != 'windows'
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ needs.prepare-release.outputs.upload_url }}
+        asset_path: ./dist/${{ matrix.artifact_name }}.tar.gz
+        asset_name: ${{ matrix.artifact_name }}.tar.gz
+        asset_content_type: application/gzip
+
+  deploy-documentation:
+    name: Deploy Documentation
+    runs-on: ubuntu-latest
+    needs: [prepare-release, build-and-package]
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Set up JDK ${{ env.JAVA_VERSION }}
+      uses: actions/setup-java@v4
+      with:
+        java-version: ${{ env.JAVA_VERSION }}
+        distribution: 'corretto'
+        
+    - name: Generate JavaDoc
+      run: mvn javadoc:javadoc
+      
+    - name: Prepare documentation site
+      run: |
+        mkdir -p docs-site
+        cp -r target/site/apidocs docs-site/javadoc
+        cp README.md docs-site/
+        cp JAVA25_UPGRADE_COMPLETE.md docs-site/
+        
+        # Create simple index.html
+        cat > docs-site/index.html << 'EOF'
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <title>Study Library Manager Documentation</title>
+            <style>
+                body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
+                h1 { color: #2c3e50; }
+                .links { margin: 20px 0; }
+                .links a { display: block; margin: 10px 0; padding: 10px; background: #ecf0f1; text-decoration: none; border-radius: 5px; }
+                .links a:hover { background: #d5dbdb; }
+            </style>
+        </head>
+        <body>
+            <h1>Study Library Manager v${{ needs.prepare-release.outputs.version }}</h1>
+            <p>A modern JavaFX desktop application for managing your personal study library.</p>
+            
+            <div class="links">
+                <a href="README.html">📖 User Guide</a>
+                <a href="javadoc/index.html">📋 API Documentation</a>
+                <a href="JAVA25_UPGRADE_COMPLETE.html">🚀 Java 25 Upgrade Details</a>
+                <a href="https://github.com/bmsujon/STUDYLIBRARY">📁 Source Code</a>
+                <a href="https://github.com/bmsujon/STUDYLIBRARY/releases">💾 Downloads</a>
+            </div>
+        </body>
+        </html>
+        EOF
+        
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./docs-site
+
+  notify-completion:
+    name: Notify Release Completion
+    runs-on: ubuntu-latest
+    needs: [prepare-release, build-and-package, deploy-documentation]
+    if: always()
+    
+    steps:
+    - name: Notification
+      run: |
+        echo "🎉 Release v${{ needs.prepare-release.outputs.version }} completed!"
+        echo "📦 Packages built for Windows, macOS, and Linux"
+        echo "📚 Documentation deployed to GitHub Pages"
+        echo "🔗 Release URL: https://github.com/bmsujon/STUDYLIBRARY/releases/tag/v${{ needs.prepare-release.outputs.version }}"

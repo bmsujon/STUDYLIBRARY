@@ -116,14 +116,11 @@
             <plugin>
                 <groupId>org.openjfx</groupId>
                 <artifactId>javafx-maven-plugin</artifactId>
-                <version>0.0.9</version>
+                <version>0.0.8</version>
                 <configuration>
                     <mainClass>com.studylibrary.Launcher</mainClass>
                     <!-- Pass preview features to JavaFX runtime -->
                     <runtimePathOption>MODULEPATH</runtimePathOption>
-                    <jvmArgs>
-                        <jvmArg>--enable-preview</jvmArg>
-                    </jvmArgs>
                 </configuration>
             </plugin>
 
@@ -179,6 +176,57 @@
                         </configuration>
                     </execution> -->
                 </executions>
+            </plugin>
+
+            <!-- OWASP Dependency Check for security scanning -->
+            <plugin>
+                <groupId>org.owasp</groupId>
+                <artifactId>dependency-check-maven</artifactId>
+                <version>10.0.4</version>
+                <configuration>
+                    <failBuildOnCVSS>8</failBuildOnCVSS>
+                    <suppressionFiles>
+                        <suppressionFile>owasp-suppression.xml</suppressionFile>
+                    </suppressionFiles>
+                </configuration>
+            </plugin>
+
+            <!-- Maven Versions Plugin for dependency updates -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>versions-maven-plugin</artifactId>
+                <version>2.17.1</version>
+                <configuration>
+                    <generateBackupPoms>false</generateBackupPoms>
+                </configuration>
+            </plugin>
+
+            <!-- Maven Exec Plugin for running benchmarks -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.4.1</version>
+                <configuration>
+                    <mainClass>com.studylibrary.Launcher</mainClass>
+                    <commandlineArgs>--enable-preview</commandlineArgs>
+                </configuration>
+            </plugin>
+
+            <!-- Maven Assembly Plugin for distribution packages -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>3.7.1</version>
+                <configuration>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                    <archive>
+                        <manifest>
+                            <mainClass>com.studylibrary.Launcher</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
             </plugin>
         </plugins>
     </build>
