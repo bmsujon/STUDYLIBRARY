@@ -65,8 +65,8 @@ jobs:
           ### 📦 Downloads
           Choose the appropriate package for your operating system:
           - **Windows**: `study-library-windows.zip`
-          - **macOS**: `study-library-macos.zip`
-          - **Linux**: `study-library-linux.zip`
+          - **macOS**: `study-library-macos.tar.gz`
+          - **Linux**: `study-library-linux.tar.gz`
           
           ### 📋 Requirements
           - Java 25 or higher
