@@ -6,6 +6,7 @@ package com.studylibrary.benchmark;
 public class MinimalTest {
     // Volatile field to prevent JIT compiler optimization
     private static volatile String benchmarkResult;
+
     public static void main(String[] args) {
         System.out.println("🧪 Minimal CI Test");
         System.out.println("==================");
