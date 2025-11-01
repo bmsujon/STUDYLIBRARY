@@ -24,7 +24,33 @@
         <assertj.version>3.26.3</assertj.version>
     </properties>
 
-        <dependencies>
+    <!-- Repository configuration for resilience against Maven Central outages -->
+    <repositories>
+        <repository>
+            <id>central</id>
+            <name>Maven Central Repository</name>
+            <url>https://repo.maven.apache.org/maven2</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>spring-milestones</id>
+            <name>Spring Milestones Repository</name>
+            <url>https://repo.spring.io/milestone</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
+    <dependencies>
         <!-- JavaFX -->
         <dependency>
             <groupId>org.openjfx</groupId>
@@ -116,14 +142,11 @@
             <plugin>
                 <groupId>org.openjfx</groupId>
                 <artifactId>javafx-maven-plugin</artifactId>
-                <version>0.0.9</version>
+                <version>0.0.8</version>
                 <configuration>
                     <mainClass>com.studylibrary.Launcher</mainClass>
                     <!-- Pass preview features to JavaFX runtime -->
                     <runtimePathOption>MODULEPATH</runtimePathOption>
-                    <jvmArgs>
-                        <jvmArg>--enable-preview</jvmArg>
-                    </jvmArgs>
                 </configuration>
             </plugin>
 
@@ -179,6 +202,114 @@
                         </configuration>
                     </execution> -->
                 </executions>
+            </plugin>
+
+            <!-- OWASP Dependency Check for security scanning -->
+            <plugin>
+                <groupId>org.owasp</groupId>
+                <artifactId>dependency-check-maven</artifactId>
+                <version>10.0.4</version>
+                <configuration>
+                    <!-- Performance optimizations -->
+                    <nvdApiKey>${env.NVD_API_KEY}</nvdApiKey>
+                    <failOnError>false</failOnError>
+                    
+                    <!-- Analyzer optimizations for speed -->
+                    <archiveAnalyzerEnabled>false</archiveAnalyzerEnabled>
+                    <jarAnalyzerEnabled>true</jarAnalyzerEnabled>
+                    <centralAnalyzerEnabled>true</centralAnalyzerEnabled>
+                    <nexusAnalyzerEnabled>false</nexusAnalyzerEnabled>
+                    
+                    <!-- Vulnerability thresholds -->
+                    <failBuildOnCVSS>8</failBuildOnCVSS>
+                    <suppressionFiles>
+                        <suppressionFile>owasp-suppression.xml</suppressionFile>
+                    </suppressionFiles>
+                </configuration>
+            </plugin>
+
+            <!-- Maven Versions Plugin for dependency updates -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>versions-maven-plugin</artifactId>
+                <version>2.17.1</version>
+                <configuration>
+                    <generateBackupPoms>false</generateBackupPoms>
+                </configuration>
+            </plugin>
+
+            <!-- Maven Exec Plugin for running benchmarks -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.4.1</version>
+                <configuration>
+                    <mainClass>com.studylibrary.Launcher</mainClass>
+                    <commandlineArgs>--enable-preview</commandlineArgs>
+                </configuration>
+                <executions>
+                    <!-- Execution for CI performance tests without JavaFX -->
+                    <execution>
+                        <id>ci-performance-test</id>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                        <configuration>
+                            <mainClass>com.studylibrary.benchmark.MinimalTest</mainClass>
+                            <commandlineArgs>--enable-preview</commandlineArgs>
+                            <!-- Exclude JavaFX from classpath for headless testing -->
+                            <classpathScope>compile</classpathScope>
+                            <includePluginDependencies>false</includePluginDependencies>
+                            <systemProperties>
+                                <systemProperty>
+                                    <key>java.awt.headless</key>
+                                    <value>true</value>
+                                </systemProperty>
+                                <systemProperty>
+                                    <key>testfx.robot</key>
+                                    <value>glass</value>
+                                </systemProperty>
+                                <systemProperty>
+                                    <key>testfx.headless</key>
+                                    <value>true</value>
+                                </systemProperty>
+                                <systemProperty>
+                                    <key>prism.order</key>
+                                    <value>sw</value>
+                                </systemProperty>
+                                <systemProperty>
+                                    <key>prism.text</key>
+                                    <value>t2k</value>
+                                </systemProperty>
+                                <systemProperty>
+                                    <key>glass.platform</key>
+                                    <value>Monocle</value>
+                                </systemProperty>
+                                <systemProperty>
+                                    <key>monocle.platform</key>
+                                    <value>Headless</value>
+                                </systemProperty>
+                            </systemProperties>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- Maven Assembly Plugin for distribution packages -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>3.7.1</version>
+                <configuration>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                    <archive>
+                        <manifest>
+                            <mainClass>com.studylibrary.Launcher</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
             </plugin>
         </plugins>
     </build>
