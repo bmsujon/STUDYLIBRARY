@@ -204,9 +204,13 @@ jobs:
       if: runner.os != 'Windows'
       run: |
         mkdir -p build/
-        VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout 2>/dev/null)
-        if [ -z "$VERSION" ]; then
-          echo "ERROR: Failed to extract project version from Maven. Ensure pom.xml is valid and Maven is properly configured." >&2
+        # Extract version with error capture for better diagnostics
+        MAVEN_OUTPUT=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout 2>&1)
+        VERSION=$(echo "$MAVEN_OUTPUT" | grep -v "^\[" | tail -n1)
+        if [ -z "$VERSION" ] || [ "$VERSION" = "null" ]; then
+          echo "ERROR: Failed to extract project version from Maven." >&2
+          echo "Maven output: $MAVEN_OUTPUT" >&2
+          echo "Ensure pom.xml is valid and Maven is properly configured." >&2
           exit 1
         fi
         echo '#!/bin/bash' > build/study-library.sh
@@ -221,7 +225,16 @@ jobs:
       shell: cmd
       run: |
         mkdir build
-        for /f %%i in ('mvn help:evaluate -Dexpression=project.version -q -DforceStdout 2^>nul') do set VERSION=%%i
+        mvn help:evaluate -Dexpression=project.version -q -DforceStdout > temp_version.txt 2>&1
+        set /p VERSION=<temp_version.txt
+        if "%VERSION%"=="" (
+          echo ERROR: Failed to extract project version from Maven. >&2
+          echo Maven output: >&2
+          type temp_version.txt >&2
+          del temp_version.txt
+          exit /b 1
+        )
+        del temp_version.txt
         echo @echo off > build/study-library.bat
         echo REM Study Library Manager Launcher >> build/study-library.bat
         echo REM Version: %VERSION% >> build/study-library.bat
