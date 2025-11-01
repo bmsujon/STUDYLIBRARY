@@ -82,7 +82,7 @@ public class SimplePerformanceTest {
 
         if (avgTimeMs > MAX_ACCEPTABLE_TIME_MS) {
             throw new RuntimeException(
-                    "Pattern matching too slow: " + avgTimeMs + " ms (expected < " + MAX_ACCEPTABLE_TIME_MS + "ms)");
+                    "Pattern matching too slow: " + avgTimeMs + " ms (expected < " + MAX_ACCEPTABLE_TIME_MS + " ms)");
         }
     }
 
