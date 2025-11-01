@@ -4,6 +4,10 @@ package com.studylibrary.benchmark;
  * Ultra-simple CI test that avoids all dependencies
  */
 public class MinimalTest {
+    // Performance test constants
+    private static final int PATTERN_MATCHING_ITERATIONS = 10000;
+    private static final double MAX_PATTERN_MATCHING_TIME_MS = 0.01;
+    
     // Volatile field to prevent JIT compiler optimization
     private static volatile String benchmarkResult;
 
@@ -69,7 +73,7 @@ public class MinimalTest {
         // Simulate pattern matching performance
         long startTime = System.nanoTime();
 
-        for (int i = 0; i < 10000; i++) {
+        for (int i = 0; i < PATTERN_MATCHING_ITERATIONS; i++) {
             // Use volatile field to prevent JIT compiler optimization
             benchmarkResult = switch (i % 4) {
                 case 0 -> "📝";
@@ -86,14 +90,13 @@ public class MinimalTest {
         if (benchmarkResult == null || benchmarkResult.isEmpty()) {
             throw new RuntimeException("Unexpected empty result");
         }
-        double avgTimeMs = (endTime - startTime) / 1_000_000.0 / 10000;
+        double avgTimeMs = (endTime - startTime) / 1_000_000.0 / PATTERN_MATCHING_ITERATIONS;
 
         System.out.printf("  ✓ Pattern matching average: %.6f ms%n", avgTimeMs);
 
-        // Realistic threshold for switch statement performance (10 microseconds per
-        // operation)
-        if (avgTimeMs > 0.01) {
-            throw new RuntimeException("Pattern matching too slow: " + avgTimeMs + " ms (expected < 0.01ms)");
+        // Realistic threshold for switch statement performance (10 microseconds per operation)
+        if (avgTimeMs > MAX_PATTERN_MATCHING_TIME_MS) {
+            throw new RuntimeException("Pattern matching too slow: " + avgTimeMs + " ms (expected < " + MAX_PATTERN_MATCHING_TIME_MS + "ms)");
         }
     }
 }
