@@ -206,7 +206,7 @@ jobs:
         ### 1. Install Java 25
         If you don't have Java 25 installed:
         - Download from: https://adoptium.net/
-        - Choose "OpenJDK 25 (LTS)" for your operating system
+        - Choose "OpenJDK 25" for your operating system
         - Follow the installation instructions
         
         ### 2. Run the Application
