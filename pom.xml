@@ -116,7 +116,7 @@
             <plugin>
                 <groupId>org.openjfx</groupId>
                 <artifactId>javafx-maven-plugin</artifactId>
-                <version>0.0.8</version>
+                <version>0.0.9</version>
                 <configuration>
                     <mainClass>com.studylibrary.Launcher</mainClass>
                     <!-- Pass preview features to JavaFX runtime -->
