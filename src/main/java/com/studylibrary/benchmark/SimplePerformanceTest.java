@@ -8,6 +8,8 @@ import java.util.*;
  * Tests core functionality without dependencies.
  */
 public class SimplePerformanceTest {
+    
+    private static final int ITERATION_COUNT = 1000;
 
     public static void main(String[] args) {
         System.out.println("🧪 Simple Performance Test");
@@ -66,14 +68,14 @@ public class SimplePerformanceTest {
         // Test pattern matching performance
         long startTime = System.nanoTime();
 
-        for (int i = 0; i < 1000; i++) {
+        for (int i = 0; i < ITERATION_COUNT; i++) {
             for (LibraryItem item : items) {
                 getItemIcon(item);
             }
         }
 
         long endTime = System.nanoTime();
-        double avgTimeMs = (endTime - startTime) / 1_000_000.0 / (1000 * items.size());
+        double avgTimeMs = (endTime - startTime) / 1_000_000.0 / (ITERATION_COUNT * items.size());
 
         System.out.printf("  ✓ Pattern matching average: %.3f ms%n", avgTimeMs);
 
