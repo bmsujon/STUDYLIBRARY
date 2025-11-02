@@ -53,8 +53,8 @@ jobs:
     - name: Check for changes
       id: changes
       run: |
-        git config --global user.name 'github-actions[bot]'
-        git config --global user.email '41898282+github-actions[bot]@users.noreply.github.com'
+        
+        
         
         if git diff --quiet && git diff --staged --quiet; then
           echo "No dependency updates found"
