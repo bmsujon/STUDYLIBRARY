@@ -7,7 +7,7 @@
 
     <groupId>com.studylibrary</groupId>
     <artifactId>study-library</artifactId>
-    <version>1.0.0</version>
+    <version>1.1.0</version>
     <packaging>jar</packaging>
 
     <name>Study Library Manager</name>
