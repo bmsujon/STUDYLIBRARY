@@ -220,6 +220,7 @@ LTS Status: Production-ready with support until September 2030
 ### **Java 25 LTS Release Information**
 
 **Current Status**: Java 25 (released September 16, 2025) is the latest **Long-Term Support (LTS)** version
+
 - ✅ **Production Ready**: Suitable for enterprise and production deployment
 - 🛡️ **Long-Term Support**: Premier support until September 2030
 - 🚀 **Successor to Java 21**: Next LTS after Java 21 (September 2021)
