@@ -26,9 +26,10 @@ This release represents a **massive infrastructure upgrade** that transforms Stu
 
 ```yaml
 Platforms: Ubuntu 22.04, Windows Server 2022, macOS 12
-Java Version: 25 (with --enable-preview)
+Java Version: 25 LTS (Long-Term Support with --enable-preview)
 Build Tool: Maven 3.9.9
 Testing: 379 tests with 85%+ coverage
+LTS Support: Premier support until September 2030
 ```
 
 ### **Automated Workflows**
@@ -111,9 +112,10 @@ Thread.sleep(BENCHMARK_DELAY_MS);
 ### **JavaFX Headless Support**
 
 - 🖥️ **CI Compatibility**: Runs JavaFX applications in headless CI environments
-- ⚡ **Performance Testing**: Java 25 feature benchmarking in automated builds
+- ⚡ **Performance Testing**: Java 25 LTS feature benchmarking in automated builds
 - 🔧 **Volatile Fields**: Prevent JIT compiler optimizations during benchmarking
 - 📊 **Consistent Results**: Reliable performance measurements
+- 🏢 **Enterprise Ready**: LTS version suitable for production deployment with long-term support
 
 ---
 
@@ -208,11 +210,21 @@ Ensure pom.xml is valid and Maven is properly configured.
 ### **System Requirements**
 
 ```
-Java: 25+ (OpenJDK or Oracle JDK)
+Java: 25 LTS+ (OpenJDK or Oracle JDK - Long-Term Support)
 OS: macOS 10.14+, Windows 10+, Linux (Ubuntu 20.04+)
 RAM: 512 MB minimum (1 GB recommended)
 Disk: 100 MB for application + 50 MB for dependencies
+LTS Status: Production-ready with support until September 2030
 ```
+
+### **Java 25 LTS Release Information**
+
+**Current Status**: Java 25 (released September 16, 2025) is the latest **Long-Term Support (LTS)** version
+- ✅ **Production Ready**: Suitable for enterprise and production deployment
+- 🛡️ **Long-Term Support**: Premier support until September 2030
+- 🚀 **Successor to Java 21**: Next LTS after Java 21 (September 2021)
+- 📅 **Next LTS**: Java 29 (expected September 2027)
+- 🔄 **Upcoming Releases**: Java 26 (March 2026) and Java 27 (September 2026) will be short-term feature releases
 
 ### **Quick Installation**
 

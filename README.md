@@ -5,7 +5,7 @@
 [![Java 25](https://img.shields.io/badge/Java-25-orange.svg)](https://openjdk.java.net/projects/jdk/25/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-A modern JavaFX desktop application for managing your personal study library including notes, PDFs, audio/video links, and text snippets. Built with **Java 25** and featuring modern language constructs like sealed classes, records, and enhanced pattern matching.
+A modern JavaFX desktop application for managing your personal study library including notes, PDFs, audio/video links, and text snippets. Built with **Java 25 LTS** and featuring modern language constructs like sealed classes, records, and enhanced pattern matching.
 
 ## Features
 
@@ -19,13 +19,13 @@ A modern JavaFX desktop application for managing your personal study library inc
 
 ## Requirements
 
-- **Java 25** or higher (Note: Java 25 is not an LTS release. For production use, prefer the next LTS version—Java 26 or beyond—when available.)
+- **Java 25 LTS** or higher (Long-Term Support release with premier support until September 2030)
 - Maven 3.6+
 - Supported platforms: Windows 10+, macOS 10.14+, Linux (Ubuntu 18.04+)
 
-## 🚀 Java 25 Features
+## 🚀 Java 25 LTS Features
 
-This application leverages cutting-edge Java 25 features for enhanced performance and developer experience:
+This application leverages modern Java 25 LTS features for enhanced performance, stability, and developer experience:
 
 - **Sealed Classes**: Type-safe inheritance hierarchy for `LibraryItem`
 - **Records**: Immutable data classes like `SearchCriteria` with zero boilerplate
