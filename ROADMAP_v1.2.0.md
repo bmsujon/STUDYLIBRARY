@@ -11,6 +11,7 @@
 With v1.1.0 establishing enterprise-grade infrastructure, v1.2.0 focuses on **user-facing improvements** that enhance daily workflow and modern UX expectations.
 
 ### **Primary Goals**
+
 - 🎨 **Modern UI/UX**: Implement dark mode and enhanced visual design
 - 🔍 **Advanced Search**: Regex, operators, and smart filtering
 - ⚙️ **User Preferences**: Comprehensive settings and customization
@@ -24,6 +25,7 @@ With v1.1.0 establishing enterprise-grade infrastructure, v1.2.0 focuses on **us
 ### **🚀 Priority 1: Core UX Improvements (Milestone 1)**
 
 #### **1.1 Dark Mode Theme System**
+
 - **Scope**: Complete dark/light theme toggle
 - **Technical**: CSS theming system with user preference persistence
 - **Deliverables**:
@@ -34,6 +36,7 @@ With v1.1.0 establishing enterprise-grade infrastructure, v1.2.0 focuses on **us
   - Smooth theme transitions
 
 #### **1.2 Settings & Preferences Dialog**
+
 - **Scope**: Centralized application configuration
 - **Technical**: JavaFX dialog with tabbed interface
 - **Deliverables**:
@@ -44,6 +47,7 @@ With v1.1.0 establishing enterprise-grade infrastructure, v1.2.0 focuses on **us
   - Settings persistence to JSON configuration file
 
 #### **1.3 Enhanced Search & Filtering**
+
 - **Scope**: Advanced search capabilities beyond basic text matching
 - **Technical**: Search parser with query operators
 - **Deliverables**:
@@ -57,6 +61,7 @@ With v1.1.0 establishing enterprise-grade infrastructure, v1.2.0 focuses on **us
 ### **🎨 Priority 2: Visual & Usability Enhancements (Milestone 2)**
 
 #### **2.1 Enhanced Category System**
+
 - **Scope**: Visual category management with colors and icons
 - **Technical**: Extended Category model with visual properties
 - **Deliverables**:
@@ -67,6 +72,7 @@ With v1.1.0 establishing enterprise-grade infrastructure, v1.2.0 focuses on **us
   - Category hierarchy support (parent/child relationships)
 
 #### **2.2 Improved Table View & Layout**
+
 - **Scope**: Modern, responsive table design with enhanced sorting
 - **Technical**: Custom TableView controls and CSS improvements
 - **Deliverables**:
@@ -78,6 +84,7 @@ With v1.1.0 establishing enterprise-grade infrastructure, v1.2.0 focuses on **us
   - Keyboard navigation enhancements
 
 #### **2.3 Status Bar Enhancements**
+
 - **Scope**: Informative status bar with actionable information
 - **Technical**: Custom status bar component with real-time updates
 - **Deliverables**:
@@ -90,6 +97,7 @@ With v1.1.0 establishing enterprise-grade infrastructure, v1.2.0 focuses on **us
 ### **📊 Priority 3: Data Management Features (Milestone 3)**
 
 #### **3.1 Export & Import System**
+
 - **Scope**: Multiple format support for data portability
 - **Technical**: Pluggable export/import framework
 - **Deliverables**:
@@ -101,6 +109,7 @@ With v1.1.0 establishing enterprise-grade infrastructure, v1.2.0 focuses on **us
   - **Batch Operations**: Export/import selected items or categories
 
 #### **3.2 Backup & Restore System**
+
 - **Scope**: Automated and manual backup management
 - **Technical**: Scheduled backup service with versioning
 - **Deliverables**:
@@ -112,6 +121,7 @@ With v1.1.0 establishing enterprise-grade infrastructure, v1.2.0 focuses on **us
   - Cloud storage integration (Dropbox, Google Drive, OneDrive)
 
 #### **3.3 Statistics & Analytics Dashboard**
+
 - **Scope**: Usage insights and data visualization
 - **Technical**: JavaFX charts and statistics calculations
 - **Deliverables**:
@@ -125,6 +135,7 @@ With v1.1.0 establishing enterprise-grade infrastructure, v1.2.0 focuses on **us
 ### **🔮 Priority 4: Advanced Features (Milestone 4)**
 
 #### **4.1 Rich Text Editor Integration**
+
 - **Scope**: WYSIWYG editing for note content
 - **Technical**: Integration with RichTextFX or similar library
 - **Deliverables**:
@@ -136,6 +147,7 @@ With v1.1.0 establishing enterprise-grade infrastructure, v1.2.0 focuses on **us
   - Export to multiple formats (HTML, PDF, DOCX)
 
 #### **4.2 In-App PDF Preview**
+
 - **Scope**: PDF viewing without external applications
 - **Technical**: PDF rendering library integration (Apache PDFBox)
 - **Deliverables**:
@@ -147,6 +159,7 @@ With v1.1.0 establishing enterprise-grade infrastructure, v1.2.0 focuses on **us
   - PDF metadata extraction
 
 #### **4.3 Plugin Architecture Foundation**
+
 - **Scope**: Extensibility framework for future enhancements
 - **Technical**: Java module system with service provider interface
 - **Deliverables**:
@@ -161,24 +174,28 @@ With v1.1.0 establishing enterprise-grade infrastructure, v1.2.0 focuses on **us
 ## 🗓️ **Development Timeline**
 
 ### **Phase 1: Foundation (Weeks 1-4)**
+
 - ✅ **Week 1**: Development environment setup and dependency updates
 - ✅ **Week 2**: Dark mode CSS framework and theme switcher implementation
 - ✅ **Week 3**: Settings dialog framework and basic preferences
 - ✅ **Week 4**: Enhanced search parser and basic operator support
 
 ### **Phase 2: Visual Enhancements (Weeks 5-8)**
+
 - 🔄 **Week 5**: Category color and icon system implementation
 - 🔄 **Week 6**: Table view improvements and responsive design
 - 🔄 **Week 7**: Status bar enhancements and quick filters
 - 🔄 **Week 8**: UI polish and accessibility improvements
 
 ### **Phase 3: Data Features (Weeks 9-12)**
+
 - 📅 **Week 9**: Export system implementation (JSON, CSV, Markdown)
 - 📅 **Week 10**: Import system with validation and error handling
 - 📅 **Week 11**: Backup and restore functionality
 - 📅 **Week 12**: Statistics dashboard and data visualization
 
 ### **Phase 4: Advanced Features (Weeks 13-16)**
+
 - 🚀 **Week 13**: Rich text editor integration and toolbar
 - 🚀 **Week 14**: PDF preview implementation
 - 🚀 **Week 15**: Plugin architecture foundation
@@ -189,6 +206,7 @@ With v1.1.0 establishing enterprise-grade infrastructure, v1.2.0 focuses on **us
 ## 🛠️ **Technical Implementation Details**
 
 ### **New Dependencies**
+
 ```xml
 <!-- Rich Text Editing -->
 <dependency>
@@ -220,6 +238,7 @@ With v1.1.0 establishing enterprise-grade infrastructure, v1.2.0 focuses on **us
 ```
 
 ### **Architecture Enhancements**
+
 - **Theme System**: CSS-based theming with runtime switching
 - **Settings Framework**: JSON-based configuration with validation
 - **Export Framework**: Strategy pattern for multiple format support
@@ -227,6 +246,7 @@ With v1.1.0 establishing enterprise-grade infrastructure, v1.2.0 focuses on **us
 - **Event System**: Observer pattern for UI updates and statistics
 
 ### **Database Schema Evolution**
+
 - **Settings Table**: User preferences and configuration
 - **Themes Table**: Custom theme definitions
 - **Backups Table**: Backup metadata and scheduling
@@ -238,6 +258,7 @@ With v1.1.0 establishing enterprise-grade infrastructure, v1.2.0 focuses on **us
 ## 🧪 **Quality Assurance Plan**
 
 ### **Testing Strategy**
+
 - **Unit Tests**: Maintain 85%+ coverage for all new features
 - **Integration Tests**: End-to-end testing for export/import workflows
 - **UI Tests**: TestFX automation for theme switching and preferences
@@ -245,13 +266,15 @@ With v1.1.0 establishing enterprise-grade infrastructure, v1.2.0 focuses on **us
 - **Accessibility Tests**: Screen reader and keyboard navigation validation
 
 ### **Compatibility Matrix**
-| Platform | Java 25 LTS | Java 26 | Theme Support | PDF Preview |
-|----------|-------------|---------|---------------|-------------|
-| Windows 10+ | ✅ Primary | ✅ Tested | ✅ Full | ✅ Native |
-| macOS 10.14+ | ✅ Primary | ✅ Tested | ✅ Full | ✅ Native |
-| Linux Ubuntu 20.04+ | ✅ Primary | ✅ Tested | ✅ Full | ✅ X11/Wayland |
+
+| Platform            | Java 25 LTS | Java 26   | Theme Support | PDF Preview    |
+| ------------------- | ----------- | --------- | ------------- | -------------- |
+| Windows 10+         | ✅ Primary  | ✅ Tested | ✅ Full       | ✅ Native      |
+| macOS 10.14+        | ✅ Primary  | ✅ Tested | ✅ Full       | ✅ Native      |
+| Linux Ubuntu 20.04+ | ✅ Primary  | ✅ Tested | ✅ Full       | ✅ X11/Wayland |
 
 ### **Performance Benchmarks**
+
 - **Startup Time**: < 3 seconds with 1000 items
 - **Search Response**: < 100ms for regex queries on 10,000 items
 - **Theme Switch**: < 500ms transition time
@@ -263,6 +286,7 @@ With v1.1.0 establishing enterprise-grade infrastructure, v1.2.0 focuses on **us
 ## 📊 **Success Metrics**
 
 ### **User Experience Metrics**
+
 - 📈 **User Retention**: 25% improvement in daily active usage
 - ⚡ **Task Completion**: 30% faster item management workflows
 - 🎨 **Feature Adoption**: 70%+ users enable dark mode within first week
@@ -270,6 +294,7 @@ With v1.1.0 establishing enterprise-grade infrastructure, v1.2.0 focuses on **us
 - 💾 **Data Safety**: 90%+ users utilize backup functionality
 
 ### **Technical Metrics**
+
 - 🏆 **Test Coverage**: Maintain 85%+ across all new modules
 - 🚀 **Performance**: No regression in core operations
 - 🛡️ **Security**: Zero high/critical vulnerabilities in dependencies
@@ -281,12 +306,14 @@ With v1.1.0 establishing enterprise-grade infrastructure, v1.2.0 focuses on **us
 ## 🎉 **Release Deliverables**
 
 ### **Application Assets**
+
 - ✅ `study-library-1.2.0.jar` - Enhanced application with all new features
 - ✅ Platform-specific installers (Windows MSI, macOS DMG, Linux AppImage)
 - ✅ Updated launcher scripts with new JVM arguments
 - ✅ Theme packages (built-in dark/light themes)
 
 ### **Documentation**
+
 - ✅ Updated USER_GUIDE.md with all new features
 - ✅ SETTINGS_REFERENCE.md for configuration options
 - ✅ EXPORT_IMPORT_GUIDE.md for data management
@@ -294,6 +321,7 @@ With v1.1.0 establishing enterprise-grade infrastructure, v1.2.0 focuses on **us
 - ✅ PLUGIN_DEVELOPMENT.md for extensibility
 
 ### **Migration & Compatibility**
+
 - ✅ **Zero Breaking Changes**: Complete backward compatibility with v1.1.0 data
 - ✅ **Automatic Migration**: Settings and preferences upgrade seamlessly
 - ✅ **Rollback Support**: Ability to downgrade to v1.1.0 if needed
@@ -304,18 +332,21 @@ With v1.1.0 establishing enterprise-grade infrastructure, v1.2.0 focuses on **us
 ## 🔮 **Post-v1.2.0 Roadmap Preview**
 
 ### **v1.3.0: Collaboration & Sync (Q3 2026)**
+
 - Real-time cloud synchronization
 - Multi-user collaboration features
 - Conflict resolution and merge capabilities
 - Team workspace management
 
 ### **v1.4.0: AI & Intelligence (Q1 2027)**
+
 - AI-powered content suggestions
 - Automatic categorization and tagging
 - Smart duplicate detection
 - Content summarization and extraction
 
 ### **v2.0.0: Platform Expansion (Q3 2027)**
+
 - Mobile companion apps (iOS/Android)
 - Web interface for remote access
 - API for third-party integrations
@@ -325,4 +356,4 @@ With v1.1.0 establishing enterprise-grade infrastructure, v1.2.0 focuses on **us
 
 **This roadmap positions Study Library Manager as a modern, feature-rich personal knowledge management system while maintaining its core simplicity and reliability.**
 
-*Study Library Manager v1.2.0 - Enhanced User Experience Awaits* 🚀📚✨
+_Study Library Manager v1.2.0 - Enhanced User Experience Awaits_ 🚀📚✨
