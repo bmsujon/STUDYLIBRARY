@@ -1,8 +1,12 @@
-# Study Library Manager - Project Summary
+# DocumentVault - Project Summary
 
-## 📚 Project Overview
+## � Project Overview
 
-A comprehensive JavaFX desktop application for managing a personal study library with support for Notes, PDFs, Audio/Video Links, and Text Snippets.
+**DocumentVault - Your Personal Document Security System**
+
+A comprehensive JavaFX desktop application for secure personal document management with privacy-first design. Supports Notes, PDFs, Media Links, Text Snippets, and expanding to include Medical Records, Educational Certificates, Financial Documents, and Legal Papers.
+
+**Privacy-First • Offline-Only • Bank-Level Security • HIPAA-Ready**
 
 ## ✨ Features Implemented
 

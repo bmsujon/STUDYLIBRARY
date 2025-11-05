@@ -1,21 +1,33 @@
-# Study Library Manager
+# DocumentVault
 
 [![CI](https://github.com/bmsujon/STUDYLIBRARY/actions/workflows/ci.yml/badge.svg)](https://github.com/bmsujon/STUDYLIBRARY/actions/workflows/ci.yml)
 [![Release](https://github.com/bmsujon/STUDYLIBRARY/actions/workflows/release.yml/badge.svg)](https://github.com/bmsujon/STUDYLIBRARY/actions/workflows/release.yml)
-[![Java 25](https://img.shields.io/badge/Java-25-orange.svg)](https://openjdk.java.net/projects/jdk/25/)
+[![Java 25 LTS](https://img.shields.io/badge/Java-25%20LTS-orange.svg)](https://openjdk.java.net/projects/jdk/25/)
+[![Privacy First](https://img.shields.io/badge/Privacy-First-green.svg)]()
+[![Offline Only](https://img.shields.io/badge/Offline-Only-blue.svg)]()
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-A modern JavaFX desktop application for managing your personal study library including notes, PDFs, audio/video links, and text snippets. Built with **Java 25 LTS** and featuring modern language constructs like sealed classes, records, and enhanced pattern matching.
+**Your Personal Document Security System**
 
-## Features
+A privacy-focused, offline-first JavaFX desktop application for managing your personal documents with bank-level security. Designed for individuals and professionals who need secure, private document management without cloud dependencies. Built with **Java 25 LTS** and featuring enterprise-grade security for sensitive documents including medical records, certificates, financial documents, and study materials.
 
-- **Multiple Item Types**: Manage Notes, PDFs, Audio/Video Links, and Text Snippets
-- **Search & Filter**: Quickly find items by title, category, or tags
-- **Category System**: Organize items with custom categories and tags
-- **Metadata Tracking**: Automatic tracking of creation and modification dates
-- **Persistent Storage**: All data saved as JSON files in your home directory
-- **Modern UI**: Clean, responsive interface with CSS styling
-- **Auto-save**: Changes are automatically saved
+## 🔒 Privacy & Security First
+
+- **100% Offline**: Your documents never leave your device - no cloud, no servers, no data transmission
+- **Bank-Level Encryption**: AES-256 encryption for sensitive documents (medical, financial, legal)
+- **Zero Tracking**: No analytics, no telemetry, no data collection - your privacy is absolute
+- **Local Storage Only**: All data stored locally in encrypted format on your machine
+- **Professional Grade**: HIPAA-ready security for healthcare professionals and privacy-conscious users
+
+## 📚 Document Management Features
+
+- **Comprehensive Document Types**: Study materials, medical records, certificates, financial documents, legal papers
+- **Advanced Security Levels**: Public, Sensitive, Restricted, and Confidential classifications
+- **Smart Organization**: Categories, tags, and intelligent search across all document types
+- **Expiration Tracking**: Automatic alerts for certificates, licenses, and time-sensitive documents
+- **Audit Trail**: Complete access logging for sensitive documents
+- **Multi-Factor Security**: Optional enhanced authentication for confidential documents
+- **Auto-save**: Changes are automatically saved with encryption
 
 ## Requirements
 
