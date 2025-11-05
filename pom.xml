@@ -5,13 +5,13 @@
          http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.studylibrary</groupId>
-    <artifactId>study-library</artifactId>
-    <version>1.1.0</version>
+    <groupId>com.documentvault</groupId>
+    <artifactId>documentvault</artifactId>
+    <version>1.2.0</version>
     <packaging>jar</packaging>
 
-    <name>Study Library Manager</name>
-    <description>A personal study library management application</description>
+    <name>DocumentVault</name>
+    <description>Your Personal Document Security System - Offline-First Document Management with Bank-Level Security</description>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -144,7 +144,7 @@
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.8</version>
                 <configuration>
-                    <mainClass>com.studylibrary.Launcher</mainClass>
+                    <mainClass>com.documentvault.Launcher</mainClass>
                     <!-- Pass preview features to JavaFX runtime -->
                     <runtimePathOption>MODULEPATH</runtimePathOption>
                 </configuration>
@@ -244,7 +244,7 @@
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>3.4.1</version>
                 <configuration>
-                    <mainClass>com.studylibrary.Launcher</mainClass>
+                    <mainClass>com.documentvault.Launcher</mainClass>
                     <commandlineArgs>--enable-preview</commandlineArgs>
                 </configuration>
                 <executions>
@@ -255,7 +255,7 @@
                             <goal>java</goal>
                         </goals>
                         <configuration>
-                            <mainClass>com.studylibrary.benchmark.MinimalTest</mainClass>
+                            <mainClass>com.documentvault.benchmark.MinimalTest</mainClass>
                             <commandlineArgs>--enable-preview</commandlineArgs>
                             <!-- Exclude JavaFX from classpath for headless testing -->
                             <classpathScope>compile</classpathScope>
@@ -306,7 +306,7 @@
                     </descriptorRefs>
                     <archive>
                         <manifest>
-                            <mainClass>com.studylibrary.Launcher</mainClass>
+                            <mainClass>com.documentvault.Launcher</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

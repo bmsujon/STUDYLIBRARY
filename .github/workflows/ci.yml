@@ -265,10 +265,10 @@ jobs:
       run: |
         mkdir -p build/
         echo '#!/bin/bash' > build/study-library.sh
-        echo "# Study Library Manager Launcher" >> build/study-library.sh
+        echo "# DocumentVault Launcher" >> build/study-library.sh
         echo "# Version: ${VERSION}" >> build/study-library.sh
         echo "" >> build/study-library.sh
-        echo "java --enable-preview -cp \"target/study-library-${VERSION}.jar:target/lib/*\" com.studylibrary.Launcher" >> build/study-library.sh
+        echo "java --enable-preview -cp \"target/study-library-${VERSION}.jar:target/lib/*\" com.documentvault.Launcher" >> build/study-library.sh
         chmod +x build/study-library.sh
         
     - name: Create platform-specific executable (Windows)
@@ -279,10 +279,10 @@ jobs:
       run: |
         mkdir build
         echo @echo off > build/study-library.bat
-        echo REM Study Library Manager Launcher >> build/study-library.bat
+        echo REM DocumentVault Launcher >> build/study-library.bat
         echo REM Version: %VERSION% >> build/study-library.bat
         echo. >> build/study-library.bat
-        echo java --enable-preview -cp "target/study-library-%VERSION%.jar;target/lib/*" com.studylibrary.Launcher >> build/study-library.bat
+        echo java --enable-preview -cp "target/study-library-%VERSION%.jar;target/lib/*" com.documentvault.Launcher >> build/study-library.bat
         
     - name: Package application with dependencies
       shell: bash

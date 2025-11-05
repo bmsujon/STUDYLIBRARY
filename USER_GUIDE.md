@@ -35,7 +35,7 @@
 
 On first launch, the application will:
 
-- Create a `.studylibrary` folder in your home directory
+- Create a `.documentvault` folder in your home directory
 - Initialize empty JSON files for storing your data
 - Display an empty library
 
@@ -242,8 +242,8 @@ Tags are flexible, multi-value labels. Each item can have multiple tags.
 
 All data is stored in JSON format:
 
-- **macOS/Linux**: `~/.studylibrary/`
-- **Windows**: `%USERPROFILE%\.studylibrary\`
+- **macOS/Linux**: `~/.documentvault/`
+- **Windows**: `%USERPROFILE%\.documentvault\`
 
 ### Files
 
@@ -252,7 +252,7 @@ All data is stored in JSON format:
 
 ### Backup
 
-**Important:** Regularly backup your `.studylibrary` folder!
+**Important:** Regularly backup your `.documentvault` folder!
 
 You can:
 
@@ -282,7 +282,7 @@ You can view and edit the JSON files directly if needed:
 
 To move your library to another computer:
 
-1. Copy the entire `.studylibrary` folder
+1. Copy the entire `.documentvault` folder
 2. Paste it in the same location on the new computer
 3. Launch the application
 
@@ -326,7 +326,7 @@ To move your library to another computer:
 
 ### Data Not Saving
 
-- Check file permissions in `.studylibrary` folder
+- Check file permissions in `.documentvault` folder
 - Verify disk space is available
 - Check for JSON syntax errors in data files
 

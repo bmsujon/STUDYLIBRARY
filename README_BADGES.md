@@ -1,5 +1,5 @@
-[![CI](https://github.com/bmsujon/STUDYLIBRARY/actions/workflows/ci.yml/badge.svg)](https://github.com/bmsujon/STUDYLIBRARY/actions/workflows/ci.yml)
-[![Release](https://github.com/bmsujon/STUDYLIBRARY/actions/workflows/release.yml/badge.svg)](https://github.com/bmsujon/STUDYLIBRARY/actions/workflows/release.yml)
+[![CI](https://github.com/bmsujon/DocumentVault/actions/workflows/ci.yml/badge.svg)](https://github.com/bmsujon/DocumentVault/actions/workflows/ci.yml)
+[![Release](https://github.com/bmsujon/DocumentVault/actions/workflows/release.yml/badge.svg)](https://github.com/bmsujon/DocumentVault/actions/workflows/release.yml)
 [![Java 25](https://img.shields.io/badge/Java-25-orange.svg)](https://openjdk.java.net/projects/jdk/25/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=bmsujon_STUDYLIBRARY&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=bmsujon_STUDYLIBRARY)

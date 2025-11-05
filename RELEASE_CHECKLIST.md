@@ -42,7 +42,7 @@
 ### 1. Commit All Changes
 
 ```bash
-cd /Users/wahidulazam/projects/StudyLibrary
+cd /Users/wahidulazam/projects/DocumentVault
 git add .
 git commit -m "Release v1.0.0 - Initial stable release"
 git push origin main
@@ -70,7 +70,7 @@ git push origin v1.0.0
 
 ### 3. Create GitHub Release
 
-Go to: https://github.com/bmsujon/STUDYLIBRARY/releases/new
+Go to: https://github.com/bmsujon/DocumentVault/releases/new
 
 **Tag**: v1.0.0  
 **Release Title**: Study Library Manager v1.0.0 - Initial Release 🎉
@@ -146,10 +146,10 @@ After release, these will be available:
 
 ## 🔗 Important Links
 
-- **Repository**: https://github.com/bmsujon/STUDYLIBRARY
-- **Releases Page**: https://github.com/bmsujon/STUDYLIBRARY/releases
-- **Issues**: https://github.com/bmsujon/STUDYLIBRARY/issues
-- **This Release**: https://github.com/bmsujon/STUDYLIBRARY/releases/tag/v1.0.0
+- **Repository**: https://github.com/bmsujon/DocumentVault
+- **Releases Page**: https://github.com/bmsujon/DocumentVault/releases
+- **Issues**: https://github.com/bmsujon/DocumentVault/issues
+- **This Release**: https://github.com/bmsujon/DocumentVault/releases/tag/v1.0.0
 
 ---
 

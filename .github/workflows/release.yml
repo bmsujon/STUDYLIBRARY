@@ -162,7 +162,7 @@ jobs:
         
         # Launch the application
         cd "$DIR"
-        java --enable-preview -cp "study-library-${{ needs.prepare-release.outputs.version }}.jar:lib/*" com.studylibrary.Launcher
+        java --enable-preview -cp "study-library-${{ needs.prepare-release.outputs.version }}.jar:lib/*" com.documentvault.Launcher
         EOF
         chmod +x dist/study-library/study-library.sh
         
@@ -187,7 +187,7 @@ jobs:
         
         REM Launch the application
         cd /d "%DIR%"
-        java --enable-preview -cp "study-library-${{ needs.prepare-release.outputs.version }}.jar;lib\*" com.studylibrary.Launcher
+        java --enable-preview -cp "study-library-${{ needs.prepare-release.outputs.version }}.jar;lib\*" com.documentvault.Launcher
         pause
         '@ > dist/study-library/study-library.bat
         
@@ -232,7 +232,7 @@ jobs:
         - Ensure it shows version 25 or higher
         
         ## Support
-        For issues, visit: https://github.com/bmsujon/STUDYLIBRARY/issues
+        For issues, visit: https://github.com/bmsujon/DocumentVault/issues
         EOF
         
     - name: Package distribution
@@ -308,8 +308,8 @@ jobs:
                 <a href="README.html">📖 User Guide</a>
                 <a href="javadoc/index.html">📋 API Documentation</a>
                 <a href="JAVA25_UPGRADE_COMPLETE.html">🚀 Java 25 Upgrade Details</a>
-                <a href="https://github.com/bmsujon/STUDYLIBRARY">📁 Source Code</a>
-                <a href="https://github.com/bmsujon/STUDYLIBRARY/releases">💾 Downloads</a>
+                <a href="https://github.com/bmsujon/DocumentVault">📁 Source Code</a>
+                <a href="https://github.com/bmsujon/DocumentVault/releases">💾 Downloads</a>
             </div>
         </body>
         </html>
@@ -333,4 +333,4 @@ jobs:
         echo "🎉 Release v${{ needs.prepare-release.outputs.version }} completed!"
         echo "📦 Packages built for Windows, macOS, and Linux"
         echo "📚 Documentation deployed to GitHub Pages"
-        echo "🔗 Release URL: https://github.com/bmsujon/STUDYLIBRARY/releases/tag/v${{ needs.prepare-release.outputs.version }}"
+        echo "🔗 Release URL: https://github.com/bmsujon/DocumentVault/releases/tag/v${{ needs.prepare-release.outputs.version }}"

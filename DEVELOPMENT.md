@@ -45,11 +45,11 @@ The Study Library Manager is a JavaFX desktop application following the **MVVM (
 
 ## Package Structure
 
-### `com.studylibrary.model`
+### `com.documentvault.model`
 
 Domain models representing the core business entities.
 
-- **LibraryItem** (abstract): Base class for all library items
+- **LibraryItem** (abstract sealed): Base class for all library items
   - Common properties: id, title, description, category, tags, dates
   - Abstract methods for type-specific behavior
 - **Note**: Rich text or markdown notes
@@ -58,7 +58,7 @@ Domain models representing the core business entities.
 - **TextSnippet**: Code snippets and quick text
 - **Category**: Organizational categories
 
-### `com.studylibrary.service`
+### `com.documentvault.service`
 
 Business logic and data operations.
 
@@ -66,7 +66,7 @@ Business logic and data operations.
 - **LibraryServiceImpl**: Implementation with in-memory storage
 - **StorageService**: JSON file I/O operations using Gson
 
-### `com.studylibrary.viewmodel`
+### `com.documentvault.viewmodel`
 
 View state management and data binding.
 
@@ -75,14 +75,14 @@ View state management and data binding.
   - Handles property bindings
   - Coordinates between view and service layers
 
-### `com.studylibrary.controller`
+### `com.documentvault.controller`
 
 UI controllers for view components.
 
 - **MainController**: Main window controller
 - **ItemFormController**: Add/Edit form controller
 
-### `com.studylibrary.util`
+### `com.documentvault.util`
 
 Utility classes for common operations.
 
