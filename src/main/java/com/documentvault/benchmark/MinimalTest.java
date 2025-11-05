@@ -8,29 +8,29 @@ package com.documentvault.benchmark;
  * the application compiles and basic functionality works.
  */
 public class MinimalTest {
-    
+
     private static final int WARMUP_ITERATIONS = 100;
     private static final int TEST_ITERATIONS = 1000;
-    
+
     public static void main(String[] args) {
         System.out.println("=".repeat(60));
         System.out.println("DocumentVault CI Performance Benchmark");
         System.out.println("=".repeat(60));
-        
+
         // Warmup
         System.out.println("\nWarming up JVM...");
         runBasicOperations(WARMUP_ITERATIONS);
-        
+
         // Actual benchmark
         System.out.println("Running performance test...");
         long startTime = System.nanoTime();
         runBasicOperations(TEST_ITERATIONS);
         long endTime = System.nanoTime();
-        
+
         // Results
         long durationMs = (endTime - startTime) / 1_000_000;
         double opsPerSecond = (TEST_ITERATIONS * 1000.0) / durationMs;
-        
+
         System.out.println("\n" + "=".repeat(60));
         System.out.println("Performance Results:");
         System.out.println("=".repeat(60));
@@ -41,7 +41,7 @@ public class MinimalTest {
         System.out.println("✓ Performance benchmark completed successfully");
         System.out.println("=".repeat(60));
     }
-    
+
     /**
      * Runs basic operations to test performance.
      * This simulates core application logic without GUI dependencies.
@@ -51,10 +51,10 @@ public class MinimalTest {
             // Simulate basic data operations
             String testData = "DocumentVault Test Item " + i;
             String processed = testData.toLowerCase().trim();
-            
+
             // Simulate search/filter operations
             boolean matches = processed.contains("documentvault");
-            
+
             // Prevent JIT optimization from eliminating the code
             if (i == iterations - 1 && !matches) {
                 System.err.println("Unexpected test result");
