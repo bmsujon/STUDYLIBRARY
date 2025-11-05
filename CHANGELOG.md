@@ -66,6 +66,7 @@ Your existing data in `~/.studylibrary/` will continue to work. The application 
 #### For Developers
 
 If you have an existing clone:
+
 ```bash
 git remote set-url origin git@github.com:bmsujon/DocumentVault.git
 ```
