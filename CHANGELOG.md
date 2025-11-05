@@ -196,7 +196,7 @@ The first stable release of Study Library Manager - a comprehensive JavaFX deskt
 
 #### Data Management
 
-- **JSON Storage**: All data stored in `~/.studylibrary/` folder
+- **JSON Storage**: All data stored in `~/.documentvault/` folder
 - **Polymorphic Serialization**: Custom Gson adapters for type-safe storage
 - **Automatic Backups**: Easy to backup by copying the data folder
 - **Cross-platform**: Works on macOS, Windows, and Linux
@@ -268,7 +268,7 @@ run.bat
 #### First-Time Setup
 
 1. Launch the application
-2. The app creates `~/.studylibrary/` folder automatically
+2. The app creates `~/.documentvault/` folder automatically
 3. Start with an empty library
 4. (Optional) Load sample data by running `SampleDataInitializer`
 5. Add your first items using the toolbar buttons

@@ -217,8 +217,8 @@ LibraryItem (abstract)
 
 ### Location
 
-- **macOS/Linux**: `~/.studylibrary/`
-- **Windows**: `%USERPROFILE%\.studylibrary\`
+- **macOS/Linux**: `~/.documentvault/`
+- **Windows**: `%USERPROFILE%\.documentvault\`
 
 ### Files
 
@@ -302,7 +302,7 @@ mvn javafx:run
 1. Use consistent naming conventions
 2. Tag everything for easy searching
 3. Keep descriptions brief but informative
-4. Regularly backup the `.studylibrary` folder
+4. Regularly backup the `.documentvault` folder
 
 ### Performance
 

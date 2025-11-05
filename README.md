@@ -140,8 +140,8 @@ src/main/resources/
 
 All library data is stored in JSON format in the following location:
 
-- **macOS/Linux**: `~/.studylibrary/`
-- **Windows**: `%USERPROFILE%\.studylibrary\`
+- **macOS/Linux**: `~/.documentvault/`
+- **Windows**: `%USERPROFILE%\.documentvault\`
 
 Files:
 

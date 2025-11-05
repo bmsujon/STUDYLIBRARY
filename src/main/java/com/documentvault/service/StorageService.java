@@ -15,7 +15,7 @@ import java.util.*;
 public class StorageService {
 
     private static StorageService instance;
-    private static final String APP_DIR_NAME = ".studylibrary";
+    private static final String APP_DIR_NAME = ".documentvault";
     private static final String ITEMS_FILE = "library-items.json";
     private static final String CATEGORIES_FILE = "categories.json";
 

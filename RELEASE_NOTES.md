@@ -49,7 +49,7 @@ All with powerful search, filtering, and organization features!
 
 - JSON-based local storage (no database needed)
 - Auto-save on every change
-- Easy backup (just copy `~/.studylibrary/` folder)
+- Easy backup (just copy `~/.documentvault/` folder)
 - Cross-platform compatibility
 - Automatic metadata tracking
 

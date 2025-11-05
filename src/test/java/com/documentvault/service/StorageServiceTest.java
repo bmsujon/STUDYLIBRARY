@@ -53,7 +53,7 @@ class StorageServiceTest {
         Path storageDir = storageService.getStorageDirectory();
 
         assertThat(storageDir).exists();
-        assertThat(storageDir.getFileName().toString()).isEqualTo(".studylibrary");
+        assertThat(storageDir.getFileName().toString()).isEqualTo(".documentvault");
     }
 
     @Test
@@ -105,7 +105,7 @@ class StorageServiceTest {
         Path storageDir = storageService.getStorageDirectory();
 
         assertThat(storageDir).isNotNull();
-        assertThat(storageDir.toString()).contains(".studylibrary");
+        assertThat(storageDir.toString()).contains(".documentvault");
         assertThat(storageDir).exists();
         assertThat(storageDir).isDirectory();
     }
