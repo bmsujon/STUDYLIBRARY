@@ -5,7 +5,7 @@
 ### Step 1: Commit and Push Everything
 
 ```bash
-cd /Users/wahidulazam/projects/StudyLibrary
+cd /Users/wahidulazam/projects/DocumentVault
 
 # Add all files
 git add .
@@ -40,7 +40,7 @@ git push origin v1.0.0
 
 1. **Go to Releases Page**:
 
-   - Visit: https://github.com/bmsujon/STUDYLIBRARY/releases/new
+   - Visit: https://github.com/bmsujon/DocumentVault/releases/new
    - Or: Click "Releases" → "Create a new release"
 
 2. **Fill in Release Form**:
@@ -77,7 +77,7 @@ git push origin v1.0.0
 
 After publishing, verify:
 
-- [ ] Release appears at: https://github.com/bmsujon/STUDYLIBRARY/releases
+- [ ] Release appears at: https://github.com/bmsujon/DocumentVault/releases
 - [ ] JAR file is downloadable
 - [ ] Source code archives are available
 - [ ] Release notes display correctly

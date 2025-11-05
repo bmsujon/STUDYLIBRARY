@@ -22,7 +22,7 @@ public final class BrandConstants {
     public static final String APP_TAGLINE = "Your Personal Document Security System";
 
     /** Application version */
-    public static final String APP_VERSION = "2.0.0";
+    public static final String APP_VERSION = "1.2.0";
 
     /** Full application title for windows */
     public static final String APP_TITLE = APP_NAME + " - " + APP_TAGLINE;

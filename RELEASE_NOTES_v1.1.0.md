@@ -231,7 +231,7 @@ LTS Status: Production-ready with support until September 2030
 
 ```bash
 # Download and run
-curl -L https://github.com/bmsujon/STUDYLIBRARY/releases/download/v1.1.0/study-library-1.1.0.jar -o study-library.jar
+curl -L https://github.com/bmsujon/DocumentVault/releases/download/v1.1.0/study-library-1.1.0.jar -o study-library.jar
 java --enable-preview -jar study-library.jar
 
 # Or use platform-specific scripts
@@ -241,13 +241,14 @@ study-library.bat  # Windows
 
 ### **Development Setup**
 
-```bash
+````bash
 # Clone and build
-git clone https://github.com/bmsujon/STUDYLIBRARY.git
-cd STUDYLIBRARY
-mvn clean compile package
+```bash
+git clone https://github.com/bmsujon/DocumentVault.git
+cd DocumentVault
+mvn clean package
 java --enable-preview -jar target/study-library-1.1.0.jar
-```
+````
 
 ---
 
@@ -291,7 +292,7 @@ Based on this infrastructure foundation, v1.2.0 will focus on **user-facing feat
 
 ### **Found a Bug?**
 
-- 🐛 **Report Issues**: https://github.com/bmsujon/STUDYLIBRARY/issues
+- 🐛 **Report Issues**: https://github.com/bmsujon/DocumentVault/issues
 - 📧 **Include Details**: OS, Java version, steps to reproduce
 - 📸 **Screenshots**: Visual issues greatly help diagnosis
 
@@ -309,8 +310,8 @@ Based on this infrastructure foundation, v1.2.0 will focus on **user-facing feat
 
 ```bash
 # Enhanced development setup
-git clone https://github.com/bmsujon/STUDYLIBRARY.git
-cd STUDYLIBRARY
+git clone https://github.com/bmsujon/DocumentVault.git
+cd DocumentVault
 mvn clean test  # Runs full test suite with coverage
 mvn javafx:run  # Launches application
 ```
@@ -358,6 +359,6 @@ v1.1.0 represents a **foundational investment** in the future of Study Library M
 
 ---
 
-**Download v1.1.0:** https://github.com/bmsujon/STUDYLIBRARY/releases/tag/v1.1.0
+**Download v1.1.0:** https://github.com/bmsujon/DocumentVault/releases/tag/v1.1.0
 
 _Study Library Manager - Now with Enterprise-Grade Infrastructure_ 🚀

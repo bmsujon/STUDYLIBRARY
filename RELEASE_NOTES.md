@@ -121,14 +121,12 @@ run.bat
 
 #### Option 3: From Source (with Maven)
 
+````bash
 ```bash
-# Clone the repository
-git clone https://github.com/bmsujon/STUDYLIBRARY.git
-cd STUDYLIBRARY
-
-# Run with Maven
-mvn javafx:run
-```
+git clone https://github.com/bmsujon/DocumentVault.git
+cd DocumentVault
+mvn clean package
+````
 
 ### First Steps
 
@@ -205,7 +203,7 @@ See CHANGELOG.md for the complete roadmap.
 
 Found a bug or have a suggestion? Please open an issue:
 
-- **Issues**: https://github.com/bmsujon/STUDYLIBRARY/issues
+- **Issues**: https://github.com/bmsujon/DocumentVault/issues
 
 Include:
 
@@ -251,8 +249,8 @@ Built with excellent open-source technologies:
 
 ## 📞 Support & Contact
 
-- **GitHub**: https://github.com/bmsujon/STUDYLIBRARY
-- **Issues**: https://github.com/bmsujon/STUDYLIBRARY/issues
+- **GitHub**: https://github.com/bmsujon/DocumentVault
+- **Issues**: https://github.com/bmsujon/DocumentVault/issues
 - **Documentation**: See included markdown files
 
 ---
@@ -267,7 +265,7 @@ Built with excellent open-source technologies:
 2. **Source Code**: Clone or download from GitHub
 3. **Shell Scripts**: Included for easy execution
 
-**Download from**: https://github.com/bmsujon/STUDYLIBRARY/releases/tag/v1.0.0
+**Download from**: https://github.com/bmsujon/DocumentVault/releases/tag/v1.0.0
 
 ---
 

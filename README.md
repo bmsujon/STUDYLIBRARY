@@ -1,7 +1,7 @@
 # DocumentVault
 
-[![CI](https://github.com/bmsujon/STUDYLIBRARY/actions/workflows/ci.yml/badge.svg)](https://github.com/bmsujon/STUDYLIBRARY/actions/workflows/ci.yml)
-[![Release](https://github.com/bmsujon/STUDYLIBRARY/actions/workflows/release.yml/badge.svg)](https://github.com/bmsujon/STUDYLIBRARY/actions/workflows/release.yml)
+[![CI](https://github.com/bmsujon/DocumentVault/actions/workflows/ci.yml/badge.svg)](https://github.com/bmsujon/DocumentVault/actions/workflows/ci.yml)
+[![Release](https://github.com/bmsujon/DocumentVault/actions/workflows/release.yml/badge.svg)](https://github.com/bmsujon/DocumentVault/actions/workflows/release.yml)
 [![Java 25 LTS](https://img.shields.io/badge/Java-25%20LTS-orange.svg)](https://openjdk.java.net/projects/jdk/25/)
 [![Privacy First](https://img.shields.io/badge/Privacy-First-green.svg)]()
 [![Offline Only](https://img.shields.io/badge/Offline-Only-blue.svg)]()
@@ -66,7 +66,7 @@ mvn javafx:run
 
 ### Using IDE
 
-Import the project as a Maven project in your IDE (IntelliJ IDEA, Eclipse, etc.) and run the `StudyLibraryApp` main class.
+Import the project as a Maven project in your IDE (IntelliJ IDEA, Eclipse, etc.) and run the `DocumentVaultApp` main class (or use the `Launcher` class for JavaFX compatibility).
 
 ## Testing
 
@@ -102,26 +102,28 @@ For detailed testing information, see:
 ## Project Structure
 
 ```
-src/main/java/com/studylibrary/
-├── StudyLibraryApp.java          # Main application entry point
-├── model/                         # Domain models
-│   ├── LibraryItem.java          # Abstract base class
+src/main/java/com/documentvault/
+├── DocumentVaultApp.java         # Main application entry point
+├── Launcher.java                 # JavaFX launcher wrapper
+├── model/                        # Domain models
+│   ├── LibraryItem.java          # Abstract sealed base class
 │   ├── Note.java                 # Note item type
 │   ├── PdfDocument.java          # PDF item type
 │   ├── MediaLink.java            # Audio/Video link type
 │   ├── TextSnippet.java          # Text snippet type
-│   └── Category.java             # Category model
-├── service/                       # Business logic layer
+│   ├── Category.java             # Category model
+│   └── SearchCriteria.java       # Search record (Java 25)
+├── service/                      # Business logic layer
 │   ├── LibraryService.java       # Main service interface
 │   ├── LibraryServiceImpl.java   # Service implementation
 │   └── StorageService.java       # File I/O operations
-├── controller/                    # UI controllers
+├── controller/                   # UI controllers
 │   ├── MainController.java       # Main window controller
-│   ├── ItemFormController.java   # Add/Edit form controller
-│   └── ItemDetailsController.java # Details view controller
-├── viewmodel/                     # ViewModels for data binding
+│   └── ItemFormController.java   # Add/Edit form controller
+├── viewmodel/                    # ViewModels for data binding
 │   └── LibraryViewModel.java     # Main view model
-└── util/                          # Utility classes
+└── util/                         # Utility classes
+    ├── BrandConstants.java       # Brand identity constants
     ├── DateUtil.java             # Date formatting utilities
     ├── FileUtil.java             # File handling utilities
     └── AlertUtil.java            # Dialog utilities

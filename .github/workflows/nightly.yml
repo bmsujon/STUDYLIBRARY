@@ -37,7 +37,9 @@ jobs:
       
     - name: Run performance benchmarks
       run: |
-        mvn compile exec:java -Dexec.mainClass="com.studylibrary.benchmark.SimplePerformanceTest" > benchmark-results.txt 2>&1 || true
+        echo "Running Java 25 performance benchmarks..."
+        mvn compile exec:java -Dexec.mainClass="com.documentvault.benchmark.SimplePerformanceTest" > benchmark-results.txt 2>&1 || true
+        cat benchmark-results.txt
         
     - name: Check for vulnerabilities
       run: |
