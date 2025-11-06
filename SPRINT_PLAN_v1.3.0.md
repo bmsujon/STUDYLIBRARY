@@ -7,31 +7,45 @@
 
 ---
 
-## 📋 **Sprint Overview**
+## � **Important Context**
 
-### **Sprint 1-2: Security Foundation** (Weeks 1-4)
+**What This Release Is:**
+v1.3.0 implements the **originally planned v1.2.0 features** (dark mode, settings, search, export/import) that were deferred due to the rebranding work, PLUS new security features to deliver on the "Privacy First" brand promise.
 
-🔒 Encryption, password management, session control
-
-### **Sprint 3: UI/UX Modernization** (Weeks 5-7)
-
-🎨 Dark mode, settings system, table enhancements
-
-### **Sprint 4: Data Management** (Weeks 8-10)
-
-📊 Export, import, backup & restore
-
-### **Sprint 5: Search & Release** (Weeks 11-12)
-
-🔍 Advanced search, testing, documentation
+**What v1.2.0 Actually Was:**
+v1.2.0 shipped as a rebranding release (StudyLibrary → DocumentVault) instead of the planned feature release. All the originally planned features were postponed to this release (v1.3.0).
 
 ---
 
-## 🏃 **Sprint 1: Encryption Infrastructure (Weeks 1-2)**
+## 📋 **Sprint Overview**
 
-### **Week 1: Core Encryption**
+### **Sprint 1: UI/UX Foundation** (Weeks 1-3) - Originally Planned for v1.2.0
 
-#### **Day 1-2: Architecture & Setup**
+🎨 Dark mode, settings system, table enhancements
+
+### **Sprint 2: Search & Categories** (Weeks 4-5) - Originally Planned for v1.2.0
+
+🔍 Advanced search, enhanced categories with colors/icons
+
+### **Sprint 3: Data Management** (Weeks 6-8) - Originally Planned for v1.2.0
+
+📊 Export, import, backup & restore
+
+### **Sprint 4: Security Foundation** (Weeks 9-10) - NEW
+
+🔒 Encryption, password management, document classification
+
+### **Sprint 5: Integration & Release** (Weeks 11-12)
+
+🔍 Audit logging, comprehensive testing, documentation
+
+---
+
+## 🏃 **Sprint 1: Dark Mode & Settings (Weeks 1-2)** - Originally Planned v1.2.0
+
+### **Week 1: Dark Mode Theme System**
+
+#### **Day 1-2: Theme CSS Development**
 
 - [ ] Create `com.documentvault.security` package structure
 - [ ] Add Argon2 dependency to `pom.xml`
