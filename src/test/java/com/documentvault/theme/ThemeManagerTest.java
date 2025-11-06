@@ -3,6 +3,7 @@ package com.documentvault.theme;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.testfx.framework.junit5.ApplicationExtension;
@@ -12,7 +13,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Unit tests for ThemeManager.
+ * Tagged as 'ui-test' to skip in headless CI environments.
  */
+@Tag("ui-test")
 @ExtendWith(ApplicationExtension.class)
 class ThemeManagerTest {
 
