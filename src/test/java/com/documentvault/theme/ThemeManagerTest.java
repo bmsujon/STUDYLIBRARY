@@ -79,9 +79,9 @@ class ThemeManagerTest {
         // Toggle to dark
         themeManager.toggleTheme(scene);
 
-        // Wait for animation to complete
+        // Wait for animation to complete (longer wait for CI environments)
         try {
-            Thread.sleep(200);
+            Thread.sleep(500);
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
         }
@@ -100,9 +100,9 @@ class ThemeManagerTest {
         // Toggle to light
         themeManager.toggleTheme(scene);
 
-        // Wait for animation to complete
+        // Wait for animation to complete (longer wait for CI environments)
         try {
-            Thread.sleep(200);
+            Thread.sleep(500);
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
         }
