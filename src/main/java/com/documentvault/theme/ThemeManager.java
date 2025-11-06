@@ -4,6 +4,7 @@ import javafx.animation.FadeTransition;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
+import com.documentvault.settings.SettingsManager;
 
 import java.util.prefs.Preferences;
 
@@ -103,6 +104,13 @@ public class ThemeManager {
 
         currentTheme = theme;
         saveThemePreference(theme);
+        
+        // Sync with SettingsManager
+        try {
+            SettingsManager.getInstance().theme.setValue(theme);
+        } catch (Exception e) {
+            // SettingsManager may not be initialized yet during app startup
+        }
     }
 
     /**

@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import com.documentvault.service.StorageService;
+import com.documentvault.settings.SettingsManager;
 import com.documentvault.theme.ThemeManager;
 import com.documentvault.util.AlertUtil;
 import com.documentvault.util.BrandConstants;
@@ -25,6 +26,10 @@ public class DocumentVaultApp extends Application {
     @Override
     public void start(Stage primaryStage) {
         try {
+            // Initialize settings manager and load saved settings
+            SettingsManager settingsManager = SettingsManager.getInstance();
+            settingsManager.load();
+
             // Initialize storage service for DocumentVault security
             StorageService.getInstance();
 
@@ -35,9 +40,9 @@ public class DocumentVaultApp extends Application {
             // Create and configure the scene
             Scene scene = new Scene(root, WINDOW_WIDTH, WINDOW_HEIGHT);
 
-            // Apply saved theme using ThemeManager
+            // Apply saved theme from settings
             ThemeManager themeManager = ThemeManager.getInstance();
-            themeManager.applyTheme(scene, themeManager.getSavedTheme());
+            themeManager.applyTheme(scene, settingsManager.theme.getValue());
 
             // Configure the primary stage
             primaryStage.setTitle(APP_TITLE);
@@ -93,6 +98,7 @@ public class DocumentVaultApp extends Application {
         // Clean up resources
         try {
             StorageService.getInstance().saveAll();
+            SettingsManager.getInstance().save();
         } catch (Exception e) {
             System.err.println("Error during shutdown: " + e.getMessage());
         }
