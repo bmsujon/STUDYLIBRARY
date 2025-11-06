@@ -1,392 +1,459 @@
-# DocumentVault v1.3.0 - Original v1.2.0 Features + Security Foundation
+# DocumentVault v1.3.0 - Delivering the Original v1.2.0 Features
 
-**Release Target:** Q1 2026 (March 2026)  
-**Focus:** Implementing Originally Planned v1.2.0 Features + Security Enhancements  
-**Theme:** "Enhanced User Experience with Bank-Level Security"
+**Release Target:** February 2026 (12 weeks)  
+**Focus:** Implementing the Deferred v1.2.0 Feature Set  
+**Theme:** "Enhanced User Experience - The Features You Were Promised"
 
 ---
 
 ## 📝 **Context: What Happened to v1.2.0?**
 
-**Original Plan:** v1.2.0 was planned to include dark mode, advanced search, settings, export/import, and enhanced UI/UX features.
+**Original Plan:** v1.2.0 was planned (see `ROADMAP_v1.2.0.md`) to include dark mode, advanced search, settings, export/import, enhanced categories, and improved table views.
 
-**What Actually Shipped:** Due to the comprehensive rebranding effort (StudyLibrary → DocumentVault), v1.2.0 became a **rebranding and foundation release** instead. The original feature set was deferred.
+**What Actually Shipped:** Due to the comprehensive rebranding effort (StudyLibrary → DocumentVault), v1.2.0 became a **rebranding and foundation release** instead. All originally planned features were deferred.
 
-**This Release:** v1.3.0 now implements the **original v1.2.0 feature plan** PLUS additional security enhancements to deliver on the "Privacy First" brand promise.
+**This Release:** v1.3.0 implements **ONLY the originally planned v1.2.0 features**. No scope creep, no additional features. We're delivering exactly what was promised.
+
+**Security Features:** Encryption, password protection, and audit logging are **deferred to v1.4.0** (Q2 2026) to maintain focus and ensure quality implementation with proper security review.
 
 ---
 
 ## 🎯 **Release Objectives**
 
-With v1.2.0 establishing the DocumentVault brand identity, v1.3.0 delivers:
+Deliver the complete originally planned v1.2.0 feature set:
 
-1. **Originally Planned v1.2.0 Features**: Dark mode, advanced search, settings, export/import
-2. **Security Foundation**: Encryption, password protection, audit logging (NEW)
-3. **Data Management**: Backup & restore (originally planned + enhanced)
+### **Core Features (All from Original v1.2.0 Plan)**
 
-### **Core Pillars**
+1. ✅ **Dark Mode Theme System** - Professional dark/light themes with smooth switching
+2. ✅ **Settings & Preferences** - Comprehensive configuration dialog
+3. ✅ **Advanced Search** - Regex, operators, field search, saved queries
+4. ✅ **Enhanced Categories** - Colors, icons, visual organization
+5. ✅ **Improved Table View** - Resizable columns, multi-sort, density modes
+6. ✅ **Export System** - JSON, CSV, Markdown formats
+7. ✅ **Import System** - Validation, conflict resolution
+8. ✅ **Backup & Restore** - Automated backups with integrity checks
 
-1. 🎨 **Modern UI/UX** (Originally planned for v1.2.0) - Dark mode, settings system, visual polish
-2. � **Enhanced Search** (Originally planned for v1.2.0) - Advanced filtering and operators
-3. 📊 **Data Management** (Originally planned for v1.2.0) - Export/import capabilities
-4. �🔒 **Security Foundation** (NEW) - Encryption, password protection, audit logging
-5. 💾 **Backup & Restore** (Enhanced from original plan) - Automated backups with encryption
+### **Explicitly Out of Scope (Deferred to v1.4.0)**
 
----
-
-## 📋 **Feature Priority Breakdown**
-
-### **Priority 1: Originally Planned v1.2.0 Features (Must Implement)**
-
-These features were planned for v1.2.0 but deferred due to rebranding work:
-
-- ✅ Dark Mode Theme System
-- ✅ Settings & Preferences Dialog
-- ✅ Enhanced Search & Filtering
-- ✅ Enhanced Table View & Layout
-- ✅ Export & Import System
-- ✅ Enhanced Categories (colors/icons)
-
-### **Priority 2: Security Enhancements (NEW - Privacy First Promise)**
-
-New features to deliver on "Bank-Level Security" branding:
-
-- ✅ AES-256-GCM Encryption
-- ✅ Master Password Protection
-- ✅ Document Classification
-- ✅ Audit Logging System
-
-### **Priority 3: Enhanced Data Management**
-
-Improved from original plan with security features:
-
-- ✅ Backup & Restore (with encryption)
-- ✅ Encrypted Export Option
+- ❌ **Encryption** - Requires dedicated security review and testing
+- ❌ **Password Protection** - Needs careful cryptographic implementation
+- ❌ **Audit Logging** - Requires compliance review
+- ❌ **Document Classification** - Security-related feature tied to encryption
 
 ---
 
 ## 📋 **Feature Breakdown**
 
-### **🚀 Phase 1: Security Foundation (Weeks 1-4)**
+### **Phase 1: UI/UX Foundation (Weeks 1-3)**
 
-#### **1.1 Document Encryption System**
-
-**Priority:** CRITICAL  
-**Complexity:** HIGH  
-**Value:** Delivers core brand promise
-
-**Features:**
-
-- **AES-256-GCM encryption** for all stored documents
-- **Master password** protection with PBKDF2 key derivation
-- **Encrypted storage format** - seamless migration from v1.2.0
-- **Password change functionality** with re-encryption
-- **Session management** - auto-lock after inactivity
-
-**Technical Details:**
-
-```java
-// New packages
-com.documentvault.security.EncryptionService
-com.documentvault.security.KeyManager
-com.documentvault.security.SessionManager
-com.documentvault.security.PasswordValidator
-
-// Dependencies
-- javax.crypto (built-in)
-- Argon2 for password hashing
-```
-
-**User Experience:**
-
-- First launch: Set master password
-- Subsequent launches: Unlock vault with password
-- Background: Auto-save encrypted data
-- Security: Memory wiping on exit
-
-**Testing:**
-
-- Encryption/decryption round-trip tests
-- Key derivation performance tests
-- Password strength validation
-- Migration from unencrypted v1.2.0 data
-
----
-
-#### **1.2 Document Classification System**
+#### **1.1 Dark Mode Theme System**
 
 **Priority:** HIGH  
 **Complexity:** MEDIUM  
-**Value:** Organize by sensitivity level
+**From:** Original v1.2.0 ROADMAP Section 1.1
 
 **Features:**
 
-- **Classification levels:**
+- **Two complete themes:**
 
-  - 🌐 Public - No special handling
-  - 🔒 Private - Encrypted at rest
-  - 🔐 Confidential - Encrypted + audit logging
-  - 🚨 Restricted - Encrypted + 2FA future-ready
+  - ☀️ Light Mode (refined from current)
+  - 🌙 Dark Mode (new, professionally styled)
 
-- **Visual indicators** in UI (color-coded badges)
-- **Bulk classification** - apply to multiple items
-- **Default classification** per category
-- **Classification statistics** in dashboard
+- **Theme Management:**
 
-**Technical Details:**
+  - Theme switcher in View menu
+  - Keyboard shortcut: Cmd/Ctrl+Shift+T
+  - Persistent theme preference
+  - Smooth fade transition (200ms)
 
-```java
-public enum ClassificationLevel {
-    PUBLIC,      // Green badge
-    PRIVATE,     // Blue badge
-    CONFIDENTIAL,// Orange badge
-    RESTRICTED   // Red badge
-}
-
-// Enhanced LibraryItem model
-private ClassificationLevel classification;
-private LocalDateTime classificationDate;
-private String classificationReason;
-```
-
-**User Experience:**
-
-- Dropdown in item form
-- Visual badges in table view
-- Filter by classification level
-- Bulk edit dialog
-
----
-
-#### **1.3 Audit Logging System**
-
-**Priority:** MEDIUM  
-**Complexity:** MEDIUM  
-**Value:** Security compliance and transparency
-
-**Features:**
-
-- **Comprehensive event logging:**
-
-  - Document access (view, edit, delete)
-  - Classification changes
-  - Export/import operations
-  - Vault lock/unlock events
-  - Failed authentication attempts
-
-- **Audit log viewer** dialog with filtering
-- **Log export** to CSV for external analysis
-- **Log rotation** - keep last 10,000 events
-- **Performance optimization** - async logging
-
-**Technical Details:**
-
-```java
-com.documentvault.audit.AuditLogger
-com.documentvault.audit.AuditEvent
-com.documentvault.audit.AuditLogViewer
-
-public record AuditEvent(
-    String eventId,
-    LocalDateTime timestamp,
-    EventType type,
-    String userId,
-    String itemId,
-    String description,
-    Map<String, String> metadata
-) {}
-```
-
-**User Experience:**
-
-- Menu: Tools > View Audit Log
-- Filter by date range, event type, document
-- Search within log entries
-- Export log for compliance
-
----
-
-### **🎨 Phase 2: Modern UI/UX (Weeks 5-7)**
-
-#### **2.1 Dark Mode Theme System**
-
-**Priority:** HIGH  
-**Complexity:** MEDIUM  
-**Value:** User comfort and modern expectations
-
-**Features:**
-
-- **Two themes:**
-
-  - ☀️ Light Mode (current, refined)
-  - 🌙 Dark Mode (new, eye-friendly)
-
-- **Theme switcher** in menu bar
-- **Persistent preference** - remembers choice
-- **Smooth transitions** - fade animation
-- **System integration** - follow OS theme (future)
+- **Complete UI Coverage:**
+  - Main window and all dialogs
+  - Tables, forms, buttons
+  - Syntax highlighting for snippets
+  - Chart colors (if any)
 
 **Technical Details:**
 
 ```css
-/* dark-theme.css */
+/* dark-theme.css - Professional color palette */
 .root {
   -fx-base: #1e1e1e;
   -fx-background: #252526;
   -fx-control-inner-background: #2d2d30;
   -fx-accent: #007acc;
+  -fx-focus-color: #007acc;
   -fx-text-fill: #cccccc;
-}
-
-/* High contrast mode support */
-.root.high-contrast {
-  -fx-accent: #00ff00;
-  -fx-text-fill: #ffffff;
 }
 ```
 
-**User Experience:**
+**Deliverables:**
 
-- Menu: View > Theme > Dark/Light
-- Keyboard shortcut: Cmd/Ctrl+Shift+T
-- Instant theme switching
-- All UI elements styled consistently
+- `src/main/resources/css/dark-theme.css` (complete stylesheet)
+- `src/main/resources/css/light-theme.css` (refined)
+- `ThemeManager.java` - Theme switching logic
+- Theme preference in settings
+
+**Testing:**
+
+- All UI components in both themes
+- Theme switching performance (< 200ms)
+- Theme persistence across restarts
+- Accessibility contrast ratios
 
 ---
 
-#### **2.2 Settings & Preferences System**
+#### **1.2 Settings & Preferences Dialog**
 
 **Priority:** HIGH  
 **Complexity:** MEDIUM  
-**Value:** User customization and control
+**From:** Original v1.2.0 ROADMAP Section 1.2
 
 **Features:**
 
-- **Settings Dialog** with tabs:
+- **Tabbed Dialog with 4 Categories:**
 
-  - **General:** Theme, language, startup behavior
-  - **Security:** Auto-lock timeout, password requirements
-  - **Data:** Backup location, auto-backup schedule
-  - **Display:** Font size, table density, date format
-  - **Advanced:** Performance tuning, debug mode
+  **General Tab:**
 
-- **Validation** - prevent invalid settings
-- **Reset to defaults** button
-- **Import/export settings** JSON
+  - Theme selection (Light/Dark)
+  - Language (English - for now)
+  - Startup behavior (Normal/Minimized)
+  - Show/hide welcome screen
+
+  **Display Tab:**
+
+  - Font size (Small/Medium/Large)
+  - Table density (Compact/Comfortable/Spacious)
+  - Date format (ISO-8601/US/EU)
+  - Time format (12h/24h)
+
+  **Data Tab:**
+
+  - Auto-save interval (30s/1m/5m)
+  - Backup location (file chooser)
+  - Auto-backup schedule (Daily/Weekly/Monthly)
+  - Export format default (JSON/CSV/Markdown)
+
+  **Advanced Tab:**
+
+  - Performance tuning
+  - Debug mode toggle
+  - Memory usage display
+  - Reset all settings button
 
 **Technical Details:**
 
 ```java
-com.documentvault.settings.SettingsManager
-com.documentvault.settings.SettingsDialog
-com.documentvault.settings.Setting<T>
+com.documentvault.settings/
+├── SettingsManager.java      // Singleton, manages all settings
+├── Setting.java               // Generic setting definition
+├── SettingsDialog.java        // FXML dialog controller
+└── SettingsStorage.java       // JSON persistence
 
-// Settings storage: ~/.documentvault/settings.json
+// Storage: ~/.documentvault/settings.json
 {
   "theme": "DARK",
-  "autoLockMinutes": 15,
-  "backupEnabled": true,
-  "backupIntervalHours": 24,
   "fontSize": "MEDIUM",
-  "dateFormat": "yyyy-MM-dd"
+  "tableDensity": "COMFORTABLE",
+  "autoSaveIntervalSeconds": 60,
+  "backupEnabled": true,
+  "backupIntervalHours": 24
 }
 ```
 
-**User Experience:**
+**Deliverables:**
 
-- Menu: DocumentVault > Preferences (macOS) / Tools > Settings (Windows/Linux)
-- Keyboard shortcut: Cmd/Ctrl+,
-- Tabbed dialog for organization
-- Live preview where applicable
+- Settings framework (SettingsManager, Setting<T>)
+- Settings dialog UI (FXML + Controller)
+- Settings persistence (JSON)
+- Integration with all features
+
+**Testing:**
+
+- All settings apply immediately or after restart (as appropriate)
+- Settings persist across app restarts
+- Reset to defaults works correctly
+- Validation prevents invalid values
 
 ---
 
-#### **2.3 Enhanced Table View**
+#### **1.3 Enhanced Table View**
 
 **Priority:** MEDIUM  
 **Complexity:** LOW  
-**Value:** Better information display
+**From:** Original v1.2.0 ROADMAP Section 2.2
 
 **Features:**
 
-- **Resizable columns** - drag to adjust width
-- **Column reordering** - drag to reposition
-- **Column visibility** - show/hide via right-click
-- **Multi-column sorting** - Shift+click for secondary sort
-- **Compact/comfortable view** - density toggle
-- **Alternating row colors** - better readability
-- **Context menu enhancements** - quick actions
+- **Column Management:**
+
+  - Resizable columns (drag borders)
+  - Reorderable columns (drag headers)
+  - Show/hide columns (right-click context menu)
+  - Column width persistence
+
+- **Sorting:**
+
+  - Multi-column sort (Shift+click)
+  - Visual sort indicators (arrows)
+  - Sort state persistence
+
+- **Density Modes:**
+
+  - **Compact:** Small padding, dense rows
+  - **Comfortable:** Current default
+  - **Spacious:** Large padding, easy reading
+
+- **Visual Enhancements:**
+  - Alternating row colors
+  - Row hover effects
+  - Selection highlighting
+  - Context menu improvements
 
 **Technical Details:**
 
 ```java
-// Enhanced table with custom cell factories
-TableColumn<LibraryItem, String> titleColumn = new TableColumn<>("Title");
-titleColumn.setCellFactory(col -> new StyledTableCell<>());
-titleColumn.setComparator(String.CASE_INSENSITIVE_ORDER);
-
-// Save column state
-tableView.getColumns().addListener((ListChangeListener<TableColumn<?, ?>) change -> {
-    saveColumnConfiguration();
-});
+// TableViewEnhancer utility class
+public class TableViewEnhancer {
+    public static void enableColumnReordering(TableView<?> table);
+    public static void enableColumnResize(TableView<?> table);
+    public static void applyDensityMode(TableView<?> table, DensityMode mode);
+    public static void saveColumnState(TableView<?> table, String tableId);
+    public static void loadColumnState(TableView<?> table, String tableId);
+}
 ```
 
-**User Experience:**
+**Deliverables:**
 
-- Right-click column header: Show/hide columns
-- Drag column borders: Resize
-- Drag column headers: Reorder
-- View menu: Table Density > Compact/Comfortable/Spacious
+- TableViewEnhancer utility class
+- Density mode CSS classes
+- Column state persistence
+- Context menu enhancements
+
+**Testing:**
+
+- Column resize/reorder works smoothly
+- Column state persists across restarts
+- All density modes render correctly
+- Multi-column sort works properly
 
 ---
 
-### **📊 Phase 3: Data Management (Weeks 8-10)**
+### **Phase 2: Search & Categories (Weeks 4-5)**
+
+#### **2.1 Enhanced Search & Filtering**
+
+**Priority:** HIGH  
+**Complexity:** MEDIUM  
+**From:** Original v1.2.0 ROADMAP Section 1.3
+
+**Features:**
+
+- **Search Operators:**
+
+  - **Field search:** `title:security`, `content:password`, `category:work`
+  - **Boolean:** `security AND encryption`, `work OR personal`, `NOT archive`
+  - **Exact phrases:** `"bank account"` matches exact phrase
+  - **Wildcards:** `pass*` matches password, passphrase, etc.
+  - **Date ranges:** `created:2025-01-01..2025-12-31`, `modified:last-week`
+
+- **Search Modes:**
+
+  - **Simple:** Basic text search (current behavior)
+  - **Advanced:** Operator-based queries
+  - **Regex:** Pattern matching with `/pattern/` syntax
+
+- **Search Management:**
+  - Search history (last 20 queries)
+  - Saved searches with names
+  - Quick search suggestions
+  - Result highlighting
+
+**Technical Details:**
+
+```java
+com.documentvault.search/
+├── SearchEngine.java          // Main search coordinator
+├── QueryParser.java           // Parse operator-based queries
+├── SearchMode.java            // SIMPLE, ADVANCED, REGEX
+├── SavedSearch.java           // Named search queries
+└── SearchHistory.java         // Recent queries
+
+// Query DSL
+title:security AND (category:work OR category:personal)
+created:2025-01-01..2025-12-31 NOT category:archive
+content:"bank account" OR content:"credit card"
+```
+
+**Deliverables:**
+
+- Search engine with operator support
+- Query parser
+- Search mode toggle UI
+- Saved searches feature
+- Search history dropdown
+
+**Testing:**
+
+- All operators work correctly
+- Complex queries parse properly
+- Regex patterns work as expected
+- Search performance (< 100ms for 10,000 items)
+
+---
+
+#### **2.2 Enhanced Categories**
+
+**Priority:** MEDIUM  
+**Complexity:** MEDIUM  
+**From:** Original v1.2.0 ROADMAP Section 2.1
+
+**Features:**
+
+- **Category Appearance:**
+
+  - 16 predefined colors (professional palette)
+  - 50+ built-in icons (document types, subjects)
+  - Visual preview in category dialog
+  - Color-coded badges in table view
+
+- **Category Management:**
+
+  - Category management dialog
+  - Color picker
+  - Icon selector
+  - Default category for new items
+
+- **Visual Integration:**
+  - Colored badges next to category names
+  - Icon + color in category dropdown
+  - Category statistics with colors
+  - Filter by category with visual cues
+
+**Technical Details:**
+
+```java
+// Extended Category model
+public record Category(
+    String id,
+    String name,
+    String description,
+    CategoryColor color,     // NEW: 16 predefined colors
+    CategoryIcon icon,       // NEW: 50+ icons
+    LocalDateTime createdDate
+) {}
+
+public enum CategoryColor {
+    BLUE("#007acc"), GREEN("#4ec9b0"), ORANGE("#ce9178"),
+    RED("#f48771"), PURPLE("#c586c0"), TEAL("#4ec9b0"),
+    // ... 10 more colors
+}
+
+public enum CategoryIcon {
+    DOCUMENT, FOLDER, BOOK, CODE, DATABASE, CHART,
+    // ... 44 more icons from material design or similar
+}
+```
+
+**Deliverables:**
+
+- Extended Category model
+- Category color/icon enums
+- Category management dialog
+- Color picker and icon selector UI
+- Visual integration in table view
+
+**Testing:**
+
+- All colors render correctly
+- All icons display properly
+- Category management works smoothly
+- Visual cues clear and consistent
+
+---
+
+### **Phase 3: Data Management (Weeks 6-8)**
 
 #### **3.1 Export System**
 
 **Priority:** HIGH  
 **Complexity:** MEDIUM  
-**Value:** Data portability and interoperability
+**From:** Original v1.2.0 ROADMAP Section 3.1
 
 **Features:**
 
-- **Export formats:**
+- **Export Formats:**
 
-  - **JSON** - Complete data with metadata (default)
-  - **CSV** - Spreadsheet-compatible, metadata in columns
-  - **Markdown** - Human-readable documentation
-  - **HTML** - Browsable archive with styling
-  - **PDF** - Professional report with table of contents
+  - **JSON:** Complete data with all metadata (default)
+  - **CSV:** Tabular format, one row per item
+  - **Markdown:** Human-readable, organized by category
 
-- **Export options:**
-  - All items or selected items
-  - Filter by category, date range, classification
-  - Include/exclude attachments
-  - Encrypted export (password-protected)
+- **Export Options:**
+
+  - Export all items or selected items only
+  - Filter by category, date range, type
+  - Include/exclude timestamps
+  - Custom filename and location
+
+- **Export Dialog:**
+  - Format selector with preview
+  - Item count and estimated file size
+  - Progress indicator for large exports
+  - "Open folder" after export
 
 **Technical Details:**
 
 ```java
-com.documentvault.export.ExportService
-com.documentvault.export.JsonExporter
-com.documentvault.export.CsvExporter
-com.documentvault.export.MarkdownExporter
-com.documentvault.export.HtmlExporter
-com.documentvault.export.PdfExporter
+com.documentvault.export/
+├── ExportService.java         // Export coordinator
+├── Exporter.java              // Base interface
+├── JsonExporter.java          // JSON format
+├── CsvExporter.java           // CSV with OpenCSV
+└── MarkdownExporter.java      // Markdown with frontmatter
 
-// Export dialog with preview
-ExportDialog dialog = new ExportDialog();
-dialog.setFormat(ExportFormat.JSON);
-dialog.setItems(selectedItems);
-dialog.setEncrypted(true);
+// Example JSON export
+{
+  "exportVersion": "1.0",
+  "exportDate": "2026-02-01T10:30:00Z",
+  "itemCount": 150,
+  "items": [...]
+}
+
+// Example Markdown export with frontmatter
+---
+title: My Notes
+category: Personal
+created: 2025-11-15
+---
+
+# My Notes
+
+Content here...
 ```
 
-**User Experience:**
+**Dependencies:**
 
-- Menu: File > Export...
-- Dialog: Select format, items, options
-- Progress indicator for large exports
-- Success notification with "Open Folder" button
+```xml
+<!-- CSV Export -->
+<dependency>
+    <groupId>com.opencsv</groupId>
+    <artifactId>opencsv</artifactId>
+    <version>5.9</version>
+</dependency>
+```
+
+**Deliverables:**
+
+- Export service framework
+- JSON, CSV, Markdown exporters
+- Export dialog UI
+- Progress tracking
+
+**Testing:**
+
+- All formats export correctly
+- Large exports complete successfully (10,000 items)
+- Export performance (< 10 seconds for 1000 items)
+- Round-trip: export → import works
 
 ---
 
@@ -394,262 +461,217 @@ dialog.setEncrypted(true);
 
 **Priority:** HIGH  
 **Complexity:** MEDIUM  
-**Value:** Data migration and recovery
+**From:** Original v1.2.0 ROADMAP Section 3.1
 
 **Features:**
 
-- **Import formats:**
+- **Import Formats:**
 
-  - JSON (from DocumentVault export)
-  - CSV (with column mapping)
-  - Markdown (parse frontmatter metadata)
+  - **JSON:** From DocumentVault export
+  - **CSV:** With column mapping
+  - Basic validation for both formats
 
-- **Import validation:**
+- **Import Validation:**
 
   - Schema validation
+  - Data type checking
   - Duplicate detection
-  - Data integrity checks
-  - Preview before import
+  - Missing required fields
 
-- **Import strategies:**
-  - **Add** - Keep existing, add new
-  - **Replace** - Overwrite matching items
-  - **Merge** - Smart conflict resolution
+- **Conflict Resolution:**
+
+  - **Skip:** Keep existing, ignore import
+  - **Replace:** Overwrite with imported
+  - **Rename:** Import with new ID
+  - **Ask:** Prompt user for each conflict
+
+- **Import Preview:**
+  - Show items to be imported
+  - Highlight potential conflicts
+  - Summary statistics
 
 **Technical Details:**
 
 ```java
-com.documentvault.import.ImportService
-com.documentvault.import.ImportValidator
-com.documentvault.import.ConflictResolver
+com.documentvault.import/
+├── ImportService.java         // Import coordinator
+├── Importer.java              // Base interface
+├── JsonImporter.java          // JSON format
+├── CsvImporter.java           // CSV with column mapping
+├── ImportValidator.java       // Validation logic
+└── ConflictResolver.java      // Conflict resolution
 
-// Import with progress tracking
-ImportTask task = new ImportTask(file, strategy);
-task.setOnSucceeded(event -> {
-    ImportResult result = task.getValue();
-    showImportSummary(result);
-});
+// Import result
+public record ImportResult(
+    int itemsImported,
+    int itemsSkipped,
+    int conflictsResolved,
+    List<ImportError> errors
+) {}
 ```
 
-**User Experience:**
+**Deliverables:**
 
-- Menu: File > Import...
-- File chooser: Select import file
-- Preview: Show items to be imported
-- Conflict resolution: Dialog for duplicates
-- Summary: Imported X items, Y skipped, Z conflicts
+- Import service framework
+- JSON and CSV importers
+- Import validation
+- Conflict resolution dialog
+- Import preview UI
+
+**Testing:**
+
+- Valid imports succeed
+- Invalid imports caught by validation
+- Conflict resolution works correctly
+- Round-trip: export → import → export produces identical data
 
 ---
 
 #### **3.3 Backup & Restore System**
 
-**Priority:** CRITICAL  
-**Complexity:** HIGH  
-**Value:** Data safety and disaster recovery
+**Priority:** HIGH  
+**Complexity:** MEDIUM  
+**From:** Original v1.2.0 ROADMAP Section 3.2 (Basic version, no encryption)
 
 **Features:**
 
-- **Automatic backups:**
+- **Automatic Backups:**
 
   - Scheduled: Daily, weekly, monthly
-  - Configurable time and frequency
+  - Configurable time
   - Keep last N backups (default: 10)
-  - Incremental backups for efficiency
+  - Background execution
 
-- **Manual backups:**
+- **Manual Backups:**
 
-  - On-demand backup creation
+  - On-demand backup button
   - Custom backup naming
-  - Backup to specific location
+  - Choose backup location
 
-- **Restore functionality:**
+- **Backup Format:**
 
-  - List available backups with metadata
+  - ZIP archive with JSON data
+  - SHA-256 checksums for integrity
+  - Metadata (timestamp, item count, version)
+
+- **Restore Functionality:**
+  - Browse available backups
   - Preview backup contents
-  - Full restore or selective item restore
-  - Restore to new vault (don't overwrite)
-
-- **Backup integrity:**
-  - SHA-256 checksums
-  - Verification on creation
-  - Verification before restore
-  - Encrypted backups with vault password
+  - Full restore or selective restore
+  - Restore to new location (don't overwrite)
 
 **Technical Details:**
 
 ```java
-com.documentvault.backup.BackupService
-com.documentvault.backup.BackupScheduler
-com.documentvault.backup.BackupVerifier
-com.documentvault.backup.RestoreService
+com.documentvault.backup/
+├── BackupService.java         // Backup coordinator
+├── BackupScheduler.java       // Scheduled backups
+├── BackupVerifier.java        // Integrity checking
+└── RestoreService.java        // Restore functionality
 
-// Backup format
-backup-{timestamp}.dvbackup (encrypted ZIP)
-├── vault.json (encrypted data)
-├── metadata.json (backup info)
-└── checksums.sha256
+// Backup format (.dvbackup is a ZIP file)
+backup-2026-02-01-103000.dvbackup
+├── vault.json              // Exported data
+├── metadata.json           // Backup info
+└── checksums.sha256        // Integrity verification
 ```
 
-**User Experience:**
+**Deliverables:**
 
-- Menu: Tools > Backup...
-- Dialog: Backup location, schedule, retention
-- Status bar: Last backup indicator
-- Restore: Tools > Restore from Backup...
-- Notifications: Backup success/failure
+- Backup service
+- Backup scheduler
+- Restore service
+- Backup integrity verification
+- Backup management UI
+
+**Testing:**
+
+- Automatic backups execute on schedule
+- Manual backups create valid archives
+- Restore recreates exact data
+- Integrity verification catches corruption
+- Old backups rotated correctly
 
 ---
 
-### **🔍 Phase 4: Enhanced Search (Weeks 11-12)**
+## 🗓️ **12-Week Timeline**
 
-#### **4.1 Advanced Search System**
+### **Month 1: UI/UX Foundation**
 
-**Priority:** MEDIUM  
-**Complexity:** MEDIUM  
-**Value:** Power user productivity
+**Week 1: Dark Mode**
 
-**Features:**
+- Day 1-2: Create dark-theme.css, refine light-theme.css
+- Day 3-4: Implement ThemeManager, theme switcher
+- Day 5: Testing, polish, integration
 
-- **Search operators:**
+**Week 2: Settings System**
 
-  - **Field search:** `title:keyword`, `content:phrase`
-  - **Boolean:** `AND`, `OR`, `NOT`
-  - **Exact match:** `"exact phrase"`
-  - **Wildcards:** `key*` matches keyboard, keypad
-  - **Date ranges:** `created:2025-01-01..2025-12-31`
-  - **Classification:** `class:confidential`
+- Day 1-2: Settings framework (SettingsManager, Setting<T>)
+- Day 3-4: Settings dialog UI (FXML + tabs)
+- Day 5: Settings persistence, integration
 
-- **Search modes:**
+**Week 3: Table Enhancements**
 
-  - Simple: Basic text search (default)
-  - Advanced: Operator-based queries
-  - Regex: Pattern matching (power users)
+- Day 1-2: Column resize/reorder, column visibility
+- Day 3-4: Density modes, visual polish
+- Day 5: Column state persistence, testing
 
-- **Search features:**
-  - Saved searches
-  - Search history (last 20)
-  - Search suggestions
-  - Highlight matches in results
+### **Month 2: Search & Categories**
 
-**Technical Details:**
+**Week 4: Advanced Search**
 
-```java
-com.documentvault.search.SearchEngine
-com.documentvault.search.QueryParser
-com.documentvault.search.SearchIndex
+- Day 1-2: Query parser, search operators
+- Day 3-4: Search modes, search engine
+- Day 5: UI integration, testing
 
-// Query DSL
-SearchQuery query = QueryParser.parse("title:security AND class:confidential");
-List<LibraryItem> results = searchEngine.execute(query);
+**Week 5: Enhanced Categories**
 
-// Indexed search for performance
-SearchIndex index = new SearchIndex();
-index.indexItem(item);
-```
-
-**User Experience:**
-
-- Search bar: Type query, see suggestions
-- Mode toggle: Simple/Advanced/Regex
-- Dropdown: Search history
-- Star icon: Save current search
-- Results: Highlighted matches
-
----
-
-## 🗓️ **Development Timeline**
-
-### **Month 1: Security Foundation**
-
-**Week 1: Encryption Infrastructure**
-
-- Design encryption architecture
-- Implement AES-256-GCM encryption service
-- Implement key derivation (PBKDF2)
-- Write encryption/decryption tests
-
-**Week 2: Password & Session Management**
-
-- Implement password validator
-- Build unlock dialog UI
-- Implement session manager with auto-lock
-- Add password change functionality
-
-**Week 3: Document Classification**
-
-- Extend LibraryItem model
-- Implement classification UI components
-- Add classification filters
-- Update storage format
-
-**Week 4: Audit Logging**
-
-- Implement audit logger
-- Create audit event types
-- Build audit log viewer UI
-- Add export functionality
-
-### **Month 2: UI/UX Enhancements**
-
-**Week 5: Dark Mode**
-
-- Create dark-theme.css
-- Refine light-theme.css
-- Implement theme switcher
-- Test all UI components
-
-**Week 6: Settings System**
-
-- Design settings architecture
-- Implement SettingsManager
-- Build settings dialog UI
-- Add settings persistence
-
-**Week 7: Table View Enhancements**
-
-- Implement resizable/reorderable columns
-- Add column visibility controls
-- Implement density modes
-- Enhance context menus
+- Day 1-2: Extended Category model, colors/icons
+- Day 3-4: Category management dialog
+- Day 5: Visual integration, testing
 
 ### **Month 3: Data Management**
 
-**Week 8: Export System**
+**Week 6: Export System**
 
-- Implement export service interface
-- Create format exporters (JSON, CSV, Markdown)
-- Build export dialog UI
-- Add encrypted export option
+- Day 1-2: Export framework, JSON exporter
+- Day 3-4: CSV and Markdown exporters
+- Day 5: Export dialog, testing
 
-**Week 9: Import System**
+**Week 7: Import System**
 
-- Implement import validators
-- Create import parsers
-- Build import preview UI
-- Implement conflict resolution
+- Day 1-2: Import framework, JSON importer
+- Day 3-4: CSV importer, validation
+- Day 5: Conflict resolution, preview UI
 
-**Week 10: Backup & Restore**
+**Week 8: Backup & Restore**
 
-- Implement backup service
-- Create backup scheduler
-- Build restore UI
-- Add integrity verification
+- Day 1-2: Backup service, backup format
+- Day 3-4: Backup scheduler, restore service
+- Day 5: Backup management UI, testing
 
-### **Month 4: Search & Polish**
+### **Month 4: Integration & Release**
 
-**Week 11: Advanced Search**
+**Week 9-10: Integration Testing**
 
-- Implement query parser
-- Create search index
-- Build advanced search UI
-- Add saved searches
+- Comprehensive feature testing
+- Cross-platform testing (macOS/Windows/Linux)
+- Performance testing
+- Bug fixes
 
-**Week 12: Testing & Release Prep**
+**Week 11: Polish & Documentation**
 
-- Comprehensive testing (unit, integration, E2E)
-- Performance optimization
-- Documentation updates
-- Release notes and migration guide
+- UI polish and refinements
+- Update USER_GUIDE.md
+- Update CHANGELOG.md
+- Create migration guide
+
+**Week 12: Release Preparation**
+
+- Final testing
+- Build release artifacts
+- Create GitHub release
+- Tag v1.3.0
 
 ---
 
@@ -658,111 +680,51 @@ index.indexItem(item);
 ### **New Dependencies**
 
 ```xml
-<!-- Encryption Support -->
-<dependency>
-    <groupId>de.mkammerer</groupId>
-    <artifactId>argon2-jvm</artifactId>
-    <version>2.11</version>
-</dependency>
-
-<!-- PDF Export -->
-<dependency>
-    <groupId>com.itextpdf</groupId>
-    <artifactId>itext7-core</artifactId>
-    <version>8.0.5</version>
-</dependency>
-
 <!-- CSV Processing -->
 <dependency>
     <groupId>com.opencsv</groupId>
     <artifactId>opencsv</artifactId>
     <version>5.9</version>
 </dependency>
-
-<!-- Markdown Processing -->
-<dependency>
-    <groupId>com.vladsch.flexmark</groupId>
-    <artifactId>flexmark-all</artifactId>
-    <version>0.64.8</version>
-</dependency>
 ```
 
-### **Architecture Changes**
+**Note:** No encryption, PDF, or Markdown parsing libraries needed since those features are deferred to v1.4.0.
 
-**New Packages:**
+### **New Package Structure**
 
 ```
-com.documentvault.security/
-├── EncryptionService.java
-├── KeyManager.java
-├── SessionManager.java
-└── PasswordValidator.java
-
-com.documentvault.audit/
-├── AuditLogger.java
-├── AuditEvent.java
-└── AuditLogViewer.java
-
-com.documentvault.settings/
-├── SettingsManager.java
-├── SettingsDialog.java
-└── Setting.java
-
-com.documentvault.export/
-├── ExportService.java
-├── JsonExporter.java
-├── CsvExporter.java
-├── MarkdownExporter.java
-├── HtmlExporter.java
-└── PdfExporter.java
-
-com.documentvault.import/
-├── ImportService.java
-├── ImportValidator.java
-└── ConflictResolver.java
-
-com.documentvault.backup/
-├── BackupService.java
-├── BackupScheduler.java
-├── BackupVerifier.java
-└── RestoreService.java
-
-com.documentvault.search/
-├── SearchEngine.java
-├── QueryParser.java
-└── SearchIndex.java
-```
-
-### **Data Format Evolution**
-
-**Encrypted Storage Format:**
-
-```json
-{
-  "version": "1.3.0",
-  "encrypted": true,
-  "algorithm": "AES-256-GCM",
-  "keyDerivation": "PBKDF2",
-  "iterations": 600000,
-  "salt": "base64-encoded-salt",
-  "iv": "base64-encoded-iv",
-  "data": "base64-encoded-encrypted-data",
-  "checksum": "sha256-hash"
-}
-```
-
-**Backup Metadata:**
-
-```json
-{
-  "backupVersion": "1.0",
-  "vaultVersion": "1.3.0",
-  "timestamp": "2026-01-15T14:30:00Z",
-  "itemCount": 150,
-  "encrypted": true,
-  "size": 2048576,
-  "checksum": "sha256-hash"
-}
+com.documentvault/
+├── settings/              // NEW: Week 2
+│   ├── SettingsManager.java
+│   ├── Setting.java
+│   ├── SettingsDialog.java
+│   └── SettingsStorage.java
+├── theme/                 // NEW: Week 1
+│   └── ThemeManager.java
+├── search/                // NEW: Week 4
+│   ├── SearchEngine.java
+│   ├── QueryParser.java
+│   ├── SearchMode.java
+│   ├── SavedSearch.java
+│   └── SearchHistory.java
+├── export/                // NEW: Week 6-7
+│   ├── ExportService.java
+│   ├── Exporter.java
+│   ├── JsonExporter.java
+│   ├── CsvExporter.java
+│   └── MarkdownExporter.java
+├── import/                // NEW: Week 7
+│   ├── ImportService.java
+│   ├── Importer.java
+│   ├── JsonImporter.java
+│   ├── CsvImporter.java
+│   ├── ImportValidator.java
+│   └── ConflictResolver.java
+└── backup/                // NEW: Week 8
+    ├── BackupService.java
+    ├── BackupScheduler.java
+    ├── BackupVerifier.java
+    └── RestoreService.java
 ```
 
 ---
@@ -773,193 +735,132 @@ com.documentvault.search/
 
 **Unit Tests (Target: 90% coverage)**
 
-- Encryption/decryption correctness
-- Key derivation performance
-- Password validation rules
-- Audit event generation
+- Settings management and persistence
+- Search query parsing
 - Export format correctness
 - Import validation logic
 - Backup integrity verification
 
 **Integration Tests**
 
-- End-to-end encryption workflow
+- Theme switching across all UI components
+- Settings applied correctly
+- Search returns correct results
 - Export → Import round-trip
 - Backup → Restore cycle
-- Theme switching
-- Settings persistence
 
-**Security Tests**
+**UI Tests**
 
-- Password strength enforcement
-- Encryption algorithm validation
-- Memory wiping verification
-- Session timeout enforcement
-- Audit log tampering detection
+- All themes render correctly
+- Settings dialog usability
+- Table enhancements work smoothly
+- Category colors/icons display properly
 
 **Performance Tests**
 
-- Encryption overhead (< 50ms per item)
-- Search performance (< 100ms for 10,000 items)
-- UI responsiveness (theme switch < 200ms)
-- Backup creation (1000 items/minute)
-- Import validation (500 items/second)
-
-**UI/UX Tests**
-
-- Dark mode visual consistency
-- Settings dialog usability
-- Table view interactions
-- Export/import dialogs
-- Backup/restore workflows
-
-### **Compatibility Matrix**
-
-| Platform      | Java 25 | Dark Mode | Encryption | Backup |
-| ------------- | ------- | --------- | ---------- | ------ |
-| macOS 10.14+  | ✅      | ✅        | ✅         | ✅     |
-| Windows 10+   | ✅      | ✅        | ✅         | ✅     |
-| Ubuntu 20.04+ | ✅      | ✅        | ✅         | ✅     |
-
-### **Performance Benchmarks**
-
-| Operation                | Target  | Baseline v1.2.0 |
-| ------------------------ | ------- | --------------- |
-| Startup time (encrypted) | < 4s    | 2.5s            |
-| Unlock vault             | < 2s    | N/A             |
-| Encrypt document         | < 50ms  | N/A             |
-| Search 10,000 items      | < 100ms | 75ms            |
-| Theme switch             | < 200ms | N/A             |
-| Export 1000 items (JSON) | < 10s   | N/A             |
-| Backup 5000 items        | < 60s   | N/A             |
+- Theme switch < 200ms
+- Search < 100ms for 10,000 items
+- Export 1000 items < 10 seconds
+- Import 1000 items < 10 seconds
+- Backup 5000 items < 60 seconds
 
 ---
 
 ## 📊 **Success Metrics**
 
-### **Security Metrics**
+### **Feature Adoption**
 
-- ✅ 100% of data encrypted at rest
-- ✅ Zero plaintext password storage
-- ✅ Audit log coverage for all sensitive operations
-- ✅ Session auto-lock after 15 minutes (default)
-- ✅ Password strength: Minimum 12 characters, mixed case, numbers, symbols
-
-### **User Experience Metrics**
-
-- 📈 50%+ users adopt dark mode within first week
-- 📈 80%+ users configure at least one setting
-- 📈 70%+ users create at least one backup
-- 📈 40%+ users use advanced search operators
-- 📈 90%+ user satisfaction rating (NPS > 50)
+- 📈 50%+ users enable dark mode within first week
+- 📈 70%+ users configure at least one setting
+- 📈 40%+ users create at least one backup
+- 📈 30%+ users use advanced search operators
 
 ### **Technical Metrics**
 
 - 🏆 Test coverage: 90%+ (up from 85%)
-- 🏆 Zero high/critical security vulnerabilities
-- 🏆 CI/CD: 95%+ build success rate
+- 🏆 All 379+ tests passing
+- 🏆 Zero high/critical bugs at release
 - 🏆 Performance: No regression vs v1.2.0
-- 🏆 Memory: < 200MB with 10,000 encrypted items
+
+### **User Experience**
+
+- ⚡ Theme switch feels instant (< 200ms)
+- ⚡ Search feels responsive (< 100ms)
+- ⚡ Export/import complete successfully
+- ⚡ Backups "just work" automatically
 
 ---
 
 ## 🎉 **Release Deliverables**
 
-### **Application Assets**
+### **Application**
 
-- ✅ `documentvault-1.3.0.jar` - Encrypted vault with new features
+- ✅ `documentvault-1.3.0.jar` - Enhanced with all features
 - ✅ Platform installers (Windows MSI, macOS DMG, Linux AppImage)
-- ✅ Migration tool (v1.2.0 → v1.3.0 data encryption)
-- ✅ Theme packages (dark/light)
-- ✅ Sample backups for testing
+- ✅ Updated launcher scripts
 
 ### **Documentation**
 
-- ✅ **USER_GUIDE.md** - Updated with encryption, backup, export/import
-- ✅ **SECURITY.md** - Encryption details, best practices, threat model
-- ✅ **BACKUP_GUIDE.md** - Backup strategies, restore procedures
-- ✅ **EXPORT_IMPORT_GUIDE.md** - Data portability workflows
+- ✅ **USER_GUIDE.md** - Updated with all new features
 - ✅ **SETTINGS_REFERENCE.md** - Complete settings documentation
-- ✅ **MIGRATION_GUIDE_v1.3.0.md** - Upgrade from v1.2.0
+- ✅ **SEARCH_GUIDE.md** - Advanced search operators and examples
+- ✅ **EXPORT_IMPORT_GUIDE.md** - Data portability workflows
+- ✅ **BACKUP_GUIDE.md** - Backup strategies and restore procedures
+- ✅ **CHANGELOG.md** - Comprehensive v1.3.0 entry
 
-### **Migration Path**
+### **Migration**
 
-**From v1.2.0 to v1.3.0:**
-
-1. **Automatic data backup** on first launch
-2. **Password setup wizard** - create master password
-3. **Data encryption** - one-time process (progress shown)
-4. **Settings migration** - preserve preferences
-5. **Validation** - verify all data readable
-
-**Rollback Support:**
-
-- Keep v1.2.0 backup until user confirms success
-- Export to JSON before encryption (optional)
-- Decryption tool for emergency recovery
+- ✅ **Seamless upgrade from v1.2.0** - No data migration needed
+- ✅ **Automatic settings initialization** - Sensible defaults
+- ✅ **Backward compatible** - Can downgrade if needed
 
 ---
 
-## 🔮 **Post-v1.3.0 Roadmap Preview**
+## 🔮 **Post-v1.3.0 Roadmap**
 
-### **v1.4.0: Collaboration & Sync (Q2 2026)**
+### **v1.4.0: Security Foundation (Q2 2026, 8-10 weeks)**
 
-- Secure cloud backup (encrypted before upload)
-- Multi-device sync (conflict resolution)
-- Shared vaults (read-only, encrypted sharing)
-- Version history and rollback
+- 🔒 AES-256-GCM encryption for all data
+- 🔒 Master password protection with PBKDF2/Argon2
+- 🔒 Document classification (Public/Private/Confidential/Restricted)
+- 🔒 Comprehensive audit logging
+- 🔒 Encrypted export/backup
+- 🔒 Session management with auto-lock
+
+**Why Separate Release:**
+
+- Security features require dedicated security review
+- Cryptographic implementation needs extra testing
+- Compliance considerations for audit logging
+- Risk of delaying v1.3.0 if included
 
 ### **v1.5.0: Advanced Features (Q3 2026)**
 
-- Two-factor authentication (TOTP)
-- PDF annotation and highlighting
 - Rich text editor for notes
-- Full-text search across PDF content
-- OCR for scanned documents
+- In-app PDF preview
+- Full-text search within PDFs
+- Two-factor authentication (TOTP)
+- Plugin architecture foundation
 
 ### **v2.0.0: Platform Expansion (Q4 2026)**
 
 - Mobile companion apps (iOS/Android)
-- Browser extension for web clipping
+- Web interface for remote access
+- Cloud sync (encrypted)
 - API for integrations
-- Plugin architecture for extensibility
 
 ---
 
-## 🎯 **Development Priorities**
+## 🎯 **Key Principles**
 
-### **Must-Have (MVP for v1.3.0)**
-
-✅ AES-256 encryption  
-✅ Master password protection  
-✅ Dark mode theme  
-✅ Settings system  
-✅ Export to JSON/CSV  
-✅ Backup & restore
-
-### **Should-Have (High Value)**
-
-✅ Document classification  
-✅ Audit logging  
-✅ Import from JSON/CSV  
-✅ Advanced search  
-✅ Enhanced table view
-
-### **Could-Have (Nice to Have)**
-
-⚠️ HTML/PDF export (defer to v1.4.0 if time-constrained)  
-⚠️ Markdown import (defer to v1.4.0 if time-constrained)  
-⚠️ Search suggestions (defer to v1.4.0 if time-constrained)
-
-### **Won't-Have (Future Versions)**
-
-❌ Cloud sync (v1.4.0)  
-❌ Two-factor auth (v1.5.0)  
-❌ Mobile apps (v2.0.0)  
-❌ OCR (v1.5.0)
+1. **Stay Focused** - Only implement originally planned v1.2.0 features
+2. **No Scope Creep** - Security features go to v1.4.0, period
+3. **Quality Over Speed** - 90%+ test coverage, comprehensive testing
+4. **User-Centric** - Every feature solves a real user need
+5. **Ship It** - 12 weeks, no extensions, realistic timeline
 
 ---
 
-**DocumentVault v1.3.0 - Where Security Meets Simplicity** 🔒📚✨
+**DocumentVault v1.3.0 - Delivering on Our Promises** ✨
 
-_"Your documents. Your vault. Your peace of mind."_
+_"The features you were promised, the quality you deserve."_

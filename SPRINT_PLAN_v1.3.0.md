@@ -1,253 +1,33 @@
-# DocumentVault v1.3.0 - Sprint Execution Plan
+# DocumentVault v1.3.0 - Focused Sprint Plan
 
-**Sprint Duration:** 12 weeks (3 months)  
-**Start Date:** November 2025  
-**Target Release:** February 2026  
-**Team Size:** 1-2 developers
-
----
-
-## � **Important Context**
-
-**What This Release Is:**
-v1.3.0 implements the **originally planned v1.2.0 features** (dark mode, settings, search, export/import) that were deferred due to the rebranding work, PLUS new security features to deliver on the "Privacy First" brand promise.
-
-**What v1.2.0 Actually Was:**
-v1.2.0 shipped as a rebranding release (StudyLibrary → DocumentVault) instead of the planned feature release. All the originally planned features were postponed to this release (v1.3.0).
+**Duration:** 12 weeks  
+**Start:** November 2025  
+**Release:** February 2026  
+**Scope:** Original v1.2.0 features ONLY (security deferred to v1.4.0)
 
 ---
 
-## 📋 **Sprint Overview**
+## 🎯 **Sprint Goals**
 
-### **Sprint 1: UI/UX Foundation** (Weeks 1-3) - Originally Planned for v1.2.0
-
-🎨 Dark mode, settings system, table enhancements
-
-### **Sprint 2: Search & Categories** (Weeks 4-5) - Originally Planned for v1.2.0
-
-🔍 Advanced search, enhanced categories with colors/icons
-
-### **Sprint 3: Data Management** (Weeks 6-8) - Originally Planned for v1.2.0
-
-📊 Export, import, backup & restore
-
-### **Sprint 4: Security Foundation** (Weeks 9-10) - NEW
-
-🔒 Encryption, password management, document classification
-
-### **Sprint 5: Integration & Release** (Weeks 11-12)
-
-🔍 Audit logging, comprehensive testing, documentation
+**Sprint 1 (Weeks 1-3):** UI/UX Foundation - Dark mode, settings, table enhancements  
+**Sprint 2 (Weeks 4-5):** Search & Categories - Advanced search, visual categories  
+**Sprint 3 (Weeks 6-8):** Data Management - Export, import, backup/restore  
+**Sprint 4 (Weeks 9-12):** Integration & Release - Testing, documentation, ship it
 
 ---
 
-## 🏃 **Sprint 1: Dark Mode & Settings (Weeks 1-2)** - Originally Planned v1.2.0
+## 🏃 **Sprint 1: UI/UX Foundation (Weeks 1-3)**
 
 ### **Week 1: Dark Mode Theme System**
 
-#### **Day 1-2: Theme CSS Development**
+#### **Monday: Theme CSS Development**
 
-- [ ] Create `com.documentvault.security` package structure
-- [ ] Add Argon2 dependency to `pom.xml`
-- [ ] Design `EncryptionService` interface
-- [ ] Write encryption architecture documentation
+**Tasks:**
 
-**Deliverables:**
-
-```java
-interface EncryptionService {
-    byte[] encrypt(byte[] plaintext, SecretKey key);
-    byte[] decrypt(byte[] ciphertext, SecretKey key);
-    SecretKey deriveKey(char[] password, byte[] salt);
-    byte[] generateSalt();
-    byte[] generateIV();
-}
-```
-
-#### **Day 3-4: Implementation**
-
-- [ ] Implement `AESEncryptionService` with AES-256-GCM
-- [ ] Implement PBKDF2 key derivation (600,000 iterations)
-- [ ] Add memory wiping for sensitive data
-- [ ] Write unit tests (encryption/decryption round-trip)
-
-**Tests:**
-
-- Test encryption/decryption correctness
-- Test key derivation performance (< 2s)
-- Test invalid key handling
-- Test memory wiping
-
-#### **Day 5: Integration**
-
-- [ ] Create `KeyManager` for secure key storage
-- [ ] Implement `SecureMemory` utility for sensitive data
-- [ ] Add encryption performance benchmarks
-- [ ] Code review and documentation
-
-**Acceptance Criteria:**
-✅ AES-256-GCM encryption working  
-✅ PBKDF2 key derivation < 2 seconds  
-✅ All tests passing (100% coverage)  
-✅ No plaintext keys in memory after use
-
----
-
-### **Week 2: Password & Session Management**
-
-#### **Day 1-2: Password System**
-
-- [ ] Create `PasswordValidator` with strength rules
-- [ ] Implement password hashing (Argon2)
-- [ ] Create password storage format
-- [ ] Write password validation tests
-
-**Password Requirements:**
-
-- Minimum 12 characters
-- At least 1 uppercase letter
-- At least 1 lowercase letter
-- At least 1 number
-- At least 1 special character
-- No common passwords (top 10,000 list)
-
-#### **Day 3-4: Session Management**
-
-- [ ] Create `SessionManager` singleton
-- [ ] Implement session timeout (configurable, default 15 min)
-- [ ] Add activity tracking
-- [ ] Create lock/unlock mechanism
-
-**Deliverables:**
-
-```java
-class SessionManager {
-    boolean isLocked();
-    void unlock(char[] password);
-    void lock();
-    void resetTimeout();
-    Duration getIdleTime();
-}
-```
-
-#### **Day 5: UI Integration**
-
-- [ ] Design unlock dialog (FXML)
-- [ ] Create `UnlockController`
-- [ ] Add password visibility toggle
-- [ ] Implement "Remember for session" checkbox
-- [ ] Add keyboard shortcuts (Cmd/Ctrl+L to lock)
-
-**Acceptance Criteria:**
-✅ Strong password validation working  
-✅ Session auto-lock after timeout  
-✅ Unlock dialog responsive and secure  
-✅ Activity tracking accurate
-
----
-
-## 🏃 **Sprint 2: Classification & Audit (Weeks 3-4)**
-
-### **Week 3: Document Classification**
-
-#### **Day 1-2: Data Model**
-
-- [ ] Add `ClassificationLevel` enum to `LibraryItem`
-- [ ] Add classification metadata (date, reason)
-- [ ] Update JSON serialization
-- [ ] Write migration code for v1.2.0 data
-
-**Schema Update:**
-
-```json
-{
-  "id": "uuid",
-  "title": "Document Title",
-  "classification": "CONFIDENTIAL",
-  "classificationDate": "2026-01-15T14:30:00Z",
-  "classificationReason": "Contains financial data",
-  ...
-}
-```
-
-#### **Day 3-4: UI Components**
-
-- [ ] Add classification dropdown to item form
-- [ ] Create classification badge component
-- [ ] Add color coding (Green/Blue/Orange/Red)
-- [ ] Update table view with classification column
-
-#### **Day 5: Bulk Operations**
-
-- [ ] Create bulk classification dialog
-- [ ] Implement multi-item classification
-- [ ] Add classification filter to search
-- [ ] Add classification statistics to dashboard
-
-**Acceptance Criteria:**
-✅ All classification levels supported  
-✅ Visual badges clear and consistent  
-✅ Bulk classification working  
-✅ Migration from v1.2.0 successful
-
----
-
-### **Week 4: Audit Logging**
-
-#### **Day 1-2: Audit Framework**
-
-- [ ] Create `AuditEvent` record class
-- [ ] Implement `AuditLogger` with async logging
-- [ ] Design audit log storage format
-- [ ] Add log rotation (keep last 10,000 events)
-
-**Event Types:**
-
-- DOCUMENT_CREATED
-- DOCUMENT_VIEWED
-- DOCUMENT_EDITED
-- DOCUMENT_DELETED
-- CLASSIFICATION_CHANGED
-- VAULT_UNLOCKED
-- VAULT_LOCKED
-- EXPORT_EXECUTED
-- IMPORT_EXECUTED
-- BACKUP_CREATED
-- RESTORE_EXECUTED
-- AUTH_FAILED
-
-#### **Day 3-4: Integration**
-
-- [ ] Add audit logging to all sensitive operations
-- [ ] Implement audit log viewer dialog
-- [ ] Add filtering (date, type, document)
-- [ ] Add search within logs
-
-#### **Day 5: Export & Testing**
-
-- [ ] Add audit log export to CSV
-- [ ] Write comprehensive tests
-- [ ] Performance test (async logging overhead)
-- [ ] Documentation
-
-**Acceptance Criteria:**
-✅ All sensitive operations logged  
-✅ Async logging < 1ms overhead  
-✅ Log viewer functional and fast  
-✅ Export working correctly
-
----
-
-## 🏃 **Sprint 3: UI/UX Enhancements (Weeks 5-7)**
-
-### **Week 5: Dark Mode**
-
-#### **Day 1-2: Theme CSS**
-
-- [ ] Create `dark-theme.css` with complete styling
+- [ ] Create `src/main/resources/css/dark-theme.css`
+- [ ] Define professional dark color palette
 - [ ] Refine `light-theme.css` for consistency
-- [ ] Test all UI components in both themes
-- [ ] Fix contrast and readability issues
+- [ ] Test all UI components with both themes
 
 **Color Palette (Dark):**
 
@@ -259,483 +39,813 @@ Border: #3e3e42
 Text Primary: #cccccc
 Text Secondary: #858585
 Accent: #007acc
-Success: #4ec9b0
-Warning: #ce9178
-Error: #f48771
 ```
 
-#### **Day 3-4: Theme Switcher**
-
-- [ ] Create `ThemeManager` singleton
-- [ ] Implement theme switching logic
-- [ ] Add fade transition animation
-- [ ] Persist theme preference
-
-#### **Day 5: Integration & Polish**
-
-- [ ] Add theme menu item: View > Theme
-- [ ] Add keyboard shortcut (Cmd/Ctrl+Shift+T)
-- [ ] Test theme switching with all dialogs
-- [ ] Update documentation
-
-**Acceptance Criteria:**
-✅ Both themes complete and polished  
-✅ Instant theme switching (< 200ms)  
-✅ All components styled consistently  
-✅ Preference persisted correctly
+**Deliverable:** Complete CSS files
 
 ---
 
-### **Week 6: Settings System**
+#### **Tuesday-Wednesday: Theme Manager**
 
-#### **Day 1-2: Settings Framework**
+**Tasks:**
 
-- [ ] Create `Setting<T>` generic class
+- [ ] Create `com.documentvault.theme` package
+- [ ] Implement `ThemeManager.java` singleton
+- [ ] Add theme preference storage in settings
+- [ ] Implement theme switching logic with fade transition
+
+```java
+public class ThemeManager {
+    private static final ThemeManager INSTANCE = new ThemeManager();
+
+    public enum Theme { LIGHT, DARK }
+
+    public void applyTheme(Theme theme) {
+        // Load CSS, apply with 200ms fade
+    }
+
+    public Theme getCurrentTheme() {
+        return SettingsManager.getInstance().getTheme();
+    }
+}
+```
+
+**Deliverable:** Working theme manager
+
+---
+
+#### **Thursday: Theme UI Integration**
+
+**Tasks:**
+
+- [ ] Add "View > Theme" menu item
+- [ ] Add keyboard shortcut Cmd/Ctrl+Shift+T
+- [ ] Add theme toggle to toolbar (optional)
+- [ ] Test theme switching in all dialogs
+
+**Deliverable:** Complete theme switcher UI
+
+---
+
+#### **Friday: Testing & Polish**
+
+**Tasks:**
+
+- [ ] Test all UI components in both themes
+- [ ] Fix any contrast/readability issues
+- [ ] Test theme persistence across app restarts
+- [ ] Code review and documentation
+
+**Acceptance Criteria:**
+✅ Dark and light themes complete  
+✅ Theme switch < 200ms  
+✅ Theme preference persisted  
+✅ All UI elements styled consistently
+
+---
+
+### **Week 2: Settings & Preferences System**
+
+#### **Monday-Tuesday: Settings Framework**
+
+**Tasks:**
+
+- [ ] Create `com.documentvault.settings` package
+- [ ] Implement `Setting<T>` generic class
 - [ ] Implement `SettingsManager` singleton
 - [ ] Design settings JSON schema
-- [ ] Add validation framework
+- [ ] Implement `SettingsStorage` (load/save JSON)
 
-**Settings Categories:**
+```java
+public class SettingsManager {
+    private static final SettingsManager INSTANCE = new SettingsManager();
 
-```
-General:
-  - theme (DARK/LIGHT)
-  - language (EN/ES/FR/DE)
-  - startupBehavior (NORMAL/MINIMIZED)
+    // Settings
+    public Setting<Theme> theme = new Setting<>("theme", Theme.LIGHT);
+    public Setting<Integer> autoSaveIntervalSeconds = new Setting<>("autoSaveInterval", 60);
+    public Setting<String> dateFormat = new Setting<>("dateFormat", "yyyy-MM-dd");
 
-Security:
-  - autoLockMinutes (5/10/15/30/60)
-  - passwordMinLength (8-32)
-  - requireSpecialChars (true/false)
-
-Data:
-  - backupEnabled (true/false)
-  - backupIntervalHours (1/6/12/24)
-  - backupLocation (path)
-  - autoSaveInterval (30s/1m/5m)
-
-Display:
-  - fontSize (SMALL/MEDIUM/LARGE)
-  - tableDensity (COMPACT/COMFORTABLE/SPACIOUS)
-  - dateFormat (ISO/US/EU)
-  - timeFormat (12H/24H)
+    public void load() { /* Load from ~/.documentvault/settings.json */ }
+    public void save() { /* Save to JSON */ }
+}
 ```
 
-#### **Day 3-4: Settings Dialog**
+**Deliverable:** Settings framework
 
-- [ ] Design settings dialog UI (FXML)
-- [ ] Create `SettingsController`
-- [ ] Implement tabbed interface
-- [ ] Add validation and feedback
+---
 
-#### **Day 5: Integration**
+#### **Wednesday-Thursday: Settings Dialog UI**
+
+**Tasks:**
+
+- [ ] Create `SettingsDialog.fxml` with tabs
+- [ ] Create `SettingsController.java`
+- [ ] Implement 4 tabs: General, Display, Data, Advanced
+- [ ] Add controls for all settings
+
+**Tab Structure:**
+
+- **General:** Theme, startup behavior
+- **Display:** Font size, table density, date/time format
+- **Data:** Auto-save, backup location, export defaults
+- **Advanced:** Debug mode, memory display, reset button
+
+**Deliverable:** Complete settings dialog
+
+---
+
+#### **Friday: Integration & Testing**
+
+**Tasks:**
 
 - [ ] Wire settings to all features
-- [ ] Add "Reset to Defaults" button
-- [ ] Add import/export settings
-- [ ] Testing and polish
+- [ ] Add "Preferences" menu item (Cmd/Ctrl+,)
+- [ ] Test settings persistence
+- [ ] Test validation (prevent invalid values)
+- [ ] Test "Reset to Defaults" button
 
 **Acceptance Criteria:**
 ✅ All settings functional  
-✅ Validation preventing invalid values  
-✅ Settings persisted and loaded correctly  
-✅ Keyboard shortcut working (Cmd/Ctrl+,)
+✅ Settings persist across restarts  
+✅ Validation works  
+✅ Dialog responsive and polished
 
 ---
 
-### **Week 7: Table View Enhancements**
+### **Week 3: Table View Enhancements**
 
-#### **Day 1-2: Column Management**
+#### **Monday-Tuesday: Column Management**
 
+**Tasks:**
+
+- [ ] Create `TableViewEnhancer` utility class
 - [ ] Implement resizable columns (drag borders)
 - [ ] Implement reorderable columns (drag headers)
-- [ ] Add column visibility controls (right-click)
-- [ ] Persist column configuration
+- [ ] Add column visibility controls (right-click menu)
 
-#### **Day 3: Density Modes**
+```java
+public class TableViewEnhancer {
+    public static void enableAdvancedFeatures(TableView<?> table, String tableId) {
+        enableColumnReordering(table);
+        enableColumnResizing(table);
+        enableColumnVisibility(table);
+        loadColumnState(table, tableId);
+    }
+}
+```
 
-- [ ] Implement COMPACT mode (small padding)
-- [ ] Implement COMFORTABLE mode (current)
-- [ ] Implement SPACIOUS mode (large padding)
-- [ ] Add toggle in View menu
-
-#### **Day 4-5: Polish & Features**
-
-- [ ] Add alternating row colors
-- [ ] Enhance context menu (quick actions)
-- [ ] Improve multi-column sorting
-- [ ] Add column auto-size
-- [ ] Testing and documentation
-
-**Acceptance Criteria:**
-✅ Columns resizable and reorderable  
-✅ Visibility controls working  
-✅ All density modes functional  
-✅ Configuration persisted
+**Deliverable:** Column management features
 
 ---
 
-## 🏃 **Sprint 4: Data Management (Weeks 8-10)**
+#### **Wednesday: Density Modes**
 
-### **Week 8: Export System**
+**Tasks:**
 
-#### **Day 1-2: Export Framework**
+- [ ] Create CSS for 3 density modes
+- [ ] Implement density mode switching
+- [ ] Add View menu items for density
+- [ ] Add density setting to preferences
 
-- [ ] Create `ExportService` interface
-- [ ] Design export dialog UI
-- [ ] Implement item selection logic
+**Density Modes:**
+
+- **Compact:** -fx-padding: 2px 8px;
+- **Comfortable:** -fx-padding: 4px 8px; (default)
+- **Spacious:** -fx-padding: 8px 12px;
+
+**Deliverable:** Working density modes
+
+---
+
+#### **Thursday: Visual Polish**
+
+**Tasks:**
+
+- [ ] Add alternating row colors
+- [ ] Improve row hover effects
+- [ ] Enhance selection highlighting
+- [ ] Update context menus with more actions
+
+**Deliverable:** Polished table view
+
+---
+
+#### **Friday: State Persistence & Testing**
+
+**Tasks:**
+
+- [ ] Implement column state persistence
+- [ ] Test column resize/reorder
+- [ ] Test density modes
+- [ ] Test state persistence across restarts
+
+**Acceptance Criteria:**
+✅ Columns resizable/reorderable  
+✅ Density modes work  
+✅ State persists  
+✅ Visual improvements look professional
+
+---
+
+## 🏃 **Sprint 2: Search & Categories (Weeks 4-5)**
+
+### **Week 4: Advanced Search System**
+
+#### **Monday-Tuesday: Query Parser**
+
+**Tasks:**
+
+- [ ] Create `com.documentvault.search` package
+- [ ] Implement `QueryParser` for operator-based queries
+- [ ] Support field search: `title:keyword`, `content:text`
+- [ ] Support boolean: `AND`, `OR`, `NOT`
+- [ ] Support exact phrases: `"exact phrase"`
+- [ ] Support wildcards: `key*`
+- [ ] Support date ranges: `created:2025-01-01..2025-12-31`
+
+```java
+public class QueryParser {
+    public SearchQuery parse(String queryString) {
+        // Parse "title:security AND category:work" into SearchQuery
+    }
+}
+
+public record SearchQuery(
+    List<FieldFilter> filters,
+    BooleanOperator operator,
+    DateRange dateRange
+) {}
+```
+
+**Deliverable:** Working query parser
+
+---
+
+#### **Wednesday-Thursday: Search Engine**
+
+**Tasks:**
+
+- [ ] Implement `SearchEngine.java`
+- [ ] Create in-memory search index
+- [ ] Implement search execution
+- [ ] Add result highlighting
+- [ ] Optimize for 10,000+ items
+
+```java
+public class SearchEngine {
+    public List<LibraryItem> search(SearchQuery query) {
+        // Execute search, return results
+    }
+
+    public List<SearchResult> searchWithHighlights(SearchQuery query) {
+        // Return results with match highlights
+    }
+}
+```
+
+**Deliverable:** Working search engine
+
+---
+
+#### **Friday: Search UI & Features**
+
+**Tasks:**
+
+- [ ] Add search mode toggle (Simple/Advanced/Regex)
+- [ ] Implement search history (last 20 queries)
+- [ ] Add saved searches feature
+- [ ] Update search bar UI
+
+**Deliverable:** Complete search system
+
+**Acceptance Criteria:**
+✅ All operators work correctly  
+✅ Search < 100ms for 10,000 items  
+✅ Search history and saved searches work  
+✅ UI intuitive and responsive
+
+---
+
+### **Week 5: Enhanced Categories**
+
+#### **Monday-Tuesday: Extended Category Model**
+
+**Tasks:**
+
+- [ ] Extend `Category` record with color and icon
+- [ ] Create `CategoryColor` enum (16 colors)
+- [ ] Create `CategoryIcon` enum (50+ icons)
+- [ ] Update `StorageService` for new schema
+- [ ] Migrate existing categories
+
+```java
+public record Category(
+    String id,
+    String name,
+    String description,
+    CategoryColor color,
+    CategoryIcon icon,
+    LocalDateTime createdDate
+) {}
+
+public enum CategoryColor {
+    BLUE("#007acc"), GREEN("#4ec9b0"), ORANGE("#ce9178"),
+    RED("#f48771"), PURPLE("#c586c0"), YELLOW("#dcdcaa"),
+    // ... 10 more
+}
+```
+
+**Deliverable:** Extended category model
+
+---
+
+#### **Wednesday-Thursday: Category Management UI**
+
+**Tasks:**
+
+- [ ] Create category management dialog
+- [ ] Add color picker (16-color palette)
+- [ ] Add icon selector (grid of icons)
+- [ ] Add visual preview
+- [ ] Update category dropdown with colors/icons
+
+**Deliverable:** Category management dialog
+
+---
+
+#### **Friday: Visual Integration**
+
+**Tasks:**
+
+- [ ] Add color badges in table view
+- [ ] Add icons to category dropdown
+- [ ] Update category statistics with colors
+- [ ] Test visual consistency
+
+**Acceptance Criteria:**
+✅ All colors render correctly  
+✅ All icons display properly  
+✅ Category management intuitive  
+✅ Visual cues clear and professional
+
+---
+
+## 🏃 **Sprint 3: Data Management (Weeks 6-8)**
+
+### **Week 6: Export System**
+
+#### **Monday-Tuesday: Export Framework**
+
+**Tasks:**
+
+- [ ] Create `com.documentvault.export` package
+- [ ] Define `Exporter` interface
+- [ ] Implement `ExportService` coordinator
+- [ ] Create export dialog UI
 - [ ] Add progress tracking
 
-#### **Day 3: JSON & CSV Exporters**
+```java
+public interface Exporter {
+    String getFormatName();
+    String getFileExtension();
+    void export(List<LibraryItem> items, File destination) throws ExportException;
+}
+
+public class ExportService {
+    private Map<String, Exporter> exporters = new HashMap<>();
+
+    public void registerExporter(Exporter exporter) { }
+    public void export(ExportOptions options) { }
+}
+```
+
+**Deliverable:** Export framework
+
+---
+
+#### **Wednesday: JSON & CSV Exporters**
+
+**Tasks:**
 
 - [ ] Implement `JsonExporter`
-- [ ] Implement `CsvExporter` with OpenCSV
-- [ ] Add encryption option for exports
-- [ ] Write round-trip tests
+- [ ] Add OpenCSV dependency to pom.xml
+- [ ] Implement `CsvExporter`
+- [ ] Test both formats
 
-#### **Day 4: Markdown Exporter**
+**Deliverable:** JSON and CSV exporters
+
+---
+
+#### **Thursday: Markdown Exporter**
+
+**Tasks:**
 
 - [ ] Implement `MarkdownExporter`
 - [ ] Format with frontmatter metadata
+- [ ] Organize by categories
 - [ ] Add table of contents
-- [ ] Test with various markdown viewers
 
-#### **Day 5: Integration & Testing**
+**Deliverable:** Markdown exporter
 
-- [ ] Wire all exporters to UI
-- [ ] Add "Open Folder" after export
+---
+
+#### **Friday: Export Dialog & Testing**
+
+**Tasks:**
+
+- [ ] Complete export dialog UI
+- [ ] Add format selector with preview
 - [ ] Test large exports (10,000 items)
 - [ ] Performance optimization
 
 **Acceptance Criteria:**
 ✅ JSON, CSV, Markdown export working  
-✅ Encrypted export functional  
-✅ Large exports complete successfully  
-✅ Export < 10 seconds for 1000 items
+✅ Large exports succeed (10,000 items)  
+✅ Export < 10 seconds for 1000 items  
+✅ Dialog intuitive and responsive
 
 ---
 
-### **Week 9: Import System**
+### **Week 7: Import System**
 
-#### **Day 1-2: Import Framework**
+#### **Monday-Tuesday: Import Framework**
 
-- [ ] Create `ImportService` interface
+**Tasks:**
+
+- [ ] Create `com.documentvault.import` package
+- [ ] Define `Importer` interface
+- [ ] Implement `ImportService` coordinator
 - [ ] Implement `ImportValidator`
-- [ ] Design import preview dialog
-- [ ] Add progress tracking
+- [ ] Create import preview dialog
 
-#### **Day 3-4: Importers**
+```java
+public interface Importer {
+    String getFormatName();
+    ImportResult importData(File source, ImportOptions options) throws ImportException;
+}
+
+public class ImportValidator {
+    public List<ValidationError> validate(List<LibraryItem> items) { }
+}
+```
+
+**Deliverable:** Import framework
+
+---
+
+#### **Wednesday-Thursday: JSON & CSV Importers**
+
+**Tasks:**
 
 - [ ] Implement `JsonImporter`
 - [ ] Implement `CsvImporter` with column mapping
 - [ ] Add duplicate detection
-- [ ] Implement conflict resolution
+- [ ] Implement conflict resolution strategies
 
-**Conflict Resolution Strategies:**
+**Conflict Strategies:**
 
-- **Skip** - Keep existing, ignore import
-- **Replace** - Overwrite with imported
-- **Rename** - Import with new ID
-- **Ask** - Prompt user for each conflict
+- Skip: Keep existing
+- Replace: Overwrite
+- Rename: Import with new ID
+- Ask: Prompt user
 
-#### **Day 5: Testing**
-
-- [ ] Test JSON round-trip (export → import)
-- [ ] Test CSV with various formats
-- [ ] Test conflict resolution
-- [ ] Performance testing
-
-**Acceptance Criteria:**
-✅ JSON and CSV import working  
-✅ Conflict resolution functional  
-✅ Import validation catching errors  
-✅ Preview showing accurate data
+**Deliverable:** JSON and CSV importers
 
 ---
 
-### **Week 10: Backup & Restore**
+#### **Friday: Import Dialog & Testing**
 
-#### **Day 1-2: Backup Service**
+**Tasks:**
 
+- [ ] Complete import dialog UI
+- [ ] Add import preview with conflict highlighting
+- [ ] Test import validation
+- [ ] Test round-trip: export → import
+
+**Acceptance Criteria:**
+✅ JSON and CSV import working  
+✅ Validation catches errors  
+✅ Conflict resolution works  
+✅ Round-trip produces identical data
+
+---
+
+### **Week 8: Backup & Restore**
+
+#### **Monday-Tuesday: Backup Service**
+
+**Tasks:**
+
+- [ ] Create `com.documentvault.backup` package
 - [ ] Implement `BackupService`
-- [ ] Create backup format (.dvbackup ZIP)
-- [ ] Add SHA-256 checksums
-- [ ] Implement backup encryption
+- [ ] Design backup format (ZIP with JSON + metadata)
+- [ ] Add SHA-256 checksum generation
+- [ ] Implement manual backup
 
-**Backup Contents:**
-
-```
-backup-2026-01-15-143000.dvbackup (ZIP)
-├── vault.json (encrypted data)
-├── metadata.json (backup info)
-├── checksums.sha256
-└── version.txt
+```java
+// Backup format (.dvbackup is a ZIP)
+backup-2026-02-01-103000.dvbackup
+├── vault.json           // Exported data
+├── metadata.json        // {timestamp, version, itemCount}
+└── checksums.sha256     // Integrity verification
 ```
 
-#### **Day 3: Scheduler**
+**Deliverable:** Backup service
+
+---
+
+#### **Wednesday: Backup Scheduler**
+
+**Tasks:**
 
 - [ ] Implement `BackupScheduler`
-- [ ] Add cron-style scheduling
+- [ ] Add configurable schedule (daily/weekly/monthly)
 - [ ] Implement backup rotation (keep last N)
-- [ ] Add background backup with notification
+- [ ] Add background execution
+- [ ] Add backup notifications
 
-#### **Day 4: Restore Service**
+**Deliverable:** Automated backups
+
+---
+
+#### **Thursday: Restore Service**
+
+**Tasks:**
 
 - [ ] Implement `RestoreService`
 - [ ] Create backup browser UI
 - [ ] Add restore preview
-- [ ] Implement selective restore
+- [ ] Implement full restore
+- [ ] Add restore to new location option
 
-#### **Day 5: Integration & Testing**
+**Deliverable:** Restore functionality
 
-- [ ] Wire to Tools menu
-- [ ] Add status bar indicator
+---
+
+#### **Friday: Backup UI & Testing**
+
+**Tasks:**
+
+- [ ] Create backup management dialog
+- [ ] Add status bar backup indicator
 - [ ] Test backup → restore cycle
-- [ ] Test with large vaults (10,000 items)
+- [ ] Test integrity verification
+- [ ] Test backup rotation
 
 **Acceptance Criteria:**
-✅ Automatic backups working  
-✅ Manual backup on-demand  
-✅ Restore preserves all data  
-✅ Backup integrity verified
+✅ Automatic backups work on schedule  
+✅ Manual backups succeed  
+✅ Restore recreates exact data  
+✅ Integrity verification catches corruption  
+✅ Rotation works correctly
 
 ---
 
-## 🏃 **Sprint 5: Search & Release (Weeks 11-12)**
+## 🏃 **Sprint 4: Integration & Release (Weeks 9-12)**
 
-### **Week 11: Advanced Search**
+### **Week 9-10: Integration Testing**
 
-#### **Day 1-2: Query Parser**
+#### **Comprehensive Feature Testing**
 
-- [ ] Implement `QueryParser` with operator support
-- [ ] Add field-specific search
-- [ ] Add boolean operators (AND/OR/NOT)
-- [ ] Add date range parsing
+**Tasks:**
 
-**Query Examples:**
+- [ ] Test all features together
+- [ ] Test feature interactions
+- [ ] Test settings applied to all features
+- [ ] Test theme across all features
+- [ ] Performance testing with 10,000 items
 
-```
-title:security AND class:confidential
-content:"bank account" OR content:password
-created:2025-01-01..2025-12-31
-NOT category:archive
-```
+**Test Scenarios:**
 
-#### **Day 3-4: Search Engine**
-
-- [ ] Implement `SearchEngine`
-- [ ] Create in-memory search index
-- [ ] Optimize for large datasets
-- [ ] Add result highlighting
-
-#### **Day 5: UI & Features**
-
-- [ ] Add search mode toggle (Simple/Advanced/Regex)
-- [ ] Implement search history dropdown
-- [ ] Add saved searches feature
-- [ ] Testing and optimization
-
-**Acceptance Criteria:**
-✅ All operators working correctly  
-✅ Search < 100ms for 10,000 items  
-✅ Saved searches persisted  
-✅ Search history functional
+1. Dark mode + advanced search + export
+2. Settings changes affect all features
+3. Import → search → export round-trip
+4. Backup → restore → verify data
+5. Category colors in all contexts
 
 ---
 
-### **Week 12: Testing, Documentation & Release**
+#### **Cross-Platform Testing**
 
-#### **Day 1-2: Comprehensive Testing**
+**Tasks:**
 
-- [ ] Run full test suite (unit + integration)
-- [ ] Performance benchmarking
-- [ ] Security audit
-- [ ] Cross-platform testing (macOS/Windows/Linux)
+- [ ] Test on macOS (primary)
+- [ ] Test on Windows 10/11
+- [ ] Test on Ubuntu 20.04+
+- [ ] Fix platform-specific issues
+
+---
+
+#### **Performance Testing**
+
+**Tasks:**
+
+- [ ] Startup time with 10,000 items
+- [ ] Theme switch performance
+- [ ] Search performance
+- [ ] Export/import performance
+- [ ] Memory usage monitoring
+
+**Performance Targets:**
+
+- Startup: < 4 seconds
+- Theme switch: < 200ms
+- Search: < 100ms (10,000 items)
+- Export 1000 items: < 10 seconds
+- Memory: < 200MB (10,000 items)
+
+---
+
+#### **Bug Fixes**
+
+**Tasks:**
+
 - [ ] Fix all critical bugs
+- [ ] Fix all high-priority bugs
+- [ ] Triage medium/low bugs
+- [ ] Update bug tracker
 
-**Test Checklist:**
+---
 
-- [ ] All 379+ tests passing
-- [ ] Code coverage ≥ 90%
-- [ ] Performance benchmarks met
-- [ ] No memory leaks
-- [ ] No security vulnerabilities
+### **Week 11: Documentation & Polish**
 
-#### **Day 3: Documentation**
+#### **User Documentation**
 
-- [ ] Update USER_GUIDE.md
-- [ ] Create SECURITY.md
+**Tasks:**
+
+- [ ] Update USER_GUIDE.md with all features
+- [ ] Create SETTINGS_REFERENCE.md
+- [ ] Create SEARCH_GUIDE.md with examples
+- [ ] Create EXPORT_IMPORT_GUIDE.md
 - [ ] Create BACKUP_GUIDE.md
-- [ ] Create MIGRATION_GUIDE_v1.3.0.md
-- [ ] Update CHANGELOG.md
 
-#### **Day 4: Migration Tool**
+---
 
-- [ ] Create v1.2.0 → v1.3.0 migration script
-- [ ] Test migration with real data
-- [ ] Add rollback capability
-- [ ] Test on multiple platforms
+#### **Developer Documentation**
 
-#### **Day 5: Release Preparation**
+**Tasks:**
+
+- [ ] Update DEVELOPMENT.md
+- [ ] Document new packages
+- [ ] Update architecture diagrams
+- [ ] Code cleanup and comments
+
+---
+
+#### **CHANGELOG Update**
+
+**Tasks:**
+
+- [ ] Write comprehensive v1.3.0 entry
+- [ ] List all new features
+- [ ] List all improvements
+- [ ] Add upgrade notes
+
+---
+
+#### **UI Polish**
+
+**Tasks:**
+
+- [ ] Final UI tweaks
+- [ ] Fix any visual inconsistencies
+- [ ] Test accessibility
+- [ ] User acceptance testing
+
+---
+
+### **Week 12: Release Preparation**
+
+#### **Final Testing**
+
+**Tasks:**
+
+- [ ] Run full test suite (379+ tests)
+- [ ] Verify all acceptance criteria
+- [ ] Final cross-platform testing
+- [ ] Performance verification
+
+---
+
+#### **Version Update**
+
+**Tasks:**
 
 - [ ] Update version to 1.3.0 in pom.xml
-- [ ] Build release artifacts
-- [ ] Create GitHub release
+- [ ] Update version in BrandConstants.java
+- [ ] Remove -SNAPSHOT suffix
+- [ ] Update all documentation versions
+
+---
+
+#### **Build & Package**
+
+**Tasks:**
+
+- [ ] Clean build: `mvn clean package`
+- [ ] Verify JAR: `documentvault-1.3.0.jar`
+- [ ] Build platform installers (if available)
+- [ ] Test installers on each platform
+
+---
+
+#### **Release**
+
+**Tasks:**
+
+- [ ] Commit version bump
+- [ ] Tag v1.3.0
+- [ ] Push to GitHub
+- [ ] Create GitHub Release
+- [ ] Upload artifacts
 - [ ] Publish release notes
-- [ ] Tag v1.3.0 in git
 
-**Release Checklist:**
+---
 
-- [ ] Version bumped to 1.3.0
-- [ ] CHANGELOG.md updated
-- [ ] All documentation current
-- [ ] Release notes written
+## 📊 **Sprint Metrics**
+
+### **Story Points by Sprint**
+
+| Sprint         | Focus                 | Points      |
+| -------------- | --------------------- | ----------- |
+| 1 (Weeks 1-3)  | UI/UX Foundation      | 40 pts      |
+| 2 (Weeks 4-5)  | Search & Categories   | 30 pts      |
+| 3 (Weeks 6-8)  | Data Management       | 50 pts      |
+| 4 (Weeks 9-12) | Integration & Release | 30 pts      |
+| **Total**      |                       | **150 pts** |
+
+### **Feature Breakdown**
+
+| Feature             | Complexity | Points | Week |
+| ------------------- | ---------- | ------ | ---- |
+| Dark Mode           | Medium     | 13     | 1    |
+| Settings System     | Medium     | 13     | 2    |
+| Table Enhancements  | Low        | 8      | 3    |
+| Advanced Search     | Medium     | 15     | 4    |
+| Enhanced Categories | Medium     | 13     | 5    |
+| Export System       | Medium     | 15     | 6    |
+| Import System       | Medium     | 15     | 7    |
+| Backup & Restore    | High       | 20     | 8    |
+| Integration Testing | -          | 20     | 9-10 |
+| Documentation       | -          | 8      | 11   |
+| Release Prep        | -          | 10     | 12   |
+
+---
+
+## ✅ **Definition of Done**
+
+### **Feature Complete:**
+
+- [ ] All code written and committed
+- [ ] Unit tests passing (90%+ coverage)
+- [ ] Integration tests passing
+- [ ] Manual testing completed
+- [ ] Code reviewed
+- [ ] Documentation updated
+- [ ] No critical/high bugs
+- [ ] Performance benchmarks met
+
+### **Sprint Complete:**
+
+- [ ] All planned features done
+- [ ] All tests passing
+- [ ] Sprint demo recorded (if applicable)
+- [ ] Code merged to develop
+- [ ] CI/CD passing
+
+### **Release Complete:**
+
+- [ ] All sprints completed
+- [ ] Full regression testing passed
+- [ ] Documentation complete
+- [ ] Release notes finalized
 - [ ] Artifacts built and tested
-- [ ] GitHub release created
-- [ ] Git tag v1.3.0 pushed
-
----
-
-## 📊 **Sprint Metrics & Tracking**
-
-### **Velocity Tracking**
-
-| Sprint | Planned Points | Completed Points | Velocity |
-| ------ | -------------- | ---------------- | -------- |
-| 1      | 40             | TBD              | TBD      |
-| 2      | 40             | TBD              | TBD      |
-| 3      | 35             | TBD              | TBD      |
-| 4      | 45             | TBD              | TBD      |
-| 5      | 30             | TBD              | TBD      |
-
-### **Story Points Breakdown**
-
-**Sprint 1: Encryption Infrastructure (40 pts)**
-
-- Core encryption: 20 pts
-- Password system: 12 pts
-- Session management: 8 pts
-
-**Sprint 2: Classification & Audit (40 pts)**
-
-- Document classification: 18 pts
-- Audit logging: 22 pts
-
-**Sprint 3: UI/UX Enhancements (35 pts)**
-
-- Dark mode: 15 pts
-- Settings system: 12 pts
-- Table enhancements: 8 pts
-
-**Sprint 4: Data Management (45 pts)**
-
-- Export system: 15 pts
-- Import system: 15 pts
-- Backup & restore: 15 pts
-
-**Sprint 5: Search & Release (30 pts)**
-
-- Advanced search: 15 pts
-- Testing & QA: 8 pts
-- Documentation & release: 7 pts
-
-**Total: 190 story points over 12 weeks**
-
----
-
-## 🎯 **Daily Standup Template**
-
-**What did I accomplish yesterday?**
-
-- Completed [specific tasks]
-- Fixed [bugs/issues]
-
-**What will I work on today?**
-
-- [Specific tasks for today]
-- [Expected outcomes]
-
-**Are there any blockers?**
-
-- [Technical challenges]
-- [Resource needs]
-- [Dependencies]
+- [ ] GitHub release published
+- [ ] Version tagged in git
 
 ---
 
 ## 🚧 **Risk Management**
 
-### **Identified Risks**
-
-| Risk                        | Probability | Impact | Mitigation                          |
-| --------------------------- | ----------- | ------ | ----------------------------------- |
-| Encryption complexity       | Medium      | High   | Start early, comprehensive testing  |
-| UI/UX consistency           | Low         | Medium | Design review before implementation |
-| Performance regression      | Medium      | High   | Continuous benchmarking             |
-| Scope creep                 | High        | High   | Strict MVP adherence                |
-| Testing time underestimated | Medium      | High   | Buffer in Week 12                   |
-
-### **Mitigation Strategies**
-
-**Encryption Complexity:**
-
-- Use proven libraries (Java Crypto, Argon2)
-- Extensive unit tests from day 1
-- Security review by expert
-
-**Performance:**
-
-- Benchmark after each major feature
-- Optimize before moving to next sprint
-- Profile memory usage regularly
-
-**Scope Creep:**
-
-- Strict adherence to must-have features
-- Defer nice-to-haves to v1.4.0
-- Weekly scope review
+| Risk                              | Probability | Impact | Mitigation                   |
+| --------------------------------- | ----------- | ------ | ---------------------------- |
+| Feature complexity underestimated | Medium      | High   | Buffer time in weeks 9-10    |
+| Cross-platform issues             | Medium      | Medium | Test early and often         |
+| Performance regression            | Low         | High   | Benchmark after each feature |
+| Scope creep                       | Low         | High   | Strict adherence to plan     |
 
 ---
 
-## 🎉 **Definition of Done**
+## 🎯 **Key Success Factors**
 
-### **Feature Complete Checklist**
-
-- [ ] All code written and committed
-- [ ] Unit tests passing (≥ 90% coverage)
-- [ ] Integration tests passing
-- [ ] Manual testing completed
-- [ ] Code reviewed
-- [ ] Documentation updated
-- [ ] No critical or high bugs
-- [ ] Performance benchmarks met
-- [ ] Accessibility tested
-- [ ] Cross-platform verified
-
-### **Sprint Complete Checklist**
-
-- [ ] All planned features done
-- [ ] Sprint demo recorded
-- [ ] Retrospective completed
-- [ ] Next sprint planned
-- [ ] All code merged to develop
-- [ ] CI/CD passing
-
-### **Release Complete Checklist**
-
-- [ ] All sprints completed
-- [ ] Full regression testing passed
-- [ ] Security audit completed
-- [ ] Performance benchmarks met
-- [ ] Documentation complete and accurate
-- [ ] Migration guide tested
-- [ ] Release notes finalized
-- [ ] Artifacts built and signed
-- [ ] GitHub release published
-- [ ] Social media announcement prepared
+1. **Stay Focused** - No features beyond original v1.2.0 plan
+2. **Test Continuously** - Don't wait until the end
+3. **Document As You Go** - Update docs with each feature
+4. **Ship On Time** - 12 weeks, no extensions
+5. **Maintain Quality** - 90%+ test coverage non-negotiable
 
 ---
 
-**Sprint Plan v1.3.0 - Execution Excellence** 🚀
+**Sprint Plan v1.3.0 - Focused Execution** 🎯
 
-_"Plan the work, work the plan, ship the features."_
+_"Ship what we promised, on time, with quality."_
