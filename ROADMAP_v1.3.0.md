@@ -30,6 +30,7 @@ With v1.2.0 establishing the DocumentVault brand identity, v1.3.0 delivers on th
 **Value:** Delivers core brand promise
 
 **Features:**
+
 - **AES-256-GCM encryption** for all stored documents
 - **Master password** protection with PBKDF2 key derivation
 - **Encrypted storage format** - seamless migration from v1.2.0
@@ -37,6 +38,7 @@ With v1.2.0 establishing the DocumentVault brand identity, v1.3.0 delivers on th
 - **Session management** - auto-lock after inactivity
 
 **Technical Details:**
+
 ```java
 // New packages
 com.documentvault.security.EncryptionService
@@ -50,12 +52,14 @@ com.documentvault.security.PasswordValidator
 ```
 
 **User Experience:**
+
 - First launch: Set master password
 - Subsequent launches: Unlock vault with password
 - Background: Auto-save encrypted data
 - Security: Memory wiping on exit
 
 **Testing:**
+
 - Encryption/decryption round-trip tests
 - Key derivation performance tests
 - Password strength validation
@@ -70,7 +74,9 @@ com.documentvault.security.PasswordValidator
 **Value:** Organize by sensitivity level
 
 **Features:**
+
 - **Classification levels:**
+
   - 🌐 Public - No special handling
   - 🔒 Private - Encrypted at rest
   - 🔐 Confidential - Encrypted + audit logging
@@ -82,6 +88,7 @@ com.documentvault.security.PasswordValidator
 - **Classification statistics** in dashboard
 
 **Technical Details:**
+
 ```java
 public enum ClassificationLevel {
     PUBLIC,      // Green badge
@@ -97,6 +104,7 @@ private String classificationReason;
 ```
 
 **User Experience:**
+
 - Dropdown in item form
 - Visual badges in table view
 - Filter by classification level
@@ -111,7 +119,9 @@ private String classificationReason;
 **Value:** Security compliance and transparency
 
 **Features:**
+
 - **Comprehensive event logging:**
+
   - Document access (view, edit, delete)
   - Classification changes
   - Export/import operations
@@ -124,6 +134,7 @@ private String classificationReason;
 - **Performance optimization** - async logging
 
 **Technical Details:**
+
 ```java
 com.documentvault.audit.AuditLogger
 com.documentvault.audit.AuditEvent
@@ -141,6 +152,7 @@ public record AuditEvent(
 ```
 
 **User Experience:**
+
 - Menu: Tools > View Audit Log
 - Filter by date range, event type, document
 - Search within log entries
@@ -157,7 +169,9 @@ public record AuditEvent(
 **Value:** User comfort and modern expectations
 
 **Features:**
+
 - **Two themes:**
+
   - ☀️ Light Mode (current, refined)
   - 🌙 Dark Mode (new, eye-friendly)
 
@@ -167,24 +181,26 @@ public record AuditEvent(
 - **System integration** - follow OS theme (future)
 
 **Technical Details:**
+
 ```css
 /* dark-theme.css */
 .root {
-    -fx-base: #1e1e1e;
-    -fx-background: #252526;
-    -fx-control-inner-background: #2d2d30;
-    -fx-accent: #007acc;
-    -fx-text-fill: #cccccc;
+  -fx-base: #1e1e1e;
+  -fx-background: #252526;
+  -fx-control-inner-background: #2d2d30;
+  -fx-accent: #007acc;
+  -fx-text-fill: #cccccc;
 }
 
 /* High contrast mode support */
 .root.high-contrast {
-    -fx-accent: #00ff00;
-    -fx-text-fill: #ffffff;
+  -fx-accent: #00ff00;
+  -fx-text-fill: #ffffff;
 }
 ```
 
 **User Experience:**
+
 - Menu: View > Theme > Dark/Light
 - Keyboard shortcut: Cmd/Ctrl+Shift+T
 - Instant theme switching
@@ -199,7 +215,9 @@ public record AuditEvent(
 **Value:** User customization and control
 
 **Features:**
+
 - **Settings Dialog** with tabs:
+
   - **General:** Theme, language, startup behavior
   - **Security:** Auto-lock timeout, password requirements
   - **Data:** Backup location, auto-backup schedule
@@ -211,6 +229,7 @@ public record AuditEvent(
 - **Import/export settings** JSON
 
 **Technical Details:**
+
 ```java
 com.documentvault.settings.SettingsManager
 com.documentvault.settings.SettingsDialog
@@ -228,6 +247,7 @@ com.documentvault.settings.Setting<T>
 ```
 
 **User Experience:**
+
 - Menu: DocumentVault > Preferences (macOS) / Tools > Settings (Windows/Linux)
 - Keyboard shortcut: Cmd/Ctrl+,
 - Tabbed dialog for organization
@@ -242,6 +262,7 @@ com.documentvault.settings.Setting<T>
 **Value:** Better information display
 
 **Features:**
+
 - **Resizable columns** - drag to adjust width
 - **Column reordering** - drag to reposition
 - **Column visibility** - show/hide via right-click
@@ -251,6 +272,7 @@ com.documentvault.settings.Setting<T>
 - **Context menu enhancements** - quick actions
 
 **Technical Details:**
+
 ```java
 // Enhanced table with custom cell factories
 TableColumn<LibraryItem, String> titleColumn = new TableColumn<>("Title");
@@ -264,6 +286,7 @@ tableView.getColumns().addListener((ListChangeListener<TableColumn<?, ?>) change
 ```
 
 **User Experience:**
+
 - Right-click column header: Show/hide columns
 - Drag column borders: Resize
 - Drag column headers: Reorder
@@ -280,7 +303,9 @@ tableView.getColumns().addListener((ListChangeListener<TableColumn<?, ?>) change
 **Value:** Data portability and interoperability
 
 **Features:**
+
 - **Export formats:**
+
   - **JSON** - Complete data with metadata (default)
   - **CSV** - Spreadsheet-compatible, metadata in columns
   - **Markdown** - Human-readable documentation
@@ -294,6 +319,7 @@ tableView.getColumns().addListener((ListChangeListener<TableColumn<?, ?>) change
   - Encrypted export (password-protected)
 
 **Technical Details:**
+
 ```java
 com.documentvault.export.ExportService
 com.documentvault.export.JsonExporter
@@ -310,6 +336,7 @@ dialog.setEncrypted(true);
 ```
 
 **User Experience:**
+
 - Menu: File > Export...
 - Dialog: Select format, items, options
 - Progress indicator for large exports
@@ -324,12 +351,15 @@ dialog.setEncrypted(true);
 **Value:** Data migration and recovery
 
 **Features:**
+
 - **Import formats:**
+
   - JSON (from DocumentVault export)
   - CSV (with column mapping)
   - Markdown (parse frontmatter metadata)
 
 - **Import validation:**
+
   - Schema validation
   - Duplicate detection
   - Data integrity checks
@@ -341,6 +371,7 @@ dialog.setEncrypted(true);
   - **Merge** - Smart conflict resolution
 
 **Technical Details:**
+
 ```java
 com.documentvault.import.ImportService
 com.documentvault.import.ImportValidator
@@ -355,6 +386,7 @@ task.setOnSucceeded(event -> {
 ```
 
 **User Experience:**
+
 - Menu: File > Import...
 - File chooser: Select import file
 - Preview: Show items to be imported
@@ -370,18 +402,22 @@ task.setOnSucceeded(event -> {
 **Value:** Data safety and disaster recovery
 
 **Features:**
+
 - **Automatic backups:**
+
   - Scheduled: Daily, weekly, monthly
   - Configurable time and frequency
   - Keep last N backups (default: 10)
   - Incremental backups for efficiency
 
 - **Manual backups:**
+
   - On-demand backup creation
   - Custom backup naming
   - Backup to specific location
 
 - **Restore functionality:**
+
   - List available backups with metadata
   - Preview backup contents
   - Full restore or selective item restore
@@ -394,6 +430,7 @@ task.setOnSucceeded(event -> {
   - Encrypted backups with vault password
 
 **Technical Details:**
+
 ```java
 com.documentvault.backup.BackupService
 com.documentvault.backup.BackupScheduler
@@ -408,6 +445,7 @@ backup-{timestamp}.dvbackup (encrypted ZIP)
 ```
 
 **User Experience:**
+
 - Menu: Tools > Backup...
 - Dialog: Backup location, schedule, retention
 - Status bar: Last backup indicator
@@ -425,7 +463,9 @@ backup-{timestamp}.dvbackup (encrypted ZIP)
 **Value:** Power user productivity
 
 **Features:**
+
 - **Search operators:**
+
   - **Field search:** `title:keyword`, `content:phrase`
   - **Boolean:** `AND`, `OR`, `NOT`
   - **Exact match:** `"exact phrase"`
@@ -434,6 +474,7 @@ backup-{timestamp}.dvbackup (encrypted ZIP)
   - **Classification:** `class:confidential`
 
 - **Search modes:**
+
   - Simple: Basic text search (default)
   - Advanced: Operator-based queries
   - Regex: Pattern matching (power users)
@@ -445,6 +486,7 @@ backup-{timestamp}.dvbackup (encrypted ZIP)
   - Highlight matches in results
 
 **Technical Details:**
+
 ```java
 com.documentvault.search.SearchEngine
 com.documentvault.search.QueryParser
@@ -460,6 +502,7 @@ index.indexItem(item);
 ```
 
 **User Experience:**
+
 - Search bar: Type query, see suggestions
 - Mode toggle: Simple/Advanced/Regex
 - Dropdown: Search history
@@ -473,24 +516,28 @@ index.indexItem(item);
 ### **Month 1: Security Foundation**
 
 **Week 1: Encryption Infrastructure**
+
 - Design encryption architecture
 - Implement AES-256-GCM encryption service
 - Implement key derivation (PBKDF2)
 - Write encryption/decryption tests
 
 **Week 2: Password & Session Management**
+
 - Implement password validator
 - Build unlock dialog UI
 - Implement session manager with auto-lock
 - Add password change functionality
 
 **Week 3: Document Classification**
+
 - Extend LibraryItem model
 - Implement classification UI components
 - Add classification filters
 - Update storage format
 
 **Week 4: Audit Logging**
+
 - Implement audit logger
 - Create audit event types
 - Build audit log viewer UI
@@ -499,18 +546,21 @@ index.indexItem(item);
 ### **Month 2: UI/UX Enhancements**
 
 **Week 5: Dark Mode**
+
 - Create dark-theme.css
 - Refine light-theme.css
 - Implement theme switcher
 - Test all UI components
 
 **Week 6: Settings System**
+
 - Design settings architecture
 - Implement SettingsManager
 - Build settings dialog UI
 - Add settings persistence
 
 **Week 7: Table View Enhancements**
+
 - Implement resizable/reorderable columns
 - Add column visibility controls
 - Implement density modes
@@ -519,18 +569,21 @@ index.indexItem(item);
 ### **Month 3: Data Management**
 
 **Week 8: Export System**
+
 - Implement export service interface
 - Create format exporters (JSON, CSV, Markdown)
 - Build export dialog UI
 - Add encrypted export option
 
 **Week 9: Import System**
+
 - Implement import validators
 - Create import parsers
 - Build import preview UI
 - Implement conflict resolution
 
 **Week 10: Backup & Restore**
+
 - Implement backup service
 - Create backup scheduler
 - Build restore UI
@@ -539,12 +592,14 @@ index.indexItem(item);
 ### **Month 4: Search & Polish**
 
 **Week 11: Advanced Search**
+
 - Implement query parser
 - Create search index
 - Build advanced search UI
 - Add saved searches
 
 **Week 12: Testing & Release Prep**
+
 - Comprehensive testing (unit, integration, E2E)
 - Performance optimization
 - Documentation updates
@@ -589,6 +644,7 @@ index.indexItem(item);
 ### **Architecture Changes**
 
 **New Packages:**
+
 ```
 com.documentvault.security/
 ├── EncryptionService.java
@@ -634,6 +690,7 @@ com.documentvault.search/
 ### **Data Format Evolution**
 
 **Encrypted Storage Format:**
+
 ```json
 {
   "version": "1.3.0",
@@ -649,6 +706,7 @@ com.documentvault.search/
 ```
 
 **Backup Metadata:**
+
 ```json
 {
   "backupVersion": "1.0",
@@ -668,6 +726,7 @@ com.documentvault.search/
 ### **Testing Strategy**
 
 **Unit Tests (Target: 90% coverage)**
+
 - Encryption/decryption correctness
 - Key derivation performance
 - Password validation rules
@@ -677,6 +736,7 @@ com.documentvault.search/
 - Backup integrity verification
 
 **Integration Tests**
+
 - End-to-end encryption workflow
 - Export → Import round-trip
 - Backup → Restore cycle
@@ -684,6 +744,7 @@ com.documentvault.search/
 - Settings persistence
 
 **Security Tests**
+
 - Password strength enforcement
 - Encryption algorithm validation
 - Memory wiping verification
@@ -691,6 +752,7 @@ com.documentvault.search/
 - Audit log tampering detection
 
 **Performance Tests**
+
 - Encryption overhead (< 50ms per item)
 - Search performance (< 100ms for 10,000 items)
 - UI responsiveness (theme switch < 200ms)
@@ -698,6 +760,7 @@ com.documentvault.search/
 - Import validation (500 items/second)
 
 **UI/UX Tests**
+
 - Dark mode visual consistency
 - Settings dialog usability
 - Table view interactions
@@ -706,29 +769,30 @@ com.documentvault.search/
 
 ### **Compatibility Matrix**
 
-| Platform     | Java 25 | Dark Mode | Encryption | Backup |
-|--------------|---------|-----------|------------|--------|
-| macOS 10.14+ | ✅      | ✅        | ✅         | ✅     |
-| Windows 10+  | ✅      | ✅        | ✅         | ✅     |
-| Ubuntu 20.04+| ✅      | ✅        | ✅         | ✅     |
+| Platform      | Java 25 | Dark Mode | Encryption | Backup |
+| ------------- | ------- | --------- | ---------- | ------ |
+| macOS 10.14+  | ✅      | ✅        | ✅         | ✅     |
+| Windows 10+   | ✅      | ✅        | ✅         | ✅     |
+| Ubuntu 20.04+ | ✅      | ✅        | ✅         | ✅     |
 
 ### **Performance Benchmarks**
 
-| Operation                    | Target      | Baseline v1.2.0 |
-|------------------------------|-------------|-----------------|
-| Startup time (encrypted)     | < 4s        | 2.5s            |
-| Unlock vault                 | < 2s        | N/A             |
-| Encrypt document             | < 50ms      | N/A             |
-| Search 10,000 items          | < 100ms     | 75ms            |
-| Theme switch                 | < 200ms     | N/A             |
-| Export 1000 items (JSON)     | < 10s       | N/A             |
-| Backup 5000 items            | < 60s       | N/A             |
+| Operation                | Target  | Baseline v1.2.0 |
+| ------------------------ | ------- | --------------- |
+| Startup time (encrypted) | < 4s    | 2.5s            |
+| Unlock vault             | < 2s    | N/A             |
+| Encrypt document         | < 50ms  | N/A             |
+| Search 10,000 items      | < 100ms | 75ms            |
+| Theme switch             | < 200ms | N/A             |
+| Export 1000 items (JSON) | < 10s   | N/A             |
+| Backup 5000 items        | < 60s   | N/A             |
 
 ---
 
 ## 📊 **Success Metrics**
 
 ### **Security Metrics**
+
 - ✅ 100% of data encrypted at rest
 - ✅ Zero plaintext password storage
 - ✅ Audit log coverage for all sensitive operations
@@ -736,6 +800,7 @@ com.documentvault.search/
 - ✅ Password strength: Minimum 12 characters, mixed case, numbers, symbols
 
 ### **User Experience Metrics**
+
 - 📈 50%+ users adopt dark mode within first week
 - 📈 80%+ users configure at least one setting
 - 📈 70%+ users create at least one backup
@@ -743,6 +808,7 @@ com.documentvault.search/
 - 📈 90%+ user satisfaction rating (NPS > 50)
 
 ### **Technical Metrics**
+
 - 🏆 Test coverage: 90%+ (up from 85%)
 - 🏆 Zero high/critical security vulnerabilities
 - 🏆 CI/CD: 95%+ build success rate
@@ -754,6 +820,7 @@ com.documentvault.search/
 ## 🎉 **Release Deliverables**
 
 ### **Application Assets**
+
 - ✅ `documentvault-1.3.0.jar` - Encrypted vault with new features
 - ✅ Platform installers (Windows MSI, macOS DMG, Linux AppImage)
 - ✅ Migration tool (v1.2.0 → v1.3.0 data encryption)
@@ -761,6 +828,7 @@ com.documentvault.search/
 - ✅ Sample backups for testing
 
 ### **Documentation**
+
 - ✅ **USER_GUIDE.md** - Updated with encryption, backup, export/import
 - ✅ **SECURITY.md** - Encryption details, best practices, threat model
 - ✅ **BACKUP_GUIDE.md** - Backup strategies, restore procedures
@@ -771,6 +839,7 @@ com.documentvault.search/
 ### **Migration Path**
 
 **From v1.2.0 to v1.3.0:**
+
 1. **Automatic data backup** on first launch
 2. **Password setup wizard** - create master password
 3. **Data encryption** - one-time process (progress shown)
@@ -778,6 +847,7 @@ com.documentvault.search/
 5. **Validation** - verify all data readable
 
 **Rollback Support:**
+
 - Keep v1.2.0 backup until user confirms success
 - Export to JSON before encryption (optional)
 - Decryption tool for emergency recovery
@@ -787,12 +857,14 @@ com.documentvault.search/
 ## 🔮 **Post-v1.3.0 Roadmap Preview**
 
 ### **v1.4.0: Collaboration & Sync (Q2 2026)**
+
 - Secure cloud backup (encrypted before upload)
 - Multi-device sync (conflict resolution)
 - Shared vaults (read-only, encrypted sharing)
 - Version history and rollback
 
 ### **v1.5.0: Advanced Features (Q3 2026)**
+
 - Two-factor authentication (TOTP)
 - PDF annotation and highlighting
 - Rich text editor for notes
@@ -800,6 +872,7 @@ com.documentvault.search/
 - OCR for scanned documents
 
 ### **v2.0.0: Platform Expansion (Q4 2026)**
+
 - Mobile companion apps (iOS/Android)
 - Browser extension for web clipping
 - API for integrations
@@ -810,33 +883,37 @@ com.documentvault.search/
 ## 🎯 **Development Priorities**
 
 ### **Must-Have (MVP for v1.3.0)**
+
 ✅ AES-256 encryption  
 ✅ Master password protection  
 ✅ Dark mode theme  
 ✅ Settings system  
 ✅ Export to JSON/CSV  
-✅ Backup & restore  
+✅ Backup & restore
 
 ### **Should-Have (High Value)**
+
 ✅ Document classification  
 ✅ Audit logging  
 ✅ Import from JSON/CSV  
 ✅ Advanced search  
-✅ Enhanced table view  
+✅ Enhanced table view
 
 ### **Could-Have (Nice to Have)**
+
 ⚠️ HTML/PDF export (defer to v1.4.0 if time-constrained)  
 ⚠️ Markdown import (defer to v1.4.0 if time-constrained)  
-⚠️ Search suggestions (defer to v1.4.0 if time-constrained)  
+⚠️ Search suggestions (defer to v1.4.0 if time-constrained)
 
 ### **Won't-Have (Future Versions)**
+
 ❌ Cloud sync (v1.4.0)  
 ❌ Two-factor auth (v1.5.0)  
 ❌ Mobile apps (v2.0.0)  
-❌ OCR (v1.5.0)  
+❌ OCR (v1.5.0)
 
 ---
 
 **DocumentVault v1.3.0 - Where Security Meets Simplicity** 🔒📚✨
 
-*"Your documents. Your vault. Your peace of mind."*
+_"Your documents. Your vault. Your peace of mind."_
