@@ -90,7 +90,15 @@ public class ThemeManager {
         }
 
         scene.getStylesheets().clear();
-        String themeUrl = getClass().getResource("/css/" + theme.getCssFile()).toExternalForm();
+        
+        // Try to load the CSS resource
+        var cssResource = getClass().getResource("/css/" + theme.getCssFile());
+        if (cssResource == null) {
+            System.err.println("Warning: Could not find theme CSS file: /css/" + theme.getCssFile());
+            return;
+        }
+        
+        String themeUrl = cssResource.toExternalForm();
         scene.getStylesheets().add(themeUrl);
 
         currentTheme = theme;
