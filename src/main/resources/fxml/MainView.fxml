@@ -7,8 +7,7 @@
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.documentvault.controller.MainController"
-            prefHeight="800.0" prefWidth="1200.0"
-            stylesheets="@../css/application.css">
+            prefHeight="800.0" prefWidth="1200.0">
     
     <!-- Top: Menu Bar -->
     <top>
@@ -28,6 +27,8 @@
                 <Menu text="View">
                     <MenuItem text="Clear Filters" onAction="#handleClearFilters" accelerator="Ctrl+L"/>
                     <MenuItem text="Refresh" onAction="#handleRefresh" accelerator="F5"/>
+                    <SeparatorMenuItem/>
+                    <MenuItem text="Toggle Theme" onAction="#handleToggleTheme" accelerator="Shortcut+Shift+T"/>
                 </Menu>
                 <Menu text="Help">
                     <MenuItem text="About" onAction="#handleAbout"/>

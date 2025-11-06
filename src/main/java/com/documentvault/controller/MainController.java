@@ -1,6 +1,7 @@
 package com.documentvault.controller;
 
 import com.documentvault.model.*;
+import com.documentvault.theme.ThemeManager;
 import com.documentvault.util.AlertUtil;
 import com.documentvault.util.DateUtil;
 import com.documentvault.util.FileUtil;
@@ -379,6 +380,12 @@ public class MainController {
     private void handleExit() {
         Stage stage = (Stage) itemsTableView.getScene().getWindow();
         stage.close();
+    }
+
+    @FXML
+    private void handleToggleTheme() {
+        Scene scene = itemsTableView.getScene();
+        ThemeManager.getInstance().toggleTheme(scene);
     }
 
     @FXML

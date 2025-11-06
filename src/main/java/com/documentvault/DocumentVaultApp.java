@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import com.documentvault.service.StorageService;
+import com.documentvault.theme.ThemeManager;
 import com.documentvault.util.AlertUtil;
 import com.documentvault.util.BrandConstants;
 
@@ -33,7 +34,10 @@ public class DocumentVaultApp extends Application {
 
             // Create and configure the scene
             Scene scene = new Scene(root, WINDOW_WIDTH, WINDOW_HEIGHT);
-            scene.getStylesheets().add(getClass().getResource("/css/application.css").toExternalForm());
+
+            // Apply saved theme using ThemeManager
+            ThemeManager themeManager = ThemeManager.getInstance();
+            themeManager.applyTheme(scene, themeManager.getSavedTheme());
 
             // Configure the primary stage
             primaryStage.setTitle(APP_TITLE);
