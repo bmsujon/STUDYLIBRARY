@@ -45,8 +45,26 @@
     -fx-text-fill: white;
 }
 
+.menu-item {
+    -fx-background-color: white;
+}
+
+.menu-item .label {
+    -fx-text-fill: #2c3e50;
+}
+
 .menu-item:focused {
     -fx-background-color: -fx-primary-color;
+}
+
+.menu-item:focused .label {
+    -fx-text-fill: white;
+}
+
+/* Context Menu */
+.context-menu {
+    -fx-background-color: white;
+    -fx-border-color: #bdc3c7;
 }
 
 /* Toolbar */
