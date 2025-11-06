@@ -268,7 +268,7 @@ jobs:
         echo "# DocumentVault Launcher" >> build/study-library.sh
         echo "# Version: ${VERSION}" >> build/study-library.sh
         echo "" >> build/study-library.sh
-        echo "java --enable-preview -cp \"target/study-library-${VERSION}.jar:target/lib/*\" com.documentvault.Launcher" >> build/study-library.sh
+        echo "java --enable-preview -cp \"target/documentvault-${VERSION}.jar:target/lib/*\" com.documentvault.Launcher" >> build/study-library.sh
         chmod +x build/study-library.sh
         
     - name: Create platform-specific executable (Windows)
@@ -282,7 +282,7 @@ jobs:
         echo REM DocumentVault Launcher >> build/study-library.bat
         echo REM Version: %VERSION% >> build/study-library.bat
         echo. >> build/study-library.bat
-        echo java --enable-preview -cp "target/study-library-%VERSION%.jar;target/lib/*" com.documentvault.Launcher >> build/study-library.bat
+        echo java --enable-preview -cp "target/documentvault-%VERSION%.jar;target/lib/*" com.documentvault.Launcher >> build/study-library.bat
         
     - name: Package application with dependencies
       shell: bash
@@ -310,7 +310,7 @@ jobs:
       with:
         name: study-library-${{ runner.os }}
         path: |
-          target/study-library-*.jar
+          target/documentvault-*.jar
           target/lib/
           build/
         retention-days: 30

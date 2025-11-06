@@ -49,7 +49,7 @@ jobs:
       run: |
         mvn package
         mkdir -p nightly-build
-        cp target/study-library-*.jar nightly-build/
+        cp target/documentvault-*.jar nightly-build/
         cp -r target/lib nightly-build/ 2>/dev/null || true
         echo "Nightly build $(date)" > nightly-build/BUILD_INFO.txt
         echo "Commit: ${{ github.sha }}" >> nightly-build/BUILD_INFO.txt
