@@ -7,6 +7,7 @@
     -fx-accent: #3498db;
     -fx-focus-color: #3498db;
     -fx-control-inner-background: white;
+    -fx-text-fill: #2c3e50;  /* Default text color for light theme */
     
     /* Color Palette */
     -fx-primary-color: #3498db;
