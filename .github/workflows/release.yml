@@ -138,7 +138,7 @@ jobs:
     - name: Copy application files
       shell: bash
       run: |
-        cp target/study-library-*.jar dist/study-library/
+        cp target/documentvault-*.jar dist/study-library/
         cp -r target/lib dist/study-library/
         cp README.md dist/study-library/
         cp LICENSE dist/study-library/
@@ -162,7 +162,7 @@ jobs:
         
         # Launch the application
         cd "$DIR"
-        java --enable-preview -cp "study-library-${{ needs.prepare-release.outputs.version }}.jar:lib/*" com.documentvault.Launcher
+        java --enable-preview -cp "documentvault-${{ needs.prepare-release.outputs.version }}.jar:lib/*" com.documentvault.Launcher
         EOF
         chmod +x dist/study-library/study-library.sh
         
@@ -187,7 +187,7 @@ jobs:
         
         REM Launch the application
         cd /d "%DIR%"
-        java --enable-preview -cp "study-library-${{ needs.prepare-release.outputs.version }}.jar;lib\*" com.documentvault.Launcher
+        java --enable-preview -cp "documentvault-${{ needs.prepare-release.outputs.version }}.jar;lib\*" com.documentvault.Launcher
         pause
         '@ > dist/study-library/study-library.bat
         
